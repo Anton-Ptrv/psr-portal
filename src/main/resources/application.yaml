@@ -1,0 +1,19 @@
+spring:
+  liquibase.enabled: true
+
+  datasource:
+    url: jdbc:postgresql://localhost/psr
+    username: postgres
+    password: password
+    initialization-mode: always
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+logging:
+  level:
+    root: info
+    liquibase: info
