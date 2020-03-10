@@ -16,13 +16,13 @@ CREATE TABLE classifications
     id   integer NOT NULL,
     name character varying(100), -- Наименоваие
     CONSTRAINT list_class_pk PRIMARY KEY (id)
-) WITH (OIDS= FALSE);
+) WITH (OIDS = FALSE);
 
 ALTER TABLE classifications
     OWNER TO postgres;
 
 COMMENT ON TABLE classifications
-    IS 'Классификации - призгак по которому разделять добровольцев.
+    IS 'Классификации - признак по которому разделять добровольцев.
 Название кваливикации: местный, мчс, ЛА.
 Может быть любой по желанию заказчика.';
 COMMENT ON COLUMN classifications.name IS 'Наименоваие';
@@ -35,7 +35,7 @@ CREATE TABLE volunteer_status
     id   integer NOT NULL,       -- ID статуса
     name character varying(200), -- Наименование статуса добровольца
     CONSTRAINT volunteer_status_id_pk PRIMARY KEY (id)
-) WITH (OIDS= FALSE);
+) WITH (OIDS = FALSE);
 
 ALTER TABLE volunteer_status
     OWNER TO postgres;
@@ -52,7 +52,7 @@ CREATE TABLE psr_states
     id   integer NOT NULL,
     name character varying(50), -- Наименование статуса
     CONSTRAINT psr_states_pk PRIMARY KEY (id)
-) WITH (OIDS= FALSE);
+) WITH (OIDS = FALSE);
 
 ALTER TABLE psr_states
     OWNER TO postgres;
@@ -75,7 +75,7 @@ CREATE TABLE psr
     CONSTRAINT psr_states_fk FOREIGN KEY (state_id)
         REFERENCES psr_states (id) MATCH SIMPLE
         ON UPDATE NO ACTION ON DELETE NO ACTION
-) WITH (OIDS= FALSE);
+) WITH (OIDS = FALSE);
 
 ALTER TABLE psr
     OWNER TO postgres;
@@ -100,7 +100,7 @@ CREATE TABLE shuttles
     CONSTRAINT psr_fk FOREIGN KEY (psr_id)
         REFERENCES psr (id) MATCH SIMPLE
         ON UPDATE NO ACTION ON DELETE NO ACTION
-) WITH (OIDS= FALSE);
+) WITH (OIDS = FALSE);
 
 ALTER TABLE shuttles
     OWNER TO postgres;
@@ -121,7 +121,7 @@ CREATE TABLE users
     fio      character varying(100),
     CONSTRAINT users_id_pk PRIMARY KEY (id),
     CONSTRAINT users_login_uk UNIQUE (login)
-) WITH (OIDS= FALSE);
+) WITH (OIDS = FALSE);
 
 ALTER TABLE users
     OWNER TO postgres;
@@ -151,7 +151,7 @@ CREATE TABLE volunteers
         ON UPDATE NO ACTION ON DELETE NO ACTION,
     CONSTRAINT volunteer_login_uk UNIQUE (login_telegram),
     CONSTRAINT volunteer_phone_uk UNIQUE (phone)
-) WITH (OIDS= FALSE);
+) WITH (OIDS = FALSE);
 
 ALTER TABLE volunteers
     OWNER TO postgres;
@@ -191,7 +191,7 @@ CREATE TABLE psr_data
     CONSTRAINT users_fk2 FOREIGN KEY (registrator)
         REFERENCES users (id) MATCH SIMPLE
         ON UPDATE NO ACTION ON DELETE NO ACTION
-) WITH (OIDS= FALSE);
+) WITH (OIDS = FALSE);
 
 ALTER TABLE psr_data
     OWNER TO postgres;

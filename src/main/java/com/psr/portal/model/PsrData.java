@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-/**
- * Информация ПСР
- */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,14 +18,14 @@ public class PsrData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "psr_list_id")
-    private long psrListId;
+    @Column(name = "psr_id")
+    private int psrId;
 
     @Column(name = "station")
     private String station;
 
     @Column(name = "rpsr")
-    private String rpsr;
+    private int rpsr;
 
     @Column(name = "registrator")
     private int registrator;
@@ -39,6 +36,7 @@ public class PsrData {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "foto")
+    @Column(name = "photo")
     private byte[] photo;
+
 }

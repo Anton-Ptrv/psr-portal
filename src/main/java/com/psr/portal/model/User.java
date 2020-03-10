@@ -4,23 +4,27 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-/**
- * Список пользователей
- */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "listUsers")
-@Table(name = "list_users")
-public class ListUsers {
+@Entity(name = "user")
+@Table(name = "users")
+public class User {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @Column(name = "login")
     private String login;
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "fio")
+    private String fio;
+
 }

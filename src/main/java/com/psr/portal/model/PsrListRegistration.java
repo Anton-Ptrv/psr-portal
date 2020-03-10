@@ -5,11 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.sql.Timestamp;
 
-/**
- * Лист регистрации участников заявившихся на ПСР
- */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,24 +19,25 @@ public class PsrListRegistration {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "psr_list_id")
-    private long psrListId;
+    @Column(name = "psr_id")
+    private int psrId;
 
-    @Column(name = "fio")
-    private String fio;
+    @Column(name = "vol_id")
+    private int vol_id;
 
-    @Column(name = "is_auto")
-    private boolean isAuto;
+    @Column(name = "status_id")
+    private int status_id;
 
     @Column(name = "shuttle_num")
     private String shuttleNum;
 
-    @Column(name = "class_id")
-    private long classId;
+    @Column(name = "departure_address")
+    private String departureAddress;
 
     @Column(name = "rvp")
-    private Time rvp;
+    private Timestamp rvp;
 
     @Column(name = "rvo")
-    private Time rvo;
+    private Timestamp rvo;
+
 }

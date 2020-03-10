@@ -6,16 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
-/**
- * Справочник Добровольцев
- */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "volunteer")
-@Table(name = "volonteers")
+@Table(name = "volunteers")
 public class Volunteer {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,11 +21,17 @@ public class Volunteer {
     @Column(name = "fio")
     private String fio;
 
+    @Column(name = "sex")
+    private boolean sex;
+
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "login_telegram")
+    private String telegramLogin;
+
     @Column(name = "class_id")
-    private long classId;
+    private int classification;
 
     @Column(name = "equipment")
     private String equipment;
@@ -36,7 +39,7 @@ public class Volunteer {
     @Column(name = "psr_list_desc")
     private String psrListDesc;
 
-    @Column(name = "remm")
-    private String remm;
+    @Column(name = "comment")
+    private String comment;
 
 }

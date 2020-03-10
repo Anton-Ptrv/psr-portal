@@ -9,14 +9,14 @@ import javax.persistence.*;
 /**
  * Классификации - признак по которому разделять добровольцев.
  * Название кваливикации: местный, мчс, ЛА.
- * Может быть любой по желанию заказчика.
+ * Может быть любой по желанию заказчика
  */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "listClass")
-@Table(name = "list_class")
-public class ListClass {
+@Entity(name = "classification")
+@Table(name = "classifications")
+public class Classification {
 
     @Id
     @Column(name = "id")
@@ -25,8 +25,5 @@ public class ListClass {
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "remm")
-    private String remm;
 
 }

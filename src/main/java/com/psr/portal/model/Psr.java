@@ -1,20 +1,23 @@
 package com.psr.portal.model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 /**
- * Статусы волонтеров
+ * Перечень ПСР
  */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "listVolStates")
-@Table(name = "list_vol_states")
-public class ListVolStates {
+@Entity(name = "psr")
+@Table(name = "psr")
+public class Psr {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,4 +25,17 @@ public class ListVolStates {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "start_date")
+    private Date startDate;
+
+    @Column(name = "end_date")
+    private Date endDate;
+
+    @Column(name = "state_id")
+    private int state;
+
+    @Column(name = "comment")
+    private String comment;
+
 }
