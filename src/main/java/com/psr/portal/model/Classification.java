@@ -8,8 +8,6 @@ import javax.persistence.*;
 
 /**
  * Классификации - признак по которому разделять добровольцев.
- * Название кваливикации: местный, мчс, ЛА.
- * Может быть любой по желанию заказчика
  */
 @Getter
 @NoArgsConstructor
@@ -23,6 +21,10 @@ public class Classification {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    /**
+     * Наименование кваливикации: местный, мчс, ЛА.
+     * Может быть любой по желанию заказчика
+     */
     @Column(name = "name")
     private String name;
 

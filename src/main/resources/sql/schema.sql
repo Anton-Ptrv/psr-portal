@@ -105,7 +105,7 @@ CREATE TABLE shuttles
 ALTER TABLE shuttles
     OWNER TO postgres;
 
-COMMENT ON TABLE shuttles IS 'Зарегестрированные на ПСР экипажи ';
+COMMENT ON TABLE shuttles IS 'Зарегестрированные на ПСР экипажи';
 COMMENT ON COLUMN shuttles.psr_id IS 'ПСР';
 COMMENT ON COLUMN shuttles.auto IS 'Марка и номер машины';
 

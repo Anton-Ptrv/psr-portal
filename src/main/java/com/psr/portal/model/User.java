@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * Список пользователей
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

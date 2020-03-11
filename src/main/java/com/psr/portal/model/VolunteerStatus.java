@@ -21,6 +21,9 @@ public class VolunteerStatus {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    /**
+     * Наименование статуса добровольца
+     */
     @Column(name = "name")
     private String name;
 

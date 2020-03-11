@@ -21,6 +21,9 @@ public class PsrState {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    /**
+     * Наименование статуса
+     */
     @Column(name = "name")
     private String name;
 

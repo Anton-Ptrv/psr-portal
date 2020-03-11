@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * Справочник Добровольцы
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,9 +40,15 @@ public class Volunteer {
     @Column(name = "equipment")
     private String equipment;
 
+    /**
+     * Список работ в которых принимал участие???
+     */
     @Column(name = "psr_list_desc")
     private String psrListDesc;
 
+    /**
+     * Примечание
+     */
     @Column(name = "comment")
     private String comment;
 

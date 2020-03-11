@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * Лист регистрации участников заявившихся на ПСР
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,28 +22,49 @@ public class PsrListRegistration {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    /**
+     * ПСР (из спр-ка)
+     */
     @JoinColumn(name = "psr_id")
     @ManyToOne(targetEntity = Psr.class, fetch = FetchType.LAZY)
-    private Psr psrId;
+    private Psr psr;
 
+    /**
+     * Доброволец (из спр-ка)
+     */
     @JoinColumn(name = "vol_id")
-    @OneToOne(targetEntity = Volunteer.class, fetch = FetchType.LAZY)
-    private Volunteer vol_id;
+    @ManyToOne(targetEntity = Volunteer.class, fetch = FetchType.LAZY)
+    private Volunteer volunteer;
 
+    /**
+     * Статус (ссылка на list_vol_states)
+     */
     @JoinColumn(name = "status_id")
     @ManyToOne(targetEntity = VolunteerStatus.class, fetch = FetchType.EAGER)
-    private VolunteerStatus status_id;
+    private VolunteerStatus volunteerStatus;
 
+    /**
+     * Номер экипажа
+     */
     @Column(name = "shuttle_num")
     private String shuttleNum;
 
+    /**
+     * Адрес отправления
+     */
     @Column(name = "departure_address")
     private String departureAddress;
 
+    /**
+     * Расчетное время прибытия волонетра
+     */
     @Column(name = "rvp")
-    private Timestamp rvp;
+    private Timestamp startVolunteerTime;
 
+    /**
+     * Расчетное время отбытия волонетра
+     */
     @Column(name = "rvo")
-    private Timestamp rvo;
+    private Timestamp endVolunteerTime;
 
 }

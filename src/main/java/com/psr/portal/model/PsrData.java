@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * Данные поисково-спасательных работ
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,27 +21,48 @@ public class PsrData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    /**
+     * определенная ПСР
+     */
     @JoinColumn(name = "psr_id")
     @OneToOne(targetEntity = Psr.class, fetch = FetchType.LAZY)
-    private Psr psrId;
+    private Psr psr;
 
+    /**
+     * Адрес штаба
+     */
     @Column(name = "station")
     private String station;
 
+    /**
+     * Руководитель ПСР (из спр-ка Пользователи)
+     */
     @JoinColumn(name = "rpsr")
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    private User rpsr;
+    private User psrLeader;
 
+    /**
+     * Регистратор ПСР (из спр-ка Пользователи)
+     */
     @JoinColumn(name = "registrator")
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    private User registrator;
+    private User psrRegisteredUser;
 
+    /**
+     * Первичная информация о поиске
+     */
     @Column(name = "object_info")
     private String objectInfo;
 
+    /**
+     * Основная информация о поиске
+     */
     @Column(name = "content")
     private String content;
 
+    /**
+     * Ориентировка или фотография ОП(объекта поиска)
+     */
     @Column(name = "photo")
     private byte[] photo;
 

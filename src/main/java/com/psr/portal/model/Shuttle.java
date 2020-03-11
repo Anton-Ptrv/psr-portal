@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * Зарегестрированные на ПСР экипажи
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,10 +21,16 @@ public class Shuttle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    /**
+     * ПСР на котором зарегестрирован экипаж
+     */
     @JoinColumn(name = "psr_id")
     @ManyToOne(targetEntity = Psr.class, fetch = FetchType.LAZY)
-    private Psr psr;
+    private Psr registeredOnPsr;
 
+    /**
+     * Марка и номер машины
+     */
     @Column(name = "auto")
     private String auto;
 
