@@ -30,8 +30,9 @@ public class Volunteer {
     @Column(name = "login_telegram")
     private String telegramLogin;
 
-    @Column(name = "class_id")
-    private int classification;
+    @JoinColumn(name = "class_id")
+    @ManyToOne(targetEntity = Classification.class, fetch = FetchType.LAZY)
+    private Classification classification;
 
     @Column(name = "equipment")
     private String equipment;

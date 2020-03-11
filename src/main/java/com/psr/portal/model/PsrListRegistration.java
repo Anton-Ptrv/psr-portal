@@ -19,14 +19,17 @@ public class PsrListRegistration {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "psr_id")
-    private int psrId;
+    @JoinColumn(name = "psr_id")
+    @ManyToOne(targetEntity = Psr.class, fetch = FetchType.LAZY)
+    private Psr psrId;
 
-    @Column(name = "vol_id")
-    private int vol_id;
+    @JoinColumn(name = "vol_id")
+    @OneToOne(targetEntity = Volunteer.class, fetch = FetchType.LAZY)
+    private Volunteer vol_id;
 
-    @Column(name = "status_id")
-    private int status_id;
+    @JoinColumn(name = "status_id")
+    @ManyToOne(targetEntity = VolunteerStatus.class, fetch = FetchType.EAGER)
+    private VolunteerStatus status_id;
 
     @Column(name = "shuttle_num")
     private String shuttleNum;

@@ -18,11 +18,13 @@ public class ShuttleData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "shuttle_id")
-    private long shuttleId;
+    @JoinColumn(name = "shuttle_id")
+    @OneToOne(targetEntity = Shuttle.class, fetch = FetchType.LAZY)
+    private Shuttle shuttleId;
 
-    @Column(name = "vol_id")
-    private long volId;
+    @JoinColumn(name = "vol_id")
+    @OneToOne(targetEntity = Volunteer.class, fetch = FetchType.LAZY)
+    private Volunteer volId;
 
     @Column(name = "is_driver")
     private boolean driver;

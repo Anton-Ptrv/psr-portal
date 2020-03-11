@@ -18,17 +18,20 @@ public class PsrData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "psr_id")
-    private int psrId;
+    @JoinColumn(name = "psr_id")
+    @OneToOne(targetEntity = Psr.class, fetch = FetchType.LAZY)
+    private Psr psrId;
 
     @Column(name = "station")
     private String station;
 
-    @Column(name = "rpsr")
-    private int rpsr;
+    @JoinColumn(name = "rpsr")
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    private User rpsr;
 
-    @Column(name = "registrator")
-    private int registrator;
+    @JoinColumn(name = "registrator")
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    private User registrator;
 
     @Column(name = "object_info")
     private String objectInfo;

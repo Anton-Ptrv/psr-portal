@@ -32,8 +32,9 @@ public class Psr {
     @Column(name = "end_date")
     private Date endDate;
 
-    @Column(name = "state_id")
-    private int state;
+    @JoinColumn(name = "state_id")
+    @ManyToOne(targetEntity = PsrState.class, fetch = FetchType.EAGER)
+    private PsrState state;
 
     @Column(name = "comment")
     private String comment;

@@ -18,8 +18,9 @@ public class Shuttle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "psr_id")
-    private int psr;
+    @JoinColumn(name = "psr_id")
+    @ManyToOne(targetEntity = Psr.class, fetch = FetchType.LAZY)
+    private Psr psr;
 
     @Column(name = "auto")
     private String auto;
