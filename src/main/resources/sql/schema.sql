@@ -1,19 +1,31 @@
--- DROP TABLES
+-- DROP TABLES AND SEQUENCES
 DROP TABLE IF EXISTS psr_data;
+DROP SEQUENCE IF EXISTS psr_data_sequence;
 DROP TABLE IF EXISTS psr_list_registration;
+DROP SEQUENCE IF EXISTS psr_list_registration_sequence;
 DROP TABLE IF EXISTS shuttle_data;
+DROP SEQUENCE IF EXISTS shuttle_data_sequence;
 DROP TABLE IF EXISTS volunteers;
+DROP SEQUENCE IF EXISTS volunteers_sequence;
 DROP TABLE IF EXISTS shuttles;
+DROP SEQUENCE IF EXISTS shuttles_sequence;
 DROP TABLE IF EXISTS psr;
+DROP SEQUENCE IF EXISTS psr_sequence;
 DROP TABLE IF EXISTS users;
+DROP SEQUENCE IF EXISTS users_sequence;
 DROP TABLE IF EXISTS volunteer_status;
+DROP SEQUENCE IF EXISTS volunteer_status_sequence;
 DROP TABLE IF EXISTS classifications;
+DROP SEQUENCE IF EXISTS classifications_sequence;
 DROP TABLE IF EXISTS psr_states;
+DROP SEQUENCE IF EXISTS psr_states_sequence;
 
 -- Table: classifications
+CREATE SEQUENCE classifications_sequence start 1 increment 1;
+
 CREATE TABLE classifications
 (
-    id   integer NOT NULL,
+    id   integer NOT NULL DEFAULT nextval('classifications_sequence'),
     name character varying(100), -- Наименоваие
     CONSTRAINT list_class_pk PRIMARY KEY (id)
 ) WITH (OIDS = FALSE);
@@ -29,10 +41,12 @@ COMMENT ON COLUMN classifications.name IS 'Наименоваие';
 
 CREATE INDEX classifications_id_idx ON classifications USING btree (id);
 
+
 -- Table: volunteer_status
+CREATE SEQUENCE volunteer_status_sequence start 1 increment 1;
 CREATE TABLE volunteer_status
 (
-    id   integer NOT NULL,       -- ID статуса
+    id   integer NOT NULL DEFAULT nextval('volunteer_status_sequence'),       -- ID статуса
     name character varying(200), -- Наименование статуса добровольца
     CONSTRAINT volunteer_status_id_pk PRIMARY KEY (id)
 ) WITH (OIDS = FALSE);
@@ -47,9 +61,10 @@ COMMENT ON COLUMN volunteer_status.name IS 'Наименование стату�
 CREATE UNIQUE INDEX volunteer_status_id_idx ON volunteer_status USING btree (id);
 
 -- Table: psr_states
+CREATE SEQUENCE psr_states_sequence start 1 increment 1;
 CREATE TABLE psr_states
 (
-    id   integer NOT NULL,
+    id   integer NOT NULL DEFAULT nextval('psr_states_sequence'),
     name character varying(50), -- Наименование статуса
     CONSTRAINT psr_states_pk PRIMARY KEY (id)
 ) WITH (OIDS = FALSE);
@@ -63,9 +78,10 @@ COMMENT ON COLUMN psr_states.name IS 'Наименование статуса';
 CREATE INDEX psr_states_id_idx ON psr_states USING btree (id);
 
 -- Table: psr
+CREATE SEQUENCE psr_sequence start 1 increment 1;
 CREATE TABLE psr
 (
-    id         integer           NOT NULL,
+    id         integer           NOT NULL DEFAULT nextval('psr_sequence'),
     name       character varying NOT NULL, -- Наименование. Состоит из Адреса + ФИО потерявшегося.
     start_date date              NOT NULL, -- Дата начала ПСР
     end_date   date,                       -- Дата окончания ПСР
@@ -91,9 +107,10 @@ CREATE INDEX psr_id_idx ON psr USING btree (id);
 CREATE INDEX psr_state_idx ON psr USING btree (state_id);
 
 -- Table: shuttles
+CREATE SEQUENCE shuttles_sequence start 1 increment 1;
 CREATE TABLE shuttles
 (
-    id     integer NOT NULL,
+    id     integer NOT NULL DEFAULT nextval('shuttles_sequence'),
     psr_id integer,                -- ПСР
     auto   character varying(100), -- Марка и номер машины
     CONSTRAINT shuttles_id_pk PRIMARY KEY (id),
@@ -113,9 +130,10 @@ CREATE INDEX shuttles_id_idx ON shuttles USING btree (id);
 CREATE INDEX shuttles_psr_id_idx ON shuttles USING btree (psr_id);
 
 -- Table: users
+CREATE SEQUENCE users_sequence start 1 increment 1;
 CREATE TABLE users
 (
-    id       numeric NOT NULL,
+    id       numeric NOT NULL DEFAULT nextval('users_sequence'),
     login    character varying(50), -- Логин
     password character varying(20), -- Пароль
     fio      character varying(100),
@@ -134,9 +152,10 @@ CREATE UNIQUE INDEX users_id_idx ON users USING btree (id);
 CREATE UNIQUE INDEX users_login_idx ON users USING btree (login COLLATE pg_catalog."default");
 
 -- Table: volunteers
+CREATE SEQUENCE volunteers_sequence start 1 increment 1;
 CREATE TABLE volunteers
 (
-    id             integer                NOT NULL,
+    id             integer                NOT NULL DEFAULT nextval('volunteers_sequence'),
     fio            character varying(100) NOT NULL, -- ФИО
     sex            boolean                NOT NULL, -- Пол
     phone          character varying(20)  NOT NULL, -- Номер телефона
@@ -171,9 +190,10 @@ CREATE UNIQUE INDEX volunteers_login_uidx ON volunteers USING btree (login_teleg
 CREATE UNIQUE INDEX volunteers_phone_uidx ON volunteers USING btree (phone COLLATE pg_catalog."default");
 
 -- Table: psr_data
+CREATE SEQUENCE psr_data_sequence start 1 increment 1;
 CREATE TABLE psr_data
 (
-    id          integer NOT NULL,
+    id          integer NOT NULL DEFAULT nextval('psr_data_sequence'),
     psr_id      integer,                -- ПСР
     station     character varying(500), -- Адрес штаба
     rpsr        integer,                -- Руководитель ПСР (из спр-ка Пользователи)
@@ -209,9 +229,10 @@ CREATE INDEX psr_data_id_idx ON psr_data USING btree (id);
 CREATE INDEX psr_data_psr_id_idx ON psr_data USING btree (psr_id);
 
 -- Table: psr_list_registration
+CREATE SEQUENCE psr_list_registration_sequence start 1 increment 1;
 CREATE TABLE psr_list_registration
 (
-    id integer NOT NULL,
+    id integer NOT NULL DEFAULT nextval('psr_list_registration_sequence'),
     psr_id integer NOT NULL,                -- ПСР (из спр-ка)
     vol_id integer NOT NULL,                -- Доброволец (из спр-ка)
     status_id integer NOT NULL,             -- Статус (ссылка на list_vol_states)
@@ -248,9 +269,10 @@ CREATE INDEX psr_list_registration_psr_id_idx ON psr_list_registration USING btr
 CREATE INDEX psr_list_registration_status_idx ON psr_list_registration USING btree(status_id);
 
 -- Table: shuttle_data
+CREATE SEQUENCE shuttle_data_sequence start 1 increment 1;
 CREATE TABLE shuttle_data
 (
-    id integer NOT NULL,
+    id integer NOT NULL DEFAULT nextval('shuttle_data_sequence'),
     shuttle_id integer NOT NULL,                -- Экипаж
     vol_id integer NOT NULL,                    -- Доброволец
     is_driver boolean NOT NULL DEFAULT false,   -- Признак "Водитель"

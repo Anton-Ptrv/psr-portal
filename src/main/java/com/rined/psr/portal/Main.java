@@ -1,4 +1,4 @@
-package com.psr.portal;
+package com.rined.psr.portal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

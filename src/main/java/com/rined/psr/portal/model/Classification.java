@@ -1,4 +1,4 @@
-package com.psr.portal.model;
+package com.rined.psr.portal.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +18,7 @@ public class Classification {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     /**
@@ -28,4 +28,7 @@ public class Classification {
     @Column(name = "name")
     private String name;
 
+    public Classification(String name) {
+        this.name = name;
+    }
 }

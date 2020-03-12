@@ -1,4 +1,4 @@
-package com.psr.portal.model;
+package com.rined.psr.portal.model;
 
 
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class Psr {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     /**
