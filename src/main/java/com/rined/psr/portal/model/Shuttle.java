@@ -1,6 +1,5 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
  */
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "shuttle")
 @Table(name = "shuttles")
 public class Shuttle {
@@ -34,4 +32,8 @@ public class Shuttle {
     @Column(name = "auto")
     private String auto;
 
+    public Shuttle(Psr registeredOnPsr, String auto) {
+        this.registeredOnPsr = registeredOnPsr;
+        this.auto = auto;
+    }
 }

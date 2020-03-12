@@ -200,7 +200,7 @@ CREATE TABLE psr_data
     registrator integer,                -- Регистратор ПСР (из спр-ка Пользователи)
     object_info character varying,      -- Первичная информация о поиске
     content     character varying,      -- Основная информация о поиске
-    photo       bytea[],                -- Ориентировка или фотография ОП(объекта поиска)
+    photo       bytea,                -- Ориентировка или фотография ОП(объекта поиска)
     CONSTRAINT psr_data_pk PRIMARY KEY (id),
     CONSTRAINT psr_fk FOREIGN KEY (psr_id)
         REFERENCES psr (id) MATCH SIMPLE
@@ -236,7 +236,7 @@ CREATE TABLE psr_list_registration
     psr_id integer NOT NULL,                -- ПСР (из спр-ка)
     vol_id integer NOT NULL,                -- Доброволец (из спр-ка)
     status_id integer NOT NULL,             -- Статус (ссылка на list_vol_states)
-    shuttle_num integer,                    -- Номер экипажа
+    shuttle_num character varying(6),       -- Номер экипажа
     departure_address character varying,    -- Адрес отправления
     rvp timestamp without time zone,        -- Расчетное время прибытия волонетра
     rvo timestamp without time zone,        -- Расчетное время отбытия волонетра

@@ -1,6 +1,5 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
  */
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "psrStates")
 @Table(name = "psr_states")
 public class PsrState {
@@ -27,4 +25,7 @@ public class PsrState {
     @Column(name = "name")
     private String name;
 
+    public PsrState(String name) {
+        this.name = name;
+    }
 }

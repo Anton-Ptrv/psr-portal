@@ -1,18 +1,16 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * Лист регистрации участников заявившихся на ПСР
  */
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "psrListRegistration")
 @Table(name = "psr_list_registration")
 public class PsrListRegistration {
@@ -59,12 +57,27 @@ public class PsrListRegistration {
      * Расчетное время прибытия волонетра
      */
     @Column(name = "rvp")
-    private Timestamp startVolunteerTime;
+    private LocalDateTime startVolunteerTime;
 
     /**
      * Расчетное время отбытия волонетра
      */
     @Column(name = "rvo")
-    private Timestamp endVolunteerTime;
+    private LocalDateTime endVolunteerTime;
 
+    public PsrListRegistration(Psr psr,
+                               Volunteer volunteer,
+                               VolunteerStatus volunteerStatus,
+                               String shuttleNum,
+                               String departureAddress,
+                               LocalDateTime startVolunteerTime,
+                               LocalDateTime endVolunteerTime) {
+        this.psr = psr;
+        this.volunteer = volunteer;
+        this.volunteerStatus = volunteerStatus;
+        this.shuttleNum = shuttleNum;
+        this.departureAddress = departureAddress;
+        this.startVolunteerTime = startVolunteerTime;
+        this.endVolunteerTime = endVolunteerTime;
+    }
 }

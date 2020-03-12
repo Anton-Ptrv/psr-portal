@@ -1,8 +1,8 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -11,7 +11,6 @@ import javax.persistence.*;
  */
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "psrData")
 @Table(name = "psr_data")
 public class PsrData {
@@ -63,7 +62,23 @@ public class PsrData {
     /**
      * Ориентировка или фотография ОП(объекта поиска)
      */
+    @Type(type = "org.hibernate.type.BinaryType")
     @Column(name = "photo")
     private byte[] photo;
 
+    public PsrData(Psr psr,
+                   String station,
+                   User psrLeader,
+                   User psrRegisteredUser,
+                   String objectInfo,
+                   String content,
+                   byte[] photo) {
+        this.psr = psr;
+        this.station = station;
+        this.psrLeader = psrLeader;
+        this.psrRegisteredUser = psrRegisteredUser;
+        this.objectInfo = objectInfo;
+        this.content = content;
+        this.photo = photo;
+    }
 }

@@ -1,6 +1,5 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
  */
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "user")
 @Table(name = "users")
 public class User {
@@ -30,4 +28,9 @@ public class User {
     @Column(name = "fio")
     private String fio;
 
+    public User(String login, String password, String fio) {
+        this.login = login;
+        this.password = password;
+        this.fio = fio;
+    }
 }

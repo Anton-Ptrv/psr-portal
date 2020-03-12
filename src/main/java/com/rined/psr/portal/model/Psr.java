@@ -1,19 +1,17 @@
 package com.rined.psr.portal.model;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * ПСР
  */
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "psr")
 @Table(name = "psr")
 public class Psr {
@@ -33,13 +31,13 @@ public class Psr {
      * Дата начала ПСР
      */
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     /**
      * Дата окончания ПСР
      */
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     /**
      * Статус(выбирается из спр-ка)
@@ -54,4 +52,11 @@ public class Psr {
     @Column(name = "comment")
     private String comment;
 
+    public Psr(String name, LocalDate startDate, LocalDate endDate, PsrState psrState, String comment) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.psrState = psrState;
+        this.comment = comment;
+    }
 }

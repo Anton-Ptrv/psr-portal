@@ -1,6 +1,5 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
  */
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "shuttleData")
 @Table(name = "shuttle_data")
 public class ShuttleData {
@@ -41,4 +39,9 @@ public class ShuttleData {
     @Column(name = "is_driver")
     private boolean driver;
 
+    public ShuttleData(Shuttle shuttle, Volunteer shuttleOwner, boolean driver) {
+        this.shuttle = shuttle;
+        this.shuttleOwner = shuttleOwner;
+        this.driver = driver;
+    }
 }
