@@ -19,6 +19,7 @@
         <java.version>1.8</java.version>
         <javaс.version>1.8</javaс.version>
         <lombok.version>1.18.6</lombok.version>
+        <swagger.version>2.8.0</swagger.version>
     </properties>
 
     <dependencies>
@@ -46,6 +47,16 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
