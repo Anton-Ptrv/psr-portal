@@ -5,4 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VolunteerRepository extends JpaRepository<Volunteer, Long> {
 
+    boolean existsByPhone(String phone);
+
+    boolean existsByTelegramLogin(String telegramLogin);
+
 }

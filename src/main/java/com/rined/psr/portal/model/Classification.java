@@ -31,4 +31,8 @@ public class Classification {
     public Classification(String name) {
         this.name = name;
     }
+
+    public Classification(long id) {
+        this.id = id;
+    }
 }

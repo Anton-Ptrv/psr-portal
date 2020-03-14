@@ -2,6 +2,7 @@ package com.rined.psr.portal.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
  * Статусы добровольцев
  */
 @Getter
+@ToString
 @NoArgsConstructor
 @Entity(name = "volunteerStatus")
 @Table(name = "volunteer_status")

@@ -160,7 +160,7 @@ CREATE TABLE volunteers
     sex            boolean                NOT NULL, -- Пол
     phone          character varying(20)  NOT NULL, -- Номер телефона
     login_telegram character varying(32)  NOT NULL, -- Логин телеграмм
-    class_id       integer,                         -- Классификация
+    class_id       integer default 1,               -- Классификация
     equipment      character varying(500),          -- Список оборудования
     psr_list_desc  character varying,               -- Список работ в которых принимал участие
     comment        character varying,               -- Примечание

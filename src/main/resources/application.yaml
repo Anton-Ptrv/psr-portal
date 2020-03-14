@@ -1,9 +1,10 @@
 server:
   servlet:
-    context-path: "/api"
+    context-path: "/psr/api"
 
 spring:
-  liquibase.enabled: true
+  profiles:
+    active: dev
 
   datasource:
     url: jdbc:postgresql://localhost/psr
@@ -11,6 +12,7 @@ spring:
     password: password
     initialization-mode: always
     schema: classpath:/sql/schema.sql
+    data: classpath:/sql/data.sql
 
   jpa:
     generate-ddl: false
@@ -21,4 +23,5 @@ spring:
 logging:
   level:
     root: info
-    liquibase: info
+    com.rined.psr.portal: trace
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug
