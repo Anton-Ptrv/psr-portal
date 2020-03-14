@@ -2,6 +2,7 @@ package com.rined.psr.portal.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
  * Лист регистрации участников заявившихся на ПСР
  */
 @Getter
+@ToString
 @NoArgsConstructor
 @Entity(name = "psrListRegistration")
 @Table(name = "psr_list_registration")

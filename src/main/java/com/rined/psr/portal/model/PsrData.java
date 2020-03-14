@@ -2,6 +2,7 @@ package com.rined.psr.portal.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
  * Данные поисково-спасательных работ
  */
 @Getter
+@ToString
 @NoArgsConstructor
 @Entity(name = "psrData")
 @Table(name = "psr_data")

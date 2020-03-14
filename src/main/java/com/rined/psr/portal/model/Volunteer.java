@@ -2,6 +2,7 @@ package com.rined.psr.portal.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
  * Справочник Добровольцы
  */
 @Getter
+@ToString
 @NoArgsConstructor
 @Entity(name = "volunteer")
 @Table(name = "volunteers")
@@ -66,5 +68,13 @@ public class Volunteer {
         this.equipment = equipment;
         this.psrListDesc = psrListDesc;
         this.comment = comment;
+    }
+
+    public Volunteer(String fio, boolean sex, String phone, String login, Classification classification) {
+        this.fio = fio;
+        this.sex = sex;
+        this.phone = phone;
+        this.telegramLogin = login;
+        this.classification = classification;
     }
 }

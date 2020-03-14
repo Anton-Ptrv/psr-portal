@@ -2,6 +2,7 @@ package com.rined.psr.portal.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
  * Данные о составе экипажей
  */
 @Getter
+@ToString
 @NoArgsConstructor
 @Entity(name = "shuttleData")
 @Table(name = "shuttle_data")
