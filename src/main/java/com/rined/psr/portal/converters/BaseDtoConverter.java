@@ -6,7 +6,7 @@ public interface BaseDtoConverter<Base, Dto> {
 
     Dto baseToDto(Base baseType);
 
-    List<Dto> bastToDtoList(List<Base> baseTypeList);
+    List<Dto> baseToDtoList(List<Base> baseTypeList);
 
     Base dtoToBase(Dto fullyDto);
 

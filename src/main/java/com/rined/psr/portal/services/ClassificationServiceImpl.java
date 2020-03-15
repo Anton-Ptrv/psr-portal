@@ -28,7 +28,7 @@ public class ClassificationServiceImpl implements ClassificationService {
     @Override
     public List<ClassificationDto> getAllClassifications() {
         log.trace("Get all classifications");
-        return converter.bastToDtoList(classificationRepository.findAll());
+        return converter.baseToDtoList(classificationRepository.findAll());
     }
 
     @Override

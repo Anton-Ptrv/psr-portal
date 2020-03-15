@@ -31,7 +31,7 @@ public class PsrStateConverter implements FullyConverter<PsrState, PsrStateDto, 
     }
 
     @Override
-    public List<PsrStateDto> bastToDtoList(List<PsrState> psrStates) {
+    public List<PsrStateDto> baseToDtoList(List<PsrState> psrStates) {
         return psrStates.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 

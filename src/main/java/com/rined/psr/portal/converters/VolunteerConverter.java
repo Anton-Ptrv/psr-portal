@@ -36,7 +36,7 @@ public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDt
     }
 
     @Override
-    public List<VolunteerDto> bastToDtoList(List<Volunteer> volunteers) {
+    public List<VolunteerDto> baseToDtoList(List<Volunteer> volunteers) {
         return volunteers.stream().filter(Objects::nonNull).map(this::baseToDto).collect(Collectors.toList());
     }
 

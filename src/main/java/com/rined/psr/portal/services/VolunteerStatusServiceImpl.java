@@ -28,7 +28,7 @@ public class VolunteerStatusServiceImpl implements VolunteerStatusService {
     @Override
     public List<VolunteerStatusDto> getAllVolunteerStatuses() {
         log.trace("All available volunteer statuses");
-        return converter.bastToDtoList(volunteerStatusRepository.findAll());
+        return converter.baseToDtoList(volunteerStatusRepository.findAll());
     }
 
     @Override

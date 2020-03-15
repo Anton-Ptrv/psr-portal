@@ -28,7 +28,7 @@ public class PsrDataServiceImpl implements PsrDataService {
     @Override
     public List<PsrDataDto> getAllPsrsData() {
         log.trace("All available psrs data");
-        return converter.bastToDtoList(psrDataRepository.findAll());
+        return converter.baseToDtoList(psrDataRepository.findAll());
     }
 
     @Override

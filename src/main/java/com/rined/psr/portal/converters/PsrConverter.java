@@ -47,7 +47,7 @@ public class PsrConverter implements FullyConverter<Psr, PsrDto, PsrBriefDto> {
     }
 
     @Override
-    public List<PsrDto> bastToDtoList(List<Psr> psrs) {
+    public List<PsrDto> baseToDtoList(List<Psr> psrs) {
         return psrs.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 

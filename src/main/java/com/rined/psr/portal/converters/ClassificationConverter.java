@@ -21,7 +21,7 @@ public class ClassificationConverter implements FullyConverter<Classification, C
     }
 
     @Override
-    public List<ClassificationDto> bastToDtoList(List<Classification> volunteer) {
+    public List<ClassificationDto> baseToDtoList(List<Classification> volunteer) {
         return volunteer.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 

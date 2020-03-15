@@ -31,7 +31,7 @@ public class UserConverter implements FullyConverter<User, UserDto, UserBriefDto
     }
 
     @Override
-    public List<UserDto> bastToDtoList(List<User> users) {
+    public List<UserDto> baseToDtoList(List<User> users) {
         return users.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 

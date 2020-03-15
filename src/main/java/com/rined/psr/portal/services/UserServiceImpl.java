@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAllUsers() {
         log.trace("All available users");
-        return converter.bastToDtoList(userRepository.findAll());
+        return converter.baseToDtoList(userRepository.findAll());
     }
 
     @Override

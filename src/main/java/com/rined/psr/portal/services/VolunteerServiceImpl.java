@@ -39,7 +39,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     public List<VolunteerDto> getAllVolunteers() {
         log.trace("All volunteers call");
         List<Volunteer> volunteers = volunteerRepository.findAll();
-        return converter.bastToDtoList(volunteers);
+        return converter.baseToDtoList(volunteers);
     }
 
     @Override

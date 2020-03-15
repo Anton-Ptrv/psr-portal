@@ -28,7 +28,7 @@ public class PsrStateServiceImpl implements PsrStateService {
     @Override
     public List<PsrStateDto> getAllPsrStates() {
         log.trace("All available psr states");
-        return converter.bastToDtoList(psrStateRepository.findAll());
+        return converter.baseToDtoList(psrStateRepository.findAll());
     }
 
     @Override
