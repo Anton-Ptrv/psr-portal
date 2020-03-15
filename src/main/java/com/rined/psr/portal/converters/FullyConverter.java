@@ -1,9 +1,9 @@
 package com.rined.psr.portal.converters;
 
-public interface FullyConverter<BaseType, FullyDto, BriefDto> extends BaseDtoConverter<BaseType, FullyDto> {
+public interface FullyConverter<Base, Dto, Brief> extends BaseDtoConverter<Base, Dto> {
 
-    BaseType briefToBase(BriefDto briefDto);
+    Base briefToBase(Brief briefDto);
 
-    BaseType mergeDtoAndBase(BaseType base, FullyDto fullyDto);
+    Base mergeDtoAndBase(Base base, Dto fullyDto);
 
 }

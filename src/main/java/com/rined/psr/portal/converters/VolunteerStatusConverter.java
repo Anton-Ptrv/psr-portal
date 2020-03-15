@@ -13,17 +13,17 @@ import java.util.stream.Collectors;
 public class VolunteerStatusConverter implements FullyConverter<VolunteerStatus, VolunteerStatusDto, VolunteerStatusBriefDto> {
 
     @Override
-    public VolunteerStatusDto convertToFullyDto(VolunteerStatus volunteerStatus) {
+    public VolunteerStatusDto baseToDto(VolunteerStatus volunteerStatus) {
         return new VolunteerStatusDto(volunteerStatus.getId(), volunteerStatus.getName());
     }
 
     @Override
-    public List<VolunteerStatusDto> convertToFullyDto(List<VolunteerStatus> volunteerStatuses) {
-        return volunteerStatuses.stream().map(this::convertToFullyDto).collect(Collectors.toList());
+    public List<VolunteerStatusDto> bastToDtoList(List<VolunteerStatus> volunteerStatuses) {
+        return volunteerStatuses.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 
     @Override
-    public VolunteerStatus fullyDtoToBase(VolunteerStatusDto volunteerStatusDto) {
+    public VolunteerStatus dtoToBase(VolunteerStatusDto volunteerStatusDto) {
         return new VolunteerStatus(volunteerStatusDto.getId(), volunteerStatusDto.getName());
     }
 
@@ -37,6 +37,6 @@ public class VolunteerStatusConverter implements FullyConverter<VolunteerStatus,
         if (base.getId() != dto.getId()) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }
-        return fullyDtoToBase(dto);
+        return dtoToBase(dto);
     }
 }

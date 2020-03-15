@@ -39,7 +39,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     public List<VolunteerDto> getAllVolunteers() {
         log.trace("All volunteers call");
         List<Volunteer> volunteers = volunteerRepository.findAll();
-        return converter.convertToFullyDto(volunteers);
+        return converter.bastToDtoList(volunteers);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     public VolunteerDto getVolunteerById(long id) {
         log.trace("Find volunteer by id {}", id);
         return volunteerRepository.findVolunteerById(id)
-                .map(converter::convertToFullyDto)
+                .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("Volunteer with id '%d' not found!", id));
     }
 
@@ -78,6 +78,6 @@ public class VolunteerServiceImpl implements VolunteerService {
     @Override
     public void addVolunteer(VolunteerDto volunteerDto) {
         log.trace("New volunteer {}", volunteerDto);
-        volunteerRepository.save(converter.fullyDtoToBase(volunteerDto));
+        volunteerRepository.save(converter.dtoToBase(volunteerDto));
     }
 }

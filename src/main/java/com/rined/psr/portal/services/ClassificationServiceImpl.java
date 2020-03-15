@@ -28,7 +28,7 @@ public class ClassificationServiceImpl implements ClassificationService {
     @Override
     public List<ClassificationDto> getAllClassifications() {
         log.trace("Get all classifications");
-        return converter.convertToFullyDto(classificationRepository.findAll());
+        return converter.bastToDtoList(classificationRepository.findAll());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ClassificationServiceImpl implements ClassificationService {
     public ClassificationDto getClassificationById(long id) {
         log.trace("Get classification by id {}", id);
         return classificationRepository.findClassificationById(id)
-                .map(converter::convertToFullyDto)
+                .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("VolunteerStatus with id '%d' not found!", id));
     }
 }

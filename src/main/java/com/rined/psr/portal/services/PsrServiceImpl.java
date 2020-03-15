@@ -28,7 +28,7 @@ public class PsrServiceImpl implements PsrService {
     @Override
     public List<PsrDto> getAllPsrs() {
         log.trace("Get all psr dto");
-        return converter.convertToFullyDto(psrRepository.findAll());
+        return converter.bastToDtoList(psrRepository.findAll());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PsrServiceImpl implements PsrService {
     public PsrDto getPsrById(long id) {
         log.trace("Get psr by id {}", id);
         return psrRepository.findPsrById(id)
-                .map(converter::convertToFullyDto)
+                .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("User with id '%d' not found!", id));
     }
 }

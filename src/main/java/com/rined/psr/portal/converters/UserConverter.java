@@ -22,21 +22,21 @@ public class UserConverter implements FullyConverter<User, UserDto, UserBriefDto
         if (base.getId() != userDto.getId()) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }
-        return fullyDtoToBase(userDto);
+        return dtoToBase(userDto);
     }
 
     @Override
-    public UserDto convertToFullyDto(User user) {
+    public UserDto baseToDto(User user) {
         return new UserDto(user.getId(), user.getLogin(), user.getPassword(), user.getFio());
     }
 
     @Override
-    public List<UserDto> convertToFullyDto(List<User> users) {
-        return users.stream().map(this::convertToFullyDto).collect(Collectors.toList());
+    public List<UserDto> bastToDtoList(List<User> users) {
+        return users.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 
     @Override
-    public User fullyDtoToBase(UserDto userDto) {
+    public User dtoToBase(UserDto userDto) {
         return new User(userDto.getId(), userDto.getLogin(), userDto.getPassword(), userDto.getFio());
     }
 }

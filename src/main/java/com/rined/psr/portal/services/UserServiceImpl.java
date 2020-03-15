@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAllUsers() {
         log.trace("All available users");
-        return converter.convertToFullyDto(userRepository.findAll());
+        return converter.bastToDtoList(userRepository.findAll());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     public UserDto getUserById(long id) {
         log.trace("Get volunteer status by id {}", id);
         return userRepository.findUserById(id)
-                .map(converter::convertToFullyDto)
+                .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("User with id '%d' not found!", id));
     }
 }

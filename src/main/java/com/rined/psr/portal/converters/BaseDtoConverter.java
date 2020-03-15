@@ -2,12 +2,12 @@ package com.rined.psr.portal.converters;
 
 import java.util.List;
 
-public interface BaseDtoConverter<BaseType, FullyDto> {
+public interface BaseDtoConverter<Base, Dto> {
 
-    FullyDto convertToFullyDto(BaseType baseType);
+    Dto baseToDto(Base baseType);
 
-    List<FullyDto> convertToFullyDto(List<BaseType> baseTypeList);
+    List<Dto> bastToDtoList(List<Base> baseTypeList);
 
-    BaseType fullyDtoToBase(FullyDto fullyDto);
+    Base dtoToBase(Dto fullyDto);
 
 }

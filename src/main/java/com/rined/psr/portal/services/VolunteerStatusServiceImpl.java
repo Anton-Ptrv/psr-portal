@@ -11,8 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -30,7 +28,7 @@ public class VolunteerStatusServiceImpl implements VolunteerStatusService {
     @Override
     public List<VolunteerStatusDto> getAllVolunteerStatuses() {
         log.trace("All available volunteer statuses");
-        return converter.convertToFullyDto(volunteerStatusRepository.findAll());
+        return converter.bastToDtoList(volunteerStatusRepository.findAll());
     }
 
     @Override
@@ -45,7 +43,7 @@ public class VolunteerStatusServiceImpl implements VolunteerStatusService {
     public VolunteerStatusDto getVolunteerStatusById(long id) {
         log.trace("Get volunteer status by id {}", id);
         return volunteerStatusRepository.findVolunteerStatusById(id)
-                .map(converter::convertToFullyDto)
+                .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("VolunteerStatus with id '%d' not found!", id));
     }
 

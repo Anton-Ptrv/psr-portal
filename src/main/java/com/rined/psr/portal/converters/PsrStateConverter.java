@@ -22,21 +22,21 @@ public class PsrStateConverter implements FullyConverter<PsrState, PsrStateDto, 
         if (base.getId() != psrStateDto.getId()) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }
-        return fullyDtoToBase(psrStateDto);
+        return dtoToBase(psrStateDto);
     }
 
     @Override
-    public PsrStateDto convertToFullyDto(PsrState psrState) {
+    public PsrStateDto baseToDto(PsrState psrState) {
         return new PsrStateDto(psrState.getId(), psrState.getName());
     }
 
     @Override
-    public List<PsrStateDto> convertToFullyDto(List<PsrState> psrStates) {
-        return psrStates.stream().map(this::convertToFullyDto).collect(Collectors.toList());
+    public List<PsrStateDto> bastToDtoList(List<PsrState> psrStates) {
+        return psrStates.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 
     @Override
-    public PsrState fullyDtoToBase(PsrStateDto psrStateDto) {
+    public PsrState dtoToBase(PsrStateDto psrStateDto) {
         return new PsrState(psrStateDto.getId(), psrStateDto.getName());
     }
 }

@@ -19,7 +19,7 @@ public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDt
     private final BaseDtoConverter<Classification, ClassificationDto> classificationConverter;
 
     @Override
-    public VolunteerDto convertToFullyDto(Volunteer volunteer) {
+    public VolunteerDto baseToDto(Volunteer volunteer) {
         if (Objects.isNull(volunteer))
             return null;
         return VolunteerDto.builder()
@@ -28,7 +28,7 @@ public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDt
                 .sex(volunteer.isSex())
                 .phone(volunteer.getPhone())
                 .login(volunteer.getTelegramLogin())
-                .classification(classificationConverter.convertToFullyDto(volunteer.getClassification()))
+                .classification(classificationConverter.baseToDto(volunteer.getClassification()))
                 .equipment(volunteer.getEquipment())
                 .psrListDesc(volunteer.getPsrListDesc())
                 .comment(volunteer.getComment())
@@ -36,19 +36,19 @@ public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDt
     }
 
     @Override
-    public List<VolunteerDto> convertToFullyDto(List<Volunteer> volunteers) {
-        return volunteers.stream().filter(Objects::nonNull).map(this::convertToFullyDto).collect(Collectors.toList());
+    public List<VolunteerDto> bastToDtoList(List<Volunteer> volunteers) {
+        return volunteers.stream().filter(Objects::nonNull).map(this::baseToDto).collect(Collectors.toList());
     }
 
     @Override
-    public Volunteer fullyDtoToBase(VolunteerDto dto) {
+    public Volunteer dtoToBase(VolunteerDto dto) {
         return new Volunteer(
                 dto.getId(),
                 dto.getFio(),
                 dto.isSex(),
                 dto.getPhone(),
                 dto.getLogin(),
-                classificationConverter.fullyDtoToBase(dto.getClassification()),
+                classificationConverter.dtoToBase(dto.getClassification()),
                 dto.getEquipment(),
                 dto.getPsrListDesc(),
                 dto.getComment()
@@ -71,6 +71,6 @@ public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDt
         if (base.getId() != dto.getId()) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }
-        return fullyDtoToBase(dto);
+        return dtoToBase(dto);
     }
 }

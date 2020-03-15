@@ -21,7 +21,7 @@ public class PsrConverter implements FullyConverter<Psr, PsrDto, PsrBriefDto> {
                 psrBriefDto.getName(),
                 psrBriefDto.getStartDate(),
                 psrBriefDto.getEndDate(),
-                stateConverter.fullyDtoToBase(psrBriefDto.getPsrState()),
+                stateConverter.dtoToBase(psrBriefDto.getPsrState()),
                 psrBriefDto.getComment()
         );
     }
@@ -31,34 +31,34 @@ public class PsrConverter implements FullyConverter<Psr, PsrDto, PsrBriefDto> {
         if (base.getId() != psrDto.getId()) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }
-        return fullyDtoToBase(psrDto);
+        return dtoToBase(psrDto);
     }
 
     @Override
-    public PsrDto convertToFullyDto(Psr psr) {
+    public PsrDto baseToDto(Psr psr) {
         return new PsrDto(
                 psr.getId(),
                 psr.getName(),
                 psr.getStartDate(),
                 psr.getEndDate(),
-                stateConverter.convertToFullyDto(psr.getPsrState()),
+                stateConverter.baseToDto(psr.getPsrState()),
                 psr.getComment()
         );
     }
 
     @Override
-    public List<PsrDto> convertToFullyDto(List<Psr> psrs) {
-        return psrs.stream().map(this::convertToFullyDto).collect(Collectors.toList());
+    public List<PsrDto> bastToDtoList(List<Psr> psrs) {
+        return psrs.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 
     @Override
-    public Psr fullyDtoToBase(PsrDto psrDto) {
+    public Psr dtoToBase(PsrDto psrDto) {
         return new Psr(
                 psrDto.getId(),
                 psrDto.getName(),
                 psrDto.getStartDate(),
                 psrDto.getEndDate(),
-                stateConverter.fullyDtoToBase(psrDto.getPsrState()),
+                stateConverter.dtoToBase(psrDto.getPsrState()),
                 psrDto.getComment()
         );
     }

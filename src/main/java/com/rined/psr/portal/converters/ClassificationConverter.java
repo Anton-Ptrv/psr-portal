@@ -14,19 +14,19 @@ import java.util.stream.Collectors;
 public class ClassificationConverter implements FullyConverter<Classification, ClassificationDto, ClassificationBriefDto> {
 
     @Override
-    public ClassificationDto convertToFullyDto(Classification volunteer) {
+    public ClassificationDto baseToDto(Classification volunteer) {
         if(Objects.isNull(volunteer))
             return null;
         return new ClassificationDto(volunteer.getId(), volunteer.getName());
     }
 
     @Override
-    public List<ClassificationDto> convertToFullyDto(List<Classification> volunteer) {
-        return volunteer.stream().map(this::convertToFullyDto).collect(Collectors.toList());
+    public List<ClassificationDto> bastToDtoList(List<Classification> volunteer) {
+        return volunteer.stream().map(this::baseToDto).collect(Collectors.toList());
     }
 
     @Override
-    public Classification fullyDtoToBase(ClassificationDto classificationFullyDto) {
+    public Classification dtoToBase(ClassificationDto classificationFullyDto) {
         return new Classification(classificationFullyDto.getId(), classificationFullyDto.getName());
     }
 
@@ -40,6 +40,6 @@ public class ClassificationConverter implements FullyConverter<Classification, C
         if (base.getId() != classificationDto.getId()) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }
-        return fullyDtoToBase(classificationDto);
+        return dtoToBase(classificationDto);
     }
 }

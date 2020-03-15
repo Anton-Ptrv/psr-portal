@@ -28,7 +28,7 @@ public class PsrStateServiceImpl implements PsrStateService {
     @Override
     public List<PsrStateDto> getAllPsrStates() {
         log.trace("All available psr states");
-        return converter.convertToFullyDto(psrStateRepository.findAll());
+        return converter.bastToDtoList(psrStateRepository.findAll());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PsrStateServiceImpl implements PsrStateService {
     public PsrStateDto getPsrStateById(long id) {
         log.trace("Get psr state by id {}", id);
         return psrStateRepository.findPsrStateById(id)
-                .map(converter::convertToFullyDto)
+                .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("Psr state with id '%d' not found!", id));
     }
 }
