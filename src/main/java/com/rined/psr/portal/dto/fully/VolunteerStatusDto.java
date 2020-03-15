@@ -3,6 +3,7 @@ package com.rined.psr.portal.dto.fully;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -10,11 +11,13 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class VolunteerStatusDto {
 
-    @NotNull
     @JsonProperty("id")
+    @NotNull(message = "Id is mandatory!")
     private long id;
 
     @JsonProperty("name")
+    @NotNull(message = "Volunteer status name is mandatory!")
+    @NotEmpty(message = "Volunteer status name is mandatory!")
     private String name;
 
 }

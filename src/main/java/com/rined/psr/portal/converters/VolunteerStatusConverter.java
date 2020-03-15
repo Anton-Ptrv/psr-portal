@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class VolunteerStatusConverterImpl implements FullyConverter<VolunteerStatus, VolunteerStatusDto, VolunteerStatusBriefDto> {
+public class VolunteerStatusConverter implements FullyConverter<VolunteerStatus, VolunteerStatusDto, VolunteerStatusBriefDto> {
 
     @Override
     public VolunteerStatusDto convertToFullyDto(VolunteerStatus volunteerStatus) {

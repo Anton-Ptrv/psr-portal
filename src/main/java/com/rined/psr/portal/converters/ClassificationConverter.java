@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class ClassificationConverterImpl implements BaseDtoConverter<Classification, ClassificationDto> {
+public class ClassificationConverter implements BaseDtoConverter<Classification, ClassificationDto> {
 
     @Override
     public ClassificationDto convertToFullyDto(Classification volunteer) {

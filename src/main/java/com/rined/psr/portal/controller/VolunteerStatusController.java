@@ -18,7 +18,7 @@ public class VolunteerStatusController {
 
     @PostMapping("/volunteer-status")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addFullyVolunteerStatus(@Valid @RequestBody VolunteerStatusBriefDto volunteerStatusBrief) {
+    public void addVolunteerStatus(@Valid @RequestBody VolunteerStatusBriefDto volunteerStatusBrief) {
         volunteerStatusService.addVolunteerStatus(volunteerStatusBrief);
     }
 

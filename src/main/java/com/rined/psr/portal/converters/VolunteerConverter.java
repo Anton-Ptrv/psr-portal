@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class VolunteerConverterImpl implements FullyConverter<Volunteer, VolunteerDto, VolunteerBriefDto> {
+public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDto, VolunteerBriefDto> {
     private final BaseDtoConverter<Classification, ClassificationDto> classificationConverter;
 
     @Override

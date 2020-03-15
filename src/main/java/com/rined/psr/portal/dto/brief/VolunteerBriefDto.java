@@ -22,7 +22,7 @@ public class VolunteerBriefDto {
     @PhoneNumber(message = "Invalid volunteer phone number!")
     private String phone;
 
-    @NotNull
+    @NotNull(message = "Login is mandatory!")
     @NotBlank(message = "Login is mandatory!")
     private String login;
 
