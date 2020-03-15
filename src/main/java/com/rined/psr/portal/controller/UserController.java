@@ -27,8 +27,8 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/users/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void updateUser(@PathVariable("id") long id, @Valid @RequestBody UserDto dto) {
         userService.updateUser(id, dto);
     }

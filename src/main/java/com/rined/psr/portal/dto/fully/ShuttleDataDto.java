@@ -5,23 +5,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ShuttleDto {
+public class ShuttleDataDto {
 
     @JsonProperty("id")
     @NotNull(message = "Id is mandatory!")
     private long id;
 
-    @JsonProperty("psr")
-    @NotNull(message = "Psr is mandatory!")
-    private PsrDto registeredOnPsr;
+    @Column(name = "shuttle")
+    @NotNull(message = "Shuttle is mandatory!")
+    private ShuttleDto shuttle;
 
-    @JsonProperty("auto")
-    @NotNull(message = "Auto is mandatory!")
-    private String auto;
+    @Column(name = "volunteer")
+    @NotNull(message = "Volunteer is mandatory!")
+    private VolunteerDto shuttleOwner;
+
+    @Column(name = "driver")
+    private boolean driver;
 
 }
