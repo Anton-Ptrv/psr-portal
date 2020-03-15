@@ -1,20 +1,17 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
-import com.rined.psr.portal.dto.SimpleResponse;
 import com.rined.psr.portal.dto.SimpleRequest;
-import com.rined.psr.portal.dto.fully.VolunteerFullyDto;
-import com.rined.psr.portal.model.Volunteer;
+import com.rined.psr.portal.dto.SimpleResponse;
+import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
+import com.rined.psr.portal.dto.fully.VolunteerDto;
 import com.rined.psr.portal.services.VolunteerService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class VolunteerController {
@@ -40,7 +37,7 @@ public class VolunteerController {
 
     @PostMapping("/volunteers")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addFullyVolunteer(@Valid @RequestBody VolunteerFullyDto volunteer) {
+    public void addFullyVolunteer(@Valid @RequestBody VolunteerDto volunteer) {
         volunteerService.addVolunteer(volunteer);
     }
 
@@ -52,19 +49,19 @@ public class VolunteerController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/volunteers/{id}")
-    public void updateVolunteer(@PathVariable("id") long id, @Valid @RequestBody VolunteerFullyDto volunteer){
+    public void updateVolunteer(@PathVariable("id") long id, @Valid @RequestBody VolunteerDto volunteer){
         volunteerService.updateVolunteer(id, volunteer);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/volunteers/{id}")
-    public VolunteerFullyDto getVolunteerById(@PathVariable("id") long id){
+    public VolunteerDto getVolunteerById(@PathVariable("id") long id){
         return volunteerService.getVolunteerById(id);
     }
 
     @GetMapping("/volunteers")
     @ResponseStatus(HttpStatus.OK)
-    public List<VolunteerFullyDto> getAllFullyVolunteers() {
+    public List<VolunteerDto> getAllFullyVolunteers() {
         return volunteerService.getAllVolunteers();
     }
 }

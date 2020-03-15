@@ -1,8 +1,8 @@
 package com.rined.psr.portal.converters;
 
 import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
-import com.rined.psr.portal.dto.fully.ClassificationFullyDto;
-import com.rined.psr.portal.dto.fully.VolunteerFullyDto;
+import com.rined.psr.portal.dto.fully.ClassificationDto;
+import com.rined.psr.portal.dto.fully.VolunteerDto;
 import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.Classification;
 import com.rined.psr.portal.model.Volunteer;
@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class VolunteerConverterImpl implements FullyConverter<Volunteer, VolunteerFullyDto, VolunteerBriefDto> {
-    private final BaseDtoConverter<Classification, ClassificationFullyDto> classificationConverter;
+public class VolunteerConverterImpl implements FullyConverter<Volunteer, VolunteerDto, VolunteerBriefDto> {
+    private final BaseDtoConverter<Classification, ClassificationDto> classificationConverter;
 
     @Override
-    public VolunteerFullyDto convertToFullyDto(Volunteer volunteer) {
+    public VolunteerDto convertToFullyDto(Volunteer volunteer) {
         if (Objects.isNull(volunteer))
             return null;
-        return VolunteerFullyDto.builder()
+        return VolunteerDto.builder()
                 .id(volunteer.getId())
                 .fio(volunteer.getFio())
                 .sex(volunteer.isSex())
@@ -36,12 +36,12 @@ public class VolunteerConverterImpl implements FullyConverter<Volunteer, Volunte
     }
 
     @Override
-    public List<VolunteerFullyDto> convertToFullyDto(List<Volunteer> volunteers) {
+    public List<VolunteerDto> convertToFullyDto(List<Volunteer> volunteers) {
         return volunteers.stream().filter(Objects::nonNull).map(this::convertToFullyDto).collect(Collectors.toList());
     }
 
     @Override
-    public Volunteer fullyDtoToBase(VolunteerFullyDto dto) {
+    public Volunteer fullyDtoToBase(VolunteerDto dto) {
         return new Volunteer(
                 dto.getId(),
                 dto.getFio(),
@@ -67,7 +67,7 @@ public class VolunteerConverterImpl implements FullyConverter<Volunteer, Volunte
     }
 
     @Override
-    public Volunteer mergeDtoAndBase(Volunteer base, VolunteerFullyDto dto) {
+    public Volunteer mergeDtoAndBase(Volunteer base, VolunteerDto dto) {
         if (base.getId() != dto.getId()) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }

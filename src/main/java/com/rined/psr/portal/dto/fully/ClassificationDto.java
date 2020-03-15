@@ -8,7 +8,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClassificationFullyDto {
+public class ClassificationDto {
 
     @JsonProperty("id")
     private long id;

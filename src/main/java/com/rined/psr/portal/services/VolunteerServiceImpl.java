@@ -2,7 +2,7 @@ package com.rined.psr.portal.services;
 
 import com.rined.psr.portal.converters.FullyConverter;
 import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
-import com.rined.psr.portal.dto.fully.VolunteerFullyDto;
+import com.rined.psr.portal.dto.fully.VolunteerDto;
 import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.model.Volunteer;
 import com.rined.psr.portal.repositories.VolunteerRepository;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VolunteerServiceImpl implements VolunteerService {
     private final VolunteerRepository volunteerRepository;
-    private final FullyConverter<Volunteer, VolunteerFullyDto, VolunteerBriefDto> converter;
+    private final FullyConverter<Volunteer, VolunteerDto, VolunteerBriefDto> converter;
 
     @Override
     public boolean isVolunteerExistsByPhone(String phone) {
@@ -36,7 +36,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public List<VolunteerFullyDto> getAllVolunteers() {
+    public List<VolunteerDto> getAllVolunteers() {
         log.trace("All volunteers call");
         List<Volunteer> volunteers = volunteerRepository.findAll();
         return converter.convertToFullyDto(volunteers);
@@ -60,7 +60,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public VolunteerFullyDto getVolunteerById(long id) {
+    public VolunteerDto getVolunteerById(long id) {
         log.trace("Find volunteer by id {}", id);
         return volunteerRepository.findVolunteerById(id)
                 .map(converter::convertToFullyDto)
@@ -68,15 +68,15 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public void updateVolunteer(long id, VolunteerFullyDto volunteerDto) {
-        log.trace("Update volunteer by id {}", id);
+    public void updateVolunteer(long id, VolunteerDto volunteerDto) {
+        log.trace("Update volunteer {} by id {}", volunteerDto, id);
         Volunteer volunteer = volunteerRepository.findVolunteerById(id)
                 .orElseThrow(() -> new NotFoundException("Volunteer with id '%d' not found!", id));
         volunteerRepository.save(converter.mergeDtoAndBase(volunteer, volunteerDto));
     }
 
     @Override
-    public void addVolunteer(VolunteerFullyDto volunteerDto) {
+    public void addVolunteer(VolunteerDto volunteerDto) {
         log.trace("New volunteer {}", volunteerDto);
         volunteerRepository.save(converter.fullyDtoToBase(volunteerDto));
     }

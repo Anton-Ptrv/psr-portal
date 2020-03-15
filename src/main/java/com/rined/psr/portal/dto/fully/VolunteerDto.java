@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @Builder
 @ToString
-public class VolunteerFullyDto {
+public class VolunteerDto {
 
     @JsonProperty("id")
     private long id;
@@ -25,7 +25,7 @@ public class VolunteerFullyDto {
     private String login;
 
     @JsonProperty("classification")
-    private ClassificationFullyDto classification;
+    private ClassificationDto classification;
 
     @JsonProperty("equipment")
     private String equipment;
