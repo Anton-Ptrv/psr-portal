@@ -1,6 +1,8 @@
 package com.rined.psr.portal.converters;
 
+import com.rined.psr.portal.dto.brief.ClassificationBriefDto;
 import com.rined.psr.portal.dto.fully.ClassificationDto;
+import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.Classification;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class ClassificationConverter implements BaseDtoConverter<Classification, ClassificationDto> {
+public class ClassificationConverter implements FullyConverter<Classification, ClassificationDto, ClassificationBriefDto> {
 
     @Override
     public ClassificationDto convertToFullyDto(Classification volunteer) {
@@ -28,4 +30,16 @@ public class ClassificationConverter implements BaseDtoConverter<Classification,
         return new Classification(classificationFullyDto.getId(), classificationFullyDto.getName());
     }
 
+    @Override
+    public Classification briefToBase(ClassificationBriefDto classificationBriefDto) {
+        return new Classification(classificationBriefDto.getName());
+    }
+
+    @Override
+    public Classification mergeDtoAndBase(Classification base, ClassificationDto classificationDto) {
+        if (base.getId() != classificationDto.getId()) {
+            throw new IdMismatchException("Path variable id and query object id mismatch!");
+        }
+        return fullyDtoToBase(classificationDto);
+    }
 }
