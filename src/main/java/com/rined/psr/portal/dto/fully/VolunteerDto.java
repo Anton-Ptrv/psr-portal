@@ -1,12 +1,13 @@
-package com.rined.psr.portal.dto.response.fully;
+package com.rined.psr.portal.dto.fully;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Getter
-@ToString
+@Setter
 @Builder
-public class VolunteerFullyResponse {
+@ToString
+public class VolunteerDto {
 
     @JsonProperty("id")
     private long id;
@@ -24,7 +25,7 @@ public class VolunteerFullyResponse {
     private String login;
 
     @JsonProperty("classification")
-    private ClassificationFullyResponse classification;
+    private ClassificationDto classification;
 
     @JsonProperty("equipment")
     private String equipment;

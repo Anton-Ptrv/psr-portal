@@ -1,4 +1,4 @@
-package com.rined.psr.portal.dto.response.fully;
+package com.rined.psr.portal.dto.fully;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClassificationFullyResponse {
+public class ClassificationDto {
 
     @JsonProperty("id")
     private long id;
