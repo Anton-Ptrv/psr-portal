@@ -15,4 +15,6 @@ public interface PsrService {
 
     PsrDto getPsrById(long id);
 
+    void deletePsrById(long id);
+
 }

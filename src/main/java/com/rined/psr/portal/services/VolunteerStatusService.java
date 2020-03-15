@@ -15,4 +15,6 @@ public interface VolunteerStatusService {
 
     VolunteerStatusDto getVolunteerStatusById(long id);
 
+    void deleteVolunteerStatusById(long id);
+
 }

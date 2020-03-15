@@ -46,4 +46,12 @@ public class PsrStateServiceImpl implements PsrStateService {
                 .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("Psr state with id '%d' not found!", id));
     }
+
+    @Override
+    public void deletePsrStateById(long id) {
+        log.trace("Delete psr state by id {}", id);
+        if (!psrStateRepository.existsById(id))
+            throw new NotFoundException("Classification with id '%d' not found!", id);
+        psrStateRepository.deleteById(id);
+    }
 }

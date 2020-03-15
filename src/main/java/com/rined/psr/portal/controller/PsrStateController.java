@@ -38,4 +38,10 @@ public class PsrStateController {
     public PsrStateDto getPsrStateById(@PathVariable("id") long id) {
         return psrStateService.getPsrStateById(id);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/psr-state/{id}")
+    public void deletePsrStateById(@PathVariable("id") long id) {
+        psrStateService.deletePsrStateById(id);
+    }
 }

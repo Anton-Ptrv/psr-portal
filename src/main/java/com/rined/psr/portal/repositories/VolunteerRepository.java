@@ -11,8 +11,6 @@ public interface VolunteerRepository extends JpaRepository<Volunteer, Long> {
 
     boolean existsByTelegramLogin(String telegramLogin);
 
-    boolean existsById(long id);
-
     Optional<Volunteer> findVolunteerById(long id);
 
 }

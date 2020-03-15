@@ -39,4 +39,10 @@ public class PsrListRegistrationController {
         return psrListRegistrationService.getPsrListRegistrationById(id);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/psr-list-registration/{id}")
+    public void deletePsrListRegistrationById(@PathVariable("id") long id) {
+        psrListRegistrationService.deletePsrListRegistrationById(id);
+    }
+
 }

@@ -39,4 +39,10 @@ public class PsrController {
         return psrService.getPsrById(id);
     }
 
+    @DeleteMapping("/psrs/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePsrById(@PathVariable("id") long id){
+        psrService.deletePsrById(id);
+    }
+
 }

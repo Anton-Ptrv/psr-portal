@@ -44,6 +44,14 @@ public class ClassificationServiceImpl implements ClassificationService {
         log.trace("Get classification by id {}", id);
         return classificationRepository.findClassificationById(id)
                 .map(converter::baseToDto)
-                .orElseThrow(() -> new NotFoundException("VolunteerStatus with id '%d' not found!", id));
+                .orElseThrow(() -> new NotFoundException("Classification with id '%d' not found!", id));
+    }
+
+    @Override
+    public void deleteClassificationById(long id) {
+        log.trace("Delete classification by id {}", id);
+        if(!classificationRepository.existsById(id))
+            throw new NotFoundException("Classification with id '%d' not found!", id);
+        classificationRepository.deleteById(id);
     }
 }

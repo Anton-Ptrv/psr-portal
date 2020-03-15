@@ -40,4 +40,9 @@ public class ClassificationController {
         return classificationService.getClassificationById(id);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/classification/{id}")
+    public void deleteClassificationById(@PathVariable("id") long id){
+        classificationService.deleteClassificationById(id);
+    }
 }

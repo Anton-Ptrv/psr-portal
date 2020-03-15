@@ -34,8 +34,15 @@ public class ShuttleController {
     }
 
     @GetMapping("/shuttle/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ShuttleDto getShuttleById(@PathVariable("id") long id){
         return shuttleService.getShuttleById(id);
+    }
+
+    @DeleteMapping("/shuttle/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteShuttleById(@PathVariable("id") long id){
+        shuttleService.deleteShuttleById(id);
     }
 
 }

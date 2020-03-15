@@ -47,4 +47,12 @@ public class ShuttleDataServiceImpl implements ShuttleDataService {
                 .orElseThrow(() -> new NotFoundException("Shuttle data with id '%d' not found!", id));
     }
 
+    @Override
+    public void deleteShuttleDataById(long id) {
+        log.trace("Delete shuttle data by id {}", id);
+        if(shuttleDataRepository.existsById(id))
+            throw new NotFoundException("Shuttle data with id '%d' not found!", id);
+        shuttleDataRepository.deleteById(id);
+    }
+
 }

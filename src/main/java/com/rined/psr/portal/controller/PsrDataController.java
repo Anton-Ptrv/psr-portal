@@ -35,8 +35,14 @@ public class PsrDataController {
 
     @GetMapping("/psr-data/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PsrDataDto getPsrDataDtoById(@PathVariable("id") long id) {
+    public PsrDataDto getPsrDataById(@PathVariable("id") long id) {
         return psrDataService.getPsrDataById(id);
+    }
+
+    @DeleteMapping("/psr-data/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePsrDataById(@PathVariable("id") long id) {
+         psrDataService.deletePsrDataById(id);
     }
 
 }

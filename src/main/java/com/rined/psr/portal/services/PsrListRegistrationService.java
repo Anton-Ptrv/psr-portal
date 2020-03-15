@@ -15,4 +15,6 @@ public interface PsrListRegistrationService {
 
     PsrListRegistrationDto getPsrListRegistrationById(long id);
 
+    void deletePsrListRegistrationById(long id);
+
 }

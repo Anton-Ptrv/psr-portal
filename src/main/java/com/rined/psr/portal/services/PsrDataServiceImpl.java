@@ -27,7 +27,7 @@ public class PsrDataServiceImpl implements PsrDataService {
 
     @Override
     public List<PsrDataDto> getAllPsrsData() {
-        log.trace("All available psrs data");
+        log.trace("Get available psrs data");
         return converter.baseToDtoList(psrDataRepository.findAll());
     }
 
@@ -43,5 +43,13 @@ public class PsrDataServiceImpl implements PsrDataService {
         return psrDataRepository.getPsrDataById(id)
                 .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("Psr data not found by id %d!", id));
+    }
+
+    @Override
+    public void deletePsrDataById(long id) {
+        log.trace("Delete psr data by id {}", id);
+        if(!psrDataRepository.existsById(id))
+            throw new NotFoundException("Psr data with id '%d' not found!", id);
+        psrDataRepository.deleteById(id);
     }
 }

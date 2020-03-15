@@ -15,4 +15,6 @@ public interface PsrStateService {
 
     PsrStateDto getPsrStateById(long id);
 
+    void deletePsrStateById(long id);
+
 }

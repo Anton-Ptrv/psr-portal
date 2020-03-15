@@ -51,4 +51,12 @@ public class UserServiceImpl implements UserService {
                 .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("User with id '%d' not found!", id));
     }
+
+    @Override
+    public void deleteUserById(long id) {
+        log.trace("Delete user by id {}", id);
+        if (!userRepository.existsById(id))
+            throw new NotFoundException("User with id '%d' not found!", id);
+        userRepository.deleteById(id);
+    }
 }

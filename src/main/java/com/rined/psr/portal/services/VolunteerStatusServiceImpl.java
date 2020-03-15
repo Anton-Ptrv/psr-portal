@@ -47,4 +47,11 @@ public class VolunteerStatusServiceImpl implements VolunteerStatusService {
                 .orElseThrow(() -> new NotFoundException("VolunteerStatus with id '%d' not found!", id));
     }
 
+    @Override
+    public void deleteVolunteerStatusById(long id) {
+        log.trace("Delete volunteer by id {}", id);
+        if (!volunteerStatusRepository.existsById(id))
+            throw new NotFoundException("VolunteerStatus with id '%d' not found!", id);
+        volunteerStatusRepository.deleteById(id);
+    }
 }

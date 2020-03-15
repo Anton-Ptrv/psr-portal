@@ -44,6 +44,14 @@ public class PsrServiceImpl implements PsrService {
         log.trace("Get psr by id {}", id);
         return psrRepository.findPsrById(id)
                 .map(converter::baseToDto)
-                .orElseThrow(() -> new NotFoundException("User with id '%d' not found!", id));
+                .orElseThrow(() -> new NotFoundException("Psr with id '%d' not found!", id));
+    }
+
+    @Override
+    public void deletePsrById(long id) {
+        log.trace("Delete psr by id");
+        if(!psrRepository.existsById(id)){
+            throw new NotFoundException("Psr with id '%d' not found!", id);
+        }
     }
 }

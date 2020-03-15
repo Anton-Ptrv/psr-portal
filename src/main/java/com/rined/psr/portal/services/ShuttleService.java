@@ -15,4 +15,6 @@ public interface ShuttleService {
 
     ShuttleDto getShuttleById(long id);
 
+    void deleteShuttleById(long id);
+
 }

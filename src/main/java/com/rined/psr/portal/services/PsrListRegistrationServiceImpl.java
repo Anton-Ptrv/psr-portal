@@ -46,4 +46,12 @@ public class PsrListRegistrationServiceImpl implements PsrListRegistrationServic
                 .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("Psr list registration with id '%d' not found!", id));
     }
+
+    @Override
+    public void deletePsrListRegistrationById(long id) {
+        log.trace("Delete psr list registration by id {}", id);
+        if (!psrListRegistrationRepository.existsById(id))
+            throw new NotFoundException("Classification with id '%d' not found!", id);
+        psrListRegistrationRepository.deleteById(id);
+    }
 }

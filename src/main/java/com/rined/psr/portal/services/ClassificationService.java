@@ -15,4 +15,6 @@ public interface ClassificationService {
 
     ClassificationDto getClassificationById(long id);
 
+    void deleteClassificationById(long id);
+
 }

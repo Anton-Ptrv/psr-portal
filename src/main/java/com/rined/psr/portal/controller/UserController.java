@@ -38,4 +38,10 @@ public class UserController {
     public UserDto getUserById(@PathVariable("id") long id) {
         return userService.getUserById(id);
     }
+
+    @DeleteMapping("/users/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteUserById(@PathVariable("id") long id) {
+         userService.deleteUserById(id);
+    }
 }

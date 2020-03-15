@@ -46,4 +46,12 @@ public class ShuttleServiceImpl implements ShuttleService {
                 .map(converter::baseToDto)
                 .orElseThrow(() -> new NotFoundException("Shuttle with id '%d' not found!", id));
     }
+
+    @Override
+    public void deleteShuttleById(long id) {
+        log.trace("Delete shuttle by id {}", id);
+        if (shuttleRepository.existsById(id))
+            throw new NotFoundException("Shuttle with id '%d' not found!", id);
+        shuttleRepository.deleteById(id);
+    }
 }

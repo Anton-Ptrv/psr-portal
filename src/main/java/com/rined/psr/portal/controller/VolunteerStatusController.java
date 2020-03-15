@@ -40,4 +40,10 @@ public class VolunteerStatusController {
         return volunteerStatusService.getVolunteerStatusById(id);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/volunteer-status/{id}")
+    public void deleteVolunteerStatusById(@PathVariable("id") long id){
+        volunteerStatusService.deleteVolunteerStatusById(id);
+    }
+
 }

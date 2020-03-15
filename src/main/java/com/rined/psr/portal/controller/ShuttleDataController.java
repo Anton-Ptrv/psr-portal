@@ -2,7 +2,6 @@ package com.rined.psr.portal.controller;
 
 import com.rined.psr.portal.dto.brief.ShuttleDataBriefDto;
 import com.rined.psr.portal.dto.fully.ShuttleDataDto;
-import com.rined.psr.portal.dto.fully.ShuttleDto;
 import com.rined.psr.portal.services.ShuttleDataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,8 +35,14 @@ public class ShuttleDataController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/shuttle-data/{id}")
-    public ShuttleDataDto getShuttleById(@PathVariable("id") long id) {
+    public ShuttleDataDto getShuttleDataById(@PathVariable("id") long id) {
         return shuttleDataService.getShuttleById(id);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/shuttle-data/{id}")
+    public void deleteShuttleDataById(@PathVariable("id") long id) {
+        shuttleDataService.deleteShuttleDataById(id);
     }
 
 }
