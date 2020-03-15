@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.dto.request.brief.VolunteerBrief;
-import com.rined.psr.portal.dto.response.fully.VolunteerFullyResponse;
+import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
+import com.rined.psr.portal.dto.fully.VolunteerFullyDto;
 
 import java.util.List;
 
@@ -11,7 +11,15 @@ public interface VolunteerService {
 
     boolean isVolunteerExistsByTelegram(String login);
 
-    List<VolunteerFullyResponse> getAllVolunteers();
+    List<VolunteerFullyDto> getAllVolunteers();
 
-    void addVolunteer(VolunteerBrief volunteerBrief);
+    void addVolunteer(VolunteerBriefDto volunteerBrief);
+
+    void deleteVolunteer(long id);
+
+    VolunteerFullyDto getVolunteerById(long id);
+
+    void updateVolunteer(long id, VolunteerFullyDto volunteer);
+
+    void addVolunteer(VolunteerFullyDto volunteer);
 }

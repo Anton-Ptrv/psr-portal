@@ -1,8 +1,9 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.request.brief.VolunteerBrief;
-import com.rined.psr.portal.dto.response.fully.ClassificationFullyResponse;
-import com.rined.psr.portal.dto.response.fully.VolunteerFullyResponse;
+import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
+import com.rined.psr.portal.dto.fully.ClassificationFullyDto;
+import com.rined.psr.portal.dto.fully.VolunteerFullyDto;
+import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.Classification;
 import com.rined.psr.portal.model.Volunteer;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +15,14 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class VolunteerConverterImpl implements FullyConverter<Volunteer, VolunteerFullyResponse, VolunteerBrief> {
-    private final BaseDtoConverter<Classification, ClassificationFullyResponse> classificationConverter;
+public class VolunteerConverterImpl implements FullyConverter<Volunteer, VolunteerFullyDto, VolunteerBriefDto> {
+    private final BaseDtoConverter<Classification, ClassificationFullyDto> classificationConverter;
 
     @Override
-    public VolunteerFullyResponse convertToFullyDto(Volunteer volunteer) {
+    public VolunteerFullyDto convertToFullyDto(Volunteer volunteer) {
         if (Objects.isNull(volunteer))
             return null;
-        return VolunteerFullyResponse.builder()
+        return VolunteerFullyDto.builder()
                 .id(volunteer.getId())
                 .fio(volunteer.getFio())
                 .sex(volunteer.isSex())
@@ -35,12 +36,27 @@ public class VolunteerConverterImpl implements FullyConverter<Volunteer, Volunte
     }
 
     @Override
-    public List<VolunteerFullyResponse> convertToFullyDto(List<Volunteer> volunteers) {
-        return volunteers.stream().map(this::convertToFullyDto).collect(Collectors.toList());
+    public List<VolunteerFullyDto> convertToFullyDto(List<Volunteer> volunteers) {
+        return volunteers.stream().filter(Objects::nonNull).map(this::convertToFullyDto).collect(Collectors.toList());
     }
 
     @Override
-    public Volunteer briefToBase(VolunteerBrief volunteerBrief) {
+    public Volunteer fullyDtoToBase(VolunteerFullyDto dto) {
+        return new Volunteer(
+                dto.getId(),
+                dto.getFio(),
+                dto.isSex(),
+                dto.getPhone(),
+                dto.getLogin(),
+                classificationConverter.fullyDtoToBase(dto.getClassification()),
+                dto.getEquipment(),
+                dto.getPsrListDesc(),
+                dto.getComment()
+        );
+    }
+
+    @Override
+    public Volunteer briefToBase(VolunteerBriefDto volunteerBrief) {
         return new Volunteer(
                 volunteerBrief.getFio(),
                 volunteerBrief.isSex(),
@@ -48,5 +64,13 @@ public class VolunteerConverterImpl implements FullyConverter<Volunteer, Volunte
                 volunteerBrief.getLogin(),
                 new Classification(1)
         );
+    }
+
+    @Override
+    public Volunteer mergeDtoAndBase(Volunteer base, VolunteerFullyDto dto) {
+        if (base.getId() != dto.getId()) {
+            throw new IdMismatchException("Path variable id and query object id mismatch!");
+        }
+        return fullyDtoToBase(dto);
     }
 }

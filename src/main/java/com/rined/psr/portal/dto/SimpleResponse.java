@@ -1,4 +1,4 @@
-package com.rined.psr.portal.dto.response;
+package com.rined.psr.portal.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;

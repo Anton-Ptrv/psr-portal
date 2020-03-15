@@ -8,4 +8,6 @@ public interface BaseDtoConverter<BaseType, FullyDto> {
 
     List<FullyDto> convertToFullyDto(List<BaseType> baseTypeList);
 
+    BaseType fullyDtoToBase(FullyDto fullyDto);
+
 }

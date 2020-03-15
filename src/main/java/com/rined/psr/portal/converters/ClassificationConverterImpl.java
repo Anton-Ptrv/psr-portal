@@ -1,6 +1,6 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.response.fully.ClassificationFullyResponse;
+import com.rined.psr.portal.dto.fully.ClassificationFullyDto;
 import com.rined.psr.portal.model.Classification;
 import org.springframework.stereotype.Component;
 
@@ -9,18 +9,23 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class ClassificationConverterImpl implements BaseDtoConverter<Classification, ClassificationFullyResponse> {
+public class ClassificationConverterImpl implements BaseDtoConverter<Classification, ClassificationFullyDto> {
 
     @Override
-    public ClassificationFullyResponse convertToFullyDto(Classification volunteer) {
+    public ClassificationFullyDto convertToFullyDto(Classification volunteer) {
         if(Objects.isNull(volunteer))
             return null;
-        return new ClassificationFullyResponse(volunteer.getId(), volunteer.getName());
+        return new ClassificationFullyDto(volunteer.getId(), volunteer.getName());
     }
 
     @Override
-    public List<ClassificationFullyResponse> convertToFullyDto(List<Classification> volunteer) {
+    public List<ClassificationFullyDto> convertToFullyDto(List<Classification> volunteer) {
         return volunteer.stream().map(this::convertToFullyDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Classification fullyDtoToBase(ClassificationFullyDto classificationFullyDto) {
+        return new Classification(classificationFullyDto.getId(), classificationFullyDto.getName());
     }
 
 }

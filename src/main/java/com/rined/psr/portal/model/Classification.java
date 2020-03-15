@@ -1,5 +1,6 @@
 package com.rined.psr.portal.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "classification")
 @Table(name = "classifications")
 public class Classification {

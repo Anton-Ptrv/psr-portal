@@ -4,4 +4,6 @@ public interface FullyConverter<BaseType, FullyDto, BriefDto> extends BaseDtoCon
 
     BaseType briefToBase(BriefDto briefDto);
 
+    BaseType mergeDtoAndBase(BaseType base, FullyDto fullyDto);
+
 }
