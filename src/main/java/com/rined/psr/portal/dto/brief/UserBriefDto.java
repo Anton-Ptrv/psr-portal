@@ -1,6 +1,5 @@
 package com.rined.psr.portal.dto.brief;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
