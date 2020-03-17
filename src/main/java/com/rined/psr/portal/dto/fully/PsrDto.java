@@ -17,7 +17,7 @@ public class PsrDto {
 
     @JsonProperty("id")
     @NotNull(message = "Id is mandatory!")
-    private long id;
+    private Long id;
 
     @JsonProperty("name")
     @NotNull(message = "Name is mandatory!")

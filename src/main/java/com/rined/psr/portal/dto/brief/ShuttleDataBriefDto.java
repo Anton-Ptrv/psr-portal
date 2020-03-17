@@ -17,6 +17,6 @@ public class ShuttleDataBriefDto {
     @NotNull(message = "Shuttle owner is mandatory!")
     private VolunteerBriefDto shuttleOwner;
 
-    private boolean driver;
+    private Boolean driver;
 
 }

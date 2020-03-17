@@ -26,6 +26,6 @@ public class VolunteerBriefDto {
     @NotBlank(message = "Login is mandatory!")
     private String login;
 
-    private boolean sex;
+    private Boolean sex;
 
 }

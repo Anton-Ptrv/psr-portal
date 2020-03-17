@@ -15,7 +15,7 @@ public class PsrListRegistrationDto {
 
     @JsonProperty("id")
     @NotNull(message = "Id is mandatory!")
-    private long id;
+    private Long id;
 
     @JsonProperty("psr")
     private PsrDto psr;

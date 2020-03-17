@@ -16,7 +16,7 @@ public class UserDto {
 
     @JsonProperty("id")
     @NotNull(message = "Id is mandatory!")
-    private long id;
+    private Long id;
 
     @Column(name = "login")
     @NotNull(message = "Login is mandatory!")

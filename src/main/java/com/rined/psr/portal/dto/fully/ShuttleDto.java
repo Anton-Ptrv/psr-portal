@@ -14,7 +14,7 @@ public class ShuttleDto {
 
     @JsonProperty("id")
     @NotNull(message = "Id is mandatory!")
-    private long id;
+    private Long id;
 
     @JsonProperty("psr")
     @NotNull(message = "Psr is mandatory!")
