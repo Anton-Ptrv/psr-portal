@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shuttle-data")
 public class ShuttleDataController extends BaseController<ShuttleDataDto, ShuttleDataBrief, ShuttleData, Long,
         ShuttleDataRepository, ShuttleDataConverter, ShuttleDataService> {
+
     public ShuttleDataController(ShuttleDataService service) {
         super(service);
     }
+
 }

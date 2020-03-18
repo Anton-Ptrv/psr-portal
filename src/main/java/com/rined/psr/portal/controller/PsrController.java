@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/psr")
 public class PsrController extends BaseController<PsrDto, PsrBrief, Psr, Long, PsrRepository, PsrConverter, PsrService> {
+
     public PsrController(PsrService service) {
         super(service);
     }
+
 }

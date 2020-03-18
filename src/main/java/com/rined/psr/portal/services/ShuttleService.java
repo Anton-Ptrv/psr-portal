@@ -1,20 +1,18 @@
 package com.rined.psr.portal.services;
 
+import com.rined.psr.portal.converters.ShuttleConverter;
 import com.rined.psr.portal.dto.brief.ShuttleBrief;
 import com.rined.psr.portal.dto.fully.ShuttleDto;
+import com.rined.psr.portal.model.Shuttle;
+import com.rined.psr.portal.repositories.ShuttleRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public class ShuttleService extends BaseService<ShuttleDto, ShuttleBrief, Shuttle, Long, ShuttleRepository,
+        ShuttleConverter> {
 
-public interface ShuttleService {
-
-    void addShuttle(ShuttleBrief brief);
-
-    List<ShuttleDto> getAllShuttles();
-
-    void updateShuttle(long id, ShuttleDto dto);
-
-    ShuttleDto getShuttleById(long id);
-
-    void deleteShuttleById(long id);
+    public ShuttleService(ShuttleConverter converter, ShuttleRepository repository) {
+        super(converter, repository);
+    }
 
 }

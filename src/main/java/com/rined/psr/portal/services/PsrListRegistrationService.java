@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class PsrListRegistrationService extends BaseService<PsrListRegistrationDto, PsrListRegistrationBrief,
         PsrListRegistration, Long, PsrListRegistrationRepository, PsrListRegistrationConverter> {
+
     public PsrListRegistrationService(PsrListRegistrationConverter converter, PsrListRegistrationRepository repository) {
         super(converter, repository);
     }
+
 }

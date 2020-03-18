@@ -48,4 +48,5 @@ public abstract class BaseController<Dto, Brief, Bean, ID,
     public void deleteById(@PathVariable("id") ID id) {
         service.deleteById(id);
     }
+
 }

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class PsrStateService extends BaseService<PsrStateDto, PsrStateBrief, PsrState, Long, PsrStateRepository,
         PsrStateConverter> {
+
     public PsrStateService(PsrStateConverter converter, PsrStateRepository repository) {
         super(converter, repository);
     }
+
 }

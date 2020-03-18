@@ -1,8 +1,14 @@
 package com.rined.psr.portal.converters;
 
+import com.rined.psr.portal.dto.brief.ShuttleBrief;
 import com.rined.psr.portal.dto.brief.ShuttleDataBrief;
+import com.rined.psr.portal.dto.brief.VolunteerBrief;
 import com.rined.psr.portal.dto.fully.ShuttleDataDto;
+import com.rined.psr.portal.dto.fully.ShuttleDto;
+import com.rined.psr.portal.dto.fully.VolunteerDto;
+import com.rined.psr.portal.model.Shuttle;
 import com.rined.psr.portal.model.ShuttleData;
+import com.rined.psr.portal.model.Volunteer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +18,9 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class ShuttleDataConverter implements BaseConverter<ShuttleData, ShuttleDataDto, ShuttleDataBrief> {
-    private final ShuttleConverter shuttleConverter;
-    private final VolunteerConverter volunteerConverter;
+
+    private final BaseConverter<Shuttle, ShuttleDto, ShuttleBrief> shuttleConverter;
+    private final BaseConverter<Volunteer, VolunteerDto, VolunteerBrief> volunteerConverter;
 
     @Override
     public ShuttleData briefToBase(ShuttleDataBrief brief) {

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/psr-data")
 public class PsrDataController extends BaseController<PsrDataDto, PsrDataBrief, PsrData, Long, PsrDataRepository,
         PsrDataConverter, PsrDataService> {
+
     public PsrDataController(PsrDataService service) {
         super(service);
     }
+
 }

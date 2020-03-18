@@ -23,4 +23,5 @@ public class UserService extends BaseService<UserDto, UserBrief, User, Long, Use
         }
         repository.save(converter.briefToBase(brief));
     }
+
 }

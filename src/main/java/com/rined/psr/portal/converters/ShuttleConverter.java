@@ -1,7 +1,10 @@
 package com.rined.psr.portal.converters;
 
+import com.rined.psr.portal.dto.brief.PsrBrief;
 import com.rined.psr.portal.dto.brief.ShuttleBrief;
+import com.rined.psr.portal.dto.fully.PsrDto;
 import com.rined.psr.portal.dto.fully.ShuttleDto;
+import com.rined.psr.portal.model.Psr;
 import com.rined.psr.portal.model.Shuttle;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,7 +15,8 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class ShuttleConverter implements BaseConverter<Shuttle, ShuttleDto, ShuttleBrief> {
-    private final PsrConverter psrConverter;
+
+    private final BaseConverter<Psr, PsrDto, PsrBrief> psrConverter;
 
     @Override
     public Shuttle briefToBase(ShuttleBrief brief) {

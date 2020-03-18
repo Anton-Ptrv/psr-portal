@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class VolunteerStatusService extends BaseService<VolunteerStatusDto, VolunteerStatusBrief, VolunteerStatus,
         Long, VolunteerStatusRepository, VolunteerStatusConverter> {
+
     public VolunteerStatusService(VolunteerStatusConverter converter, VolunteerStatusRepository repository) {
         super(converter, repository);
     }
+
 }

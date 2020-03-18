@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController extends BaseController<UserDto, UserBrief, User, Long, UserRepository, UserConverter,
         UserService> {
+
     public UserController(UserService service) {
         super(service);
     }
+
 }

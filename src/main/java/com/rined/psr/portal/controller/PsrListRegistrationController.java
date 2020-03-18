@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class PsrListRegistrationController extends BaseController<PsrListRegistrationDto, PsrListRegistrationBrief,
         PsrListRegistration, Long, PsrListRegistrationRepository, PsrListRegistrationConverter,
         PsrListRegistrationService> {
+
     public PsrListRegistrationController(PsrListRegistrationService service) {
         super(service);
     }
+
 }

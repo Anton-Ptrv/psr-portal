@@ -1,8 +1,14 @@
 package com.rined.psr.portal.converters;
 
+import com.rined.psr.portal.dto.brief.PsrBrief;
 import com.rined.psr.portal.dto.brief.PsrDataBrief;
+import com.rined.psr.portal.dto.brief.UserBrief;
 import com.rined.psr.portal.dto.fully.PsrDataDto;
+import com.rined.psr.portal.dto.fully.PsrDto;
+import com.rined.psr.portal.dto.fully.UserDto;
+import com.rined.psr.portal.model.Psr;
 import com.rined.psr.portal.model.PsrData;
+import com.rined.psr.portal.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +18,9 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class PsrDataConverter implements BaseConverter<PsrData, PsrDataDto, PsrDataBrief> {
-    private final PsrConverter psrConverter;
-    private final UserConverter userConverter;
+
+    private final BaseConverter<Psr, PsrDto, PsrBrief> psrConverter;
+    private final BaseConverter<User, UserDto, UserBrief> userConverter;
 
     @Override
     public PsrData briefToBase(PsrDataBrief brief) {

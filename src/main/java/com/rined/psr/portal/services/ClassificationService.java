@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClassificationService extends BaseService<ClassificationDto, ClassificationBrief, Classification, Long,
         ClassificationRepository, ClassificationConverter> {
+
     public ClassificationService(ClassificationConverter converter, ClassificationRepository repository) {
         super(converter, repository);
     }
+
 }
 

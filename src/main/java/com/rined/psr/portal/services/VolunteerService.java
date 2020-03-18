@@ -22,4 +22,5 @@ public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, 
     public boolean isVolunteerExistsByTelegram(String login) {
         return repository.existsByTelegramLogin(login);
     }
+
 }

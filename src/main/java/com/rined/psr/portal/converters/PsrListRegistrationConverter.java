@@ -1,9 +1,18 @@
 package com.rined.psr.portal.converters;
 
+import com.rined.psr.portal.dto.brief.PsrBrief;
 import com.rined.psr.portal.dto.brief.PsrListRegistrationBrief;
+import com.rined.psr.portal.dto.brief.VolunteerBrief;
+import com.rined.psr.portal.dto.brief.VolunteerStatusBrief;
+import com.rined.psr.portal.dto.fully.PsrDto;
 import com.rined.psr.portal.dto.fully.PsrListRegistrationDto;
+import com.rined.psr.portal.dto.fully.VolunteerDto;
+import com.rined.psr.portal.dto.fully.VolunteerStatusDto;
 import com.rined.psr.portal.exception.IdMismatchException;
+import com.rined.psr.portal.model.Psr;
 import com.rined.psr.portal.model.PsrListRegistration;
+import com.rined.psr.portal.model.Volunteer;
+import com.rined.psr.portal.model.VolunteerStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +22,10 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class PsrListRegistrationConverter implements BaseConverter<PsrListRegistration, PsrListRegistrationDto, PsrListRegistrationBrief> {
-    private final PsrConverter psrConverter;
-    private final VolunteerConverter volunteerConverter;
-    private final VolunteerStatusConverter volunteerStatusConverter;
+
+    private final BaseConverter<Psr, PsrDto, PsrBrief> psrConverter;
+    private final BaseConverter<Volunteer, VolunteerDto, VolunteerBrief> volunteerConverter;
+    private final BaseConverter<VolunteerStatus, VolunteerStatusDto, VolunteerStatusBrief> volunteerStatusConverter;
 
     @Override
     public PsrListRegistration briefToBase(PsrListRegistrationBrief brief) {

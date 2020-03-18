@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto, VolunteerBrief> {
+
     private final BaseConverter<Classification, ClassificationDto, ClassificationBrief> classificationConverter;
 
     @Override

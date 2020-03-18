@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/classification")
 public class ClassificationController extends BaseController<ClassificationDto, ClassificationBrief, Classification,
         Long, ClassificationRepository, ClassificationConverter, ClassificationService> {
+
     public ClassificationController(ClassificationService service) {
         super(service);
     }
+
 }

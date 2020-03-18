@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class BaseService<Dto, Brief, Bean, ID,
         Repository extends BaseRepository<Bean, ID>,
         Converter extends BaseConverter<Bean, Dto, Brief>> {
+
     final Converter converter;
     final Repository repository;
 
@@ -39,4 +40,5 @@ public abstract class BaseService<Dto, Brief, Bean, ID,
             throw new NotFoundException("Object with id '%d' not found!", id);
         repository.deleteById(id);
     }
+
 }

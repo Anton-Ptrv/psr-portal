@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShuttleDataService extends BaseService<ShuttleDataDto, ShuttleDataBrief, ShuttleData, Long,
         ShuttleDataRepository, ShuttleDataConverter> {
+
     public ShuttleDataService(ShuttleDataConverter converter, ShuttleDataRepository repository) {
         super(converter, repository);
     }
+
 }
