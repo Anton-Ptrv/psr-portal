@@ -8,7 +8,8 @@ import com.rined.psr.portal.repositories.ClassificationRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClassificationService extends BaseService<ClassificationDto, ClassificationBrief, Classification, Long, ClassificationRepository, ClassificationConverter> {
+public class ClassificationService extends BaseService<ClassificationDto, ClassificationBrief, Classification, Long,
+        ClassificationRepository, ClassificationConverter> {
     public ClassificationService(ClassificationConverter converter, ClassificationRepository repository) {
         super(converter, repository);
     }
