@@ -15,31 +15,31 @@ import java.util.List;
 public class PsrController {
     private final PsrService psrService;
 
-    @PostMapping("/psrs")
+    @PostMapping("/psr")
     @ResponseStatus(HttpStatus.CREATED)
     public void addPsr(@Valid @RequestBody PsrBriefDto psrBriefDto) {
         psrService.addPsr(psrBriefDto);
     }
 
-    @GetMapping("/psrs")
+    @GetMapping("/psr")
     @ResponseStatus(HttpStatus.OK)
     public List<PsrDto> getAllPsrs() {
         return psrService.getAllPsrs();
     }
 
-    @PutMapping("/psrs/{id}")
+    @PutMapping("/psr/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void updatePsr(@PathVariable("id") long id, @Valid @RequestBody PsrDto dto) {
         psrService.updatePsr(id, dto);
     }
 
-    @GetMapping("/psrs/{id}")
+    @GetMapping("/psr/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PsrDto getPsrById(@PathVariable("id") long id){
         return psrService.getPsrById(id);
     }
 
-    @DeleteMapping("/psrs/{id}")
+    @DeleteMapping("/psr/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deletePsrById(@PathVariable("id") long id){
         psrService.deletePsrById(id);
