@@ -15,24 +15,24 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ClassificationServiceImpl implements ClassificationService {
+public class ClassificationServiceImpl implements BaseService<ClassificationDto, ClassificationBriefDto, Long> {
     private final ClassificationRepository classificationRepository;
     private final FullyConverter<Classification, ClassificationDto, ClassificationBriefDto> converter;
 
     @Override
-    public void addClassification(ClassificationBriefDto classificationBriefDto) {
+    public void add(ClassificationBriefDto classificationBriefDto) {
         log.trace("Create new classification {}", classificationBriefDto);
         classificationRepository.save(converter.briefToBase(classificationBriefDto));
     }
 
     @Override
-    public List<ClassificationDto> getAllClassifications() {
+    public List<ClassificationDto> getAll() {
         log.trace("Get all classifications");
         return converter.baseToDtoList(classificationRepository.findAll());
     }
 
     @Override
-    public void updateClassification(long id, ClassificationDto classificationDto) {
+    public void update(Long id, ClassificationDto classificationDto) {
         log.trace("Update classification {} with id {}", classificationDto, id);
         Classification classification = classificationRepository.findClassificationById(id)
                 .orElseThrow(() -> new NotFoundException("Classification with id '%d' not found!", id));
@@ -40,7 +40,7 @@ public class ClassificationServiceImpl implements ClassificationService {
     }
 
     @Override
-    public ClassificationDto getClassificationById(long id) {
+    public ClassificationDto getById(Long id) {
         log.trace("Get classification by id {}", id);
         return classificationRepository.findClassificationById(id)
                 .map(converter::baseToDto)
@@ -48,10 +48,11 @@ public class ClassificationServiceImpl implements ClassificationService {
     }
 
     @Override
-    public void deleteClassificationById(long id) {
+    public void deleteById(Long id) {
         log.trace("Delete classification by id {}", id);
-        if(!classificationRepository.existsById(id))
+        if (!classificationRepository.existsById(id))
             throw new NotFoundException("Classification with id '%d' not found!", id);
         classificationRepository.deleteById(id);
     }
+
 }
