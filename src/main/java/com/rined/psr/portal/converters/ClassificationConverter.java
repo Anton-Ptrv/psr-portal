@@ -1,6 +1,6 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.ClassificationBriefDto;
+import com.rined.psr.portal.dto.brief.ClassificationBrief;
 import com.rined.psr.portal.dto.fully.ClassificationDto;
 import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.Classification;
@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class ClassificationConverter implements FullyConverter<Classification, ClassificationDto, ClassificationBriefDto> {
+public class ClassificationConverter implements BaseConverter<Classification, ClassificationDto, ClassificationBrief> {
 
     @Override
     public ClassificationDto baseToDto(Classification volunteer) {
@@ -31,8 +31,8 @@ public class ClassificationConverter implements FullyConverter<Classification, C
     }
 
     @Override
-    public Classification briefToBase(ClassificationBriefDto classificationBriefDto) {
-        return new Classification(classificationBriefDto.getName());
+    public Classification briefToBase(ClassificationBrief classificationBrief) {
+        return new Classification(classificationBrief.getName());
     }
 
     @Override

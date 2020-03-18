@@ -10,13 +10,13 @@ import lombok.*;
 public class VolunteerDto {
 
     @JsonProperty("id")
-    private long id;
+    private Long id;
 
     @JsonProperty("fio")
     private String fio;
 
     @JsonProperty("sex")
-    private boolean sex;
+    private Boolean sex;
 
     @JsonProperty("phone")
     private String phone;

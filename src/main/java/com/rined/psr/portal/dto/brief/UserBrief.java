@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserBriefDto {
+public class UserBrief {
 
     @NotNull(message = "Login is mandatory!")
     @NotBlank(message = "Login is mandatory!")

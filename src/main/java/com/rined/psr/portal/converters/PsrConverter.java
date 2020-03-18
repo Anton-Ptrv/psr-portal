@@ -1,9 +1,12 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.PsrBriefDto;
+import com.rined.psr.portal.dto.brief.PsrBrief;
+import com.rined.psr.portal.dto.brief.PsrStateBrief;
 import com.rined.psr.portal.dto.fully.PsrDto;
+import com.rined.psr.portal.dto.fully.PsrStateDto;
 import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.Psr;
+import com.rined.psr.portal.model.PsrState;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,17 +15,18 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class PsrConverter implements FullyConverter<Psr, PsrDto, PsrBriefDto> {
-    private final PsrStateConverter stateConverter;
+public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
+
+    private final BaseConverter<PsrState, PsrStateDto, PsrStateBrief> stateConverter;
 
     @Override
-    public Psr briefToBase(PsrBriefDto psrBriefDto) {
+    public Psr briefToBase(PsrBrief psrBrief) {
         return new Psr(
-                psrBriefDto.getName(),
-                psrBriefDto.getStartDate(),
-                psrBriefDto.getEndDate(),
-                stateConverter.dtoToBase(psrBriefDto.getPsrState()),
-                psrBriefDto.getComment()
+                psrBrief.getName(),
+                psrBrief.getStartDate(),
+                psrBrief.getEndDate(),
+                stateConverter.dtoToBase(psrBrief.getPsrState()),
+                psrBrief.getComment()
         );
     }
 

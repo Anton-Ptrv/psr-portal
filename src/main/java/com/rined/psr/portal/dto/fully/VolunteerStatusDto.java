@@ -13,7 +13,7 @@ public class VolunteerStatusDto {
 
     @JsonProperty("id")
     @NotNull(message = "Id is mandatory!")
-    private long id;
+    private Long id;
 
     @JsonProperty("name")
     @NotNull(message = "Volunteer status name is mandatory!")

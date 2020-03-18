@@ -11,7 +11,7 @@ import lombok.*;
 public class ClassificationDto {
 
     @JsonProperty("id")
-    private long id;
+    private Long id;
 
     @JsonProperty("name")
     private String name;

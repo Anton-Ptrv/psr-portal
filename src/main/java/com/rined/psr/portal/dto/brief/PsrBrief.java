@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class PsrBriefDto {
+public class PsrBrief {
 
     @JsonProperty("name")
     @NotNull(message = "Psr name is mandatory!")

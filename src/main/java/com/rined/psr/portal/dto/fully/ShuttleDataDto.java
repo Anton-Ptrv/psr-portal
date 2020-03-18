@@ -15,7 +15,7 @@ public class ShuttleDataDto {
 
     @JsonProperty("id")
     @NotNull(message = "Id is mandatory!")
-    private long id;
+    private Long id;
 
     @Column(name = "shuttle")
     @NotNull(message = "Shuttle is mandatory!")
@@ -26,6 +26,6 @@ public class ShuttleDataDto {
     private VolunteerDto shuttleOwner;
 
     @Column(name = "driver")
-    private boolean driver;
+    private Boolean driver;
 
 }

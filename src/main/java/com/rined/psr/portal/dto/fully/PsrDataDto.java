@@ -1,7 +1,5 @@
 package com.rined.psr.portal.dto.fully;
 
-import com.rined.psr.portal.model.Psr;
-import com.rined.psr.portal.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PsrDataDto {
 
-    private long id;
+    private Long id;
 
     private PsrDto psr;
 
