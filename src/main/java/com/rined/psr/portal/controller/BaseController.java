@@ -16,7 +16,7 @@ public abstract class BaseController<Dto, Brief, Bean, ID,
         Converter extends BaseConverter<Bean, Dto, Brief>,
         Service extends BaseService<Dto, Brief, Bean, ID, Repository, Converter>> {
 
-    private final Service service;
+    final Service service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

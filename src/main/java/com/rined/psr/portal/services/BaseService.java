@@ -11,8 +11,8 @@ import java.util.List;
 public abstract class BaseService<Dto, Brief, Bean, ID,
         Repository extends BaseRepository<Bean, ID>,
         Converter extends BaseConverter<Bean, Dto, Brief>> {
-    private final Converter converter;
-    private final Repository repository;
+    final Converter converter;
+    final Repository repository;
 
     public void add(Brief brief) {
         repository.save(converter.briefToBase(brief));
@@ -24,19 +24,19 @@ public abstract class BaseService<Dto, Brief, Bean, ID,
 
     public void update(ID id, Dto dto) {
         Bean bean = repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Classification with id '%d' not found!", id));
+                .orElseThrow(() -> new NotFoundException("Object with id '%d' not found!", id));
         repository.save(converter.mergeDtoAndBase(bean, dto));
     }
 
     public Dto getById(ID id) {
         return repository.findById(id)
                 .map(converter::baseToDto)
-                .orElseThrow(() -> new NotFoundException("Classification with id '%d' not found!", id));
+                .orElseThrow(() -> new NotFoundException("Object with id '%d' not found!", id));
     }
 
     public void deleteById(ID id) {
         if (!repository.existsById(id))
-            throw new NotFoundException("Classification with id '%d' not found!", id);
+            throw new NotFoundException("Object with id '%d' not found!", id);
         repository.deleteById(id);
     }
 }

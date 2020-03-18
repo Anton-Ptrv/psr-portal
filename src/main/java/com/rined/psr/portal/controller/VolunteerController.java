@@ -1,67 +1,37 @@
 package com.rined.psr.portal.controller;
 
+import com.rined.psr.portal.converters.VolunteerConverter;
 import com.rined.psr.portal.dto.SimpleRequest;
 import com.rined.psr.portal.dto.SimpleResponse;
 import com.rined.psr.portal.dto.brief.VolunteerBrief;
 import com.rined.psr.portal.dto.fully.VolunteerDto;
+import com.rined.psr.portal.model.Volunteer;
+import com.rined.psr.portal.repositories.VolunteerRepository;
 import com.rined.psr.portal.services.VolunteerService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
-public class VolunteerController {
-    private final VolunteerService volunteerService;
+@RequestMapping("/volunteers")
+public class VolunteerController extends BaseController<VolunteerDto, VolunteerBrief, Volunteer, Long,
+        VolunteerRepository, VolunteerConverter, VolunteerService> {
+
+    public VolunteerController(VolunteerService service) {
+        super(service);
+    }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/volunteers/exists/phone")
+    @PostMapping("/exists/phone")
     public SimpleResponse<Boolean> isVolunteerExistsByPhone(@Valid @RequestBody SimpleRequest<String> phone) {
-        return SimpleResponse.of(volunteerService.isVolunteerExistsByPhone(phone.getData()));
+        return SimpleResponse.of(service.isVolunteerExistsByPhone(phone.getData()));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/volunteers/exists/telegram")
+    @PostMapping("/exists/telegram")
     public SimpleResponse<Boolean> isVolunteerExistsByTelegram(@Valid @RequestBody SimpleRequest<String> login) {
-        return SimpleResponse.of(volunteerService.isVolunteerExistsByTelegram(login.getData()));
+        return SimpleResponse.of(service.isVolunteerExistsByTelegram(login.getData()));
     }
 
-    @PostMapping("/volunteers/brief")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addBriefVolunteer(@Valid @RequestBody VolunteerBrief volunteerBrief) {
-        volunteerService.addVolunteer(volunteerBrief);
-    }
-
-    @PostMapping("/volunteers")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addFullyVolunteer(@Valid @RequestBody VolunteerDto volunteer) {
-        volunteerService.addVolunteer(volunteer);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/volunteers/{id}")
-    public void deleteVolunteer(@PathVariable("id") long id){
-        volunteerService.deleteVolunteer(id);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/volunteers/{id}")
-    public void updateVolunteer(@PathVariable("id") long id, @Valid @RequestBody VolunteerDto volunteer){
-        volunteerService.updateVolunteer(id, volunteer);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/volunteers/{id}")
-    public VolunteerDto getVolunteerById(@PathVariable("id") long id){
-        return volunteerService.getVolunteerById(id);
-    }
-
-    @GetMapping("/volunteers")
-    @ResponseStatus(HttpStatus.OK)
-    public List<VolunteerDto> getAllFullyVolunteers() {
-        return volunteerService.getAllVolunteers();
-    }
 }
