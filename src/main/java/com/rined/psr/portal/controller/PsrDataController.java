@@ -1,48 +1,19 @@
 package com.rined.psr.portal.controller;
 
+import com.rined.psr.portal.converters.PsrDataConverter;
 import com.rined.psr.portal.dto.brief.PsrDataBrief;
 import com.rined.psr.portal.dto.fully.PsrDataDto;
+import com.rined.psr.portal.model.PsrData;
+import com.rined.psr.portal.repositories.PsrDataRepository;
 import com.rined.psr.portal.services.PsrDataService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
-public class PsrDataController {
-    private final PsrDataService psrDataService;
-
-    @PostMapping("/psr-data")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addPsrData(@Valid @RequestBody PsrDataBrief psrDataBrief) {
-        psrDataService.addPsrData(psrDataBrief);
+@RequestMapping("/psr-data")
+public class PsrDataController extends BaseController<PsrDataDto, PsrDataBrief, PsrData, Long, PsrDataRepository,
+        PsrDataConverter, PsrDataService> {
+    public PsrDataController(PsrDataService service) {
+        super(service);
     }
-
-    @GetMapping("/psr-data")
-    @ResponseStatus(HttpStatus.OK)
-    public List<PsrDataDto> getAllPsrsData() {
-        return psrDataService.getAllPsrsData();
-    }
-
-    @PutMapping("/psr-data/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void updatePsrData(@PathVariable("id") long id, @Valid @RequestBody PsrDataDto dto) {
-        psrDataService.updatePsrData(id, dto);
-    }
-
-    @GetMapping("/psr-data/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public PsrDataDto getPsrDataById(@PathVariable("id") long id) {
-        return psrDataService.getPsrDataById(id);
-    }
-
-    @DeleteMapping("/psr-data/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void deletePsrDataById(@PathVariable("id") long id) {
-         psrDataService.deletePsrDataById(id);
-    }
-
 }

@@ -1,20 +1,16 @@
 package com.rined.psr.portal.services;
 
+import com.rined.psr.portal.converters.PsrDataConverter;
 import com.rined.psr.portal.dto.brief.PsrDataBrief;
 import com.rined.psr.portal.dto.fully.PsrDataDto;
+import com.rined.psr.portal.model.PsrData;
+import com.rined.psr.portal.repositories.PsrDataRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-public interface PsrDataService {
-
-    void addPsrData(PsrDataBrief psrDataBrief);
-
-    List<PsrDataDto> getAllPsrsData();
-
-    void updatePsrData(long id, PsrDataDto dto);
-
-    PsrDataDto getPsrDataById(long id);
-
-    void deletePsrDataById(long id);
-
+@Service
+public class PsrDataService extends BaseService<PsrDataDto, PsrDataBrief, PsrData, Long, PsrDataRepository,
+        PsrDataConverter> {
+    public PsrDataService(PsrDataConverter converter, PsrDataRepository repository) {
+        super(converter, repository);
+    }
 }
