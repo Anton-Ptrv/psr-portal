@@ -1,20 +1,15 @@
 package com.rined.psr.portal.services;
 
+import com.rined.psr.portal.converters.PsrConverter;
 import com.rined.psr.portal.dto.brief.PsrBrief;
 import com.rined.psr.portal.dto.fully.PsrDto;
+import com.rined.psr.portal.model.Psr;
+import com.rined.psr.portal.repositories.PsrRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-public interface PsrService {
-
-    void addPsr(PsrBrief psrBrief);
-
-    List<PsrDto> getAllPsrs();
-
-    void updatePsr(long id, PsrDto dto);
-
-    PsrDto getPsrById(long id);
-
-    void deletePsrById(long id);
-
+@Service
+public class PsrService extends BaseService<PsrDto, PsrBrief, Psr, Long, PsrRepository, PsrConverter> {
+    public PsrService(PsrConverter converter, PsrRepository repository) {
+        super(converter, repository);
+    }
 }
