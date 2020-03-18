@@ -1,20 +1,18 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.dto.brief.PsrListRegistrationBriefDto;
+import com.rined.psr.portal.converters.PsrListRegistrationConverter;
+import com.rined.psr.portal.dto.brief.PsrListRegistrationBrief;
 import com.rined.psr.portal.dto.fully.PsrListRegistrationDto;
+import com.rined.psr.portal.model.PsrListRegistration;
+import com.rined.psr.portal.repositories.PsrListRegistrationRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public class PsrListRegistrationService extends BaseService<PsrListRegistrationDto, PsrListRegistrationBrief,
+        PsrListRegistration, Long, PsrListRegistrationRepository, PsrListRegistrationConverter> {
 
-public interface PsrListRegistrationService {
-
-    void addPsrListRegistration(PsrListRegistrationBriefDto brief);
-
-    List<PsrListRegistrationDto> getAllPsrListRegistrations();
-
-    void updatePsrListRegistration(long id, PsrListRegistrationDto dto);
-
-    PsrListRegistrationDto getPsrListRegistrationById(long id);
-
-    void deletePsrListRegistrationById(long id);
+    public PsrListRegistrationService(PsrListRegistrationConverter converter, PsrListRegistrationRepository repository) {
+        super(converter, repository);
+    }
 
 }

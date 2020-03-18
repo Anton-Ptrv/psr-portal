@@ -1,48 +1,21 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.ShuttleDataBriefDto;
+import com.rined.psr.portal.converters.ShuttleDataConverter;
+import com.rined.psr.portal.dto.brief.ShuttleDataBrief;
 import com.rined.psr.portal.dto.fully.ShuttleDataDto;
+import com.rined.psr.portal.model.ShuttleData;
+import com.rined.psr.portal.repositories.ShuttleDataRepository;
 import com.rined.psr.portal.services.ShuttleDataService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
-public class ShuttleDataController {
-    private final ShuttleDataService shuttleDataService;
+@RequestMapping("/shuttle-data")
+public class ShuttleDataController extends BaseController<ShuttleDataDto, ShuttleDataBrief, ShuttleData, Long,
+        ShuttleDataRepository, ShuttleDataConverter, ShuttleDataService> {
 
-    @PostMapping("/shuttle-data")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addShuttleData(@Valid @RequestBody ShuttleDataBriefDto brief) {
-        shuttleDataService.addShuttleData(brief);
-    }
-
-    @GetMapping("/shuttle-data")
-    @ResponseStatus(HttpStatus.OK)
-    public List<ShuttleDataDto> getAllShuttlesData() {
-        return shuttleDataService.getAllShuttlesData();
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/shuttle-data/{id}")
-    public void updateShuttleData(@PathVariable("id") long id, @Valid @RequestBody ShuttleDataDto dto) {
-        shuttleDataService.updateShuttleData(id, dto);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/shuttle-data/{id}")
-    public ShuttleDataDto getShuttleDataById(@PathVariable("id") long id) {
-        return shuttleDataService.getShuttleById(id);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/shuttle-data/{id}")
-    public void deleteShuttleDataById(@PathVariable("id") long id) {
-        shuttleDataService.deleteShuttleDataById(id);
+    public ShuttleDataController(ShuttleDataService service) {
+        super(service);
     }
 
 }

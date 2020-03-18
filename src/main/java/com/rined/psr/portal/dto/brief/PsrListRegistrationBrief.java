@@ -10,17 +10,17 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class PsrListRegistrationBriefDto {
+public class PsrListRegistrationBrief {
     // mandatory fields?
 
     @JsonProperty("psr")
-    private PsrBriefDto psr;
+    private PsrBrief psr;
 
     @JsonProperty("volunteer")
-    private VolunteerBriefDto volunteer;
+    private VolunteerBrief volunteer;
 
     @JsonProperty("volunteerStatus")
-    private VolunteerStatusBriefDto volunteerStatus;
+    private VolunteerStatusBrief volunteerStatus;
 
     @JsonProperty("shuttleNum")
     private String shuttleNum;

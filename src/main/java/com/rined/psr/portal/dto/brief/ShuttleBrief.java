@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShuttleBriefDto {
+public class ShuttleBrief {
 
     @NotNull(message = "Psr is mandatory!")
     @NotBlank(message = "Psr is mandatory!")
-    private PsrBriefDto registeredOnPsr;
+    private PsrBrief registeredOnPsr;
 
     @NotNull(message = "Auto is mandatory!")
     @NotBlank(message = "Auto is mandatory!")

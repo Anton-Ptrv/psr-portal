@@ -1,48 +1,21 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.ClassificationBriefDto;
+import com.rined.psr.portal.converters.ClassificationConverter;
+import com.rined.psr.portal.dto.brief.ClassificationBrief;
 import com.rined.psr.portal.dto.fully.ClassificationDto;
+import com.rined.psr.portal.model.Classification;
+import com.rined.psr.portal.repositories.ClassificationRepository;
 import com.rined.psr.portal.services.ClassificationService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
-public class ClassificationController {
-    private final ClassificationService classificationService;
+@RequestMapping("/classification")
+public class ClassificationController extends BaseController<ClassificationDto, ClassificationBrief, Classification,
+        Long, ClassificationRepository, ClassificationConverter, ClassificationService> {
 
-    @PostMapping("/classification")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addClassification(@Valid @RequestBody ClassificationBriefDto classificationBriefDto) {
-        classificationService.addClassification(classificationBriefDto);
+    public ClassificationController(ClassificationService service) {
+        super(service);
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/classification")
-    public List<ClassificationDto> getAllClassifications() {
-        return classificationService.getAllClassifications();
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/classification/{id}")
-    public void updateClassification(@PathVariable("id") long id,
-                                     @Valid @RequestBody ClassificationDto classificationDto) {
-        classificationService.updateClassification(id, classificationDto);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/classification/{id}")
-    public ClassificationDto getClassificationById(@PathVariable("id") long id) {
-        return classificationService.getClassificationById(id);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/classification/{id}")
-    public void deleteClassificationById(@PathVariable("id") long id){
-        classificationService.deleteClassificationById(id);
-    }
 }

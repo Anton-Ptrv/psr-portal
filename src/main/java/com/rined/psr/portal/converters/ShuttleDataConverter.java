@@ -1,8 +1,14 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.ShuttleDataBriefDto;
+import com.rined.psr.portal.dto.brief.ShuttleBrief;
+import com.rined.psr.portal.dto.brief.ShuttleDataBrief;
+import com.rined.psr.portal.dto.brief.VolunteerBrief;
 import com.rined.psr.portal.dto.fully.ShuttleDataDto;
+import com.rined.psr.portal.dto.fully.ShuttleDto;
+import com.rined.psr.portal.dto.fully.VolunteerDto;
+import com.rined.psr.portal.model.Shuttle;
 import com.rined.psr.portal.model.ShuttleData;
+import com.rined.psr.portal.model.Volunteer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,16 +17,17 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class ShuttleDataConverter implements FullyConverter<ShuttleData, ShuttleDataDto, ShuttleDataBriefDto> {
-    private final ShuttleConverter shuttleConverter;
-    private final VolunteerConverter volunteerConverter;
+public class ShuttleDataConverter implements BaseConverter<ShuttleData, ShuttleDataDto, ShuttleDataBrief> {
+
+    private final BaseConverter<Shuttle, ShuttleDto, ShuttleBrief> shuttleConverter;
+    private final BaseConverter<Volunteer, VolunteerDto, VolunteerBrief> volunteerConverter;
 
     @Override
-    public ShuttleData briefToBase(ShuttleDataBriefDto brief) {
+    public ShuttleData briefToBase(ShuttleDataBrief brief) {
         return new ShuttleData(
                 shuttleConverter.briefToBase(brief.getShuttle()),
                 volunteerConverter.briefToBase(brief.getShuttleOwner()),
-                brief.isDriver()
+                brief.getDriver()
         );
     }
 
@@ -30,7 +37,7 @@ public class ShuttleDataConverter implements FullyConverter<ShuttleData, Shuttle
                 dto.getId(),
                 shuttleConverter.dtoToBase(dto.getShuttle()),
                 volunteerConverter.dtoToBase(dto.getShuttleOwner()),
-                dto.isDriver()
+                dto.getDriver()
         );
     }
 
@@ -55,7 +62,7 @@ public class ShuttleDataConverter implements FullyConverter<ShuttleData, Shuttle
                 dto.getId(),
                 shuttleConverter.dtoToBase(dto.getShuttle()),
                 volunteerConverter.dtoToBase(dto.getShuttleOwner()),
-                dto.isDriver()
+                dto.getDriver()
         );
     }
 }

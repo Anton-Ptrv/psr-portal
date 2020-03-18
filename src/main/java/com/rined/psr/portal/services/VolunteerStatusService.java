@@ -1,20 +1,18 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.dto.brief.VolunteerStatusBriefDto;
+import com.rined.psr.portal.converters.VolunteerStatusConverter;
+import com.rined.psr.portal.dto.brief.VolunteerStatusBrief;
 import com.rined.psr.portal.dto.fully.VolunteerStatusDto;
+import com.rined.psr.portal.model.VolunteerStatus;
+import com.rined.psr.portal.repositories.VolunteerStatusRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public class VolunteerStatusService extends BaseService<VolunteerStatusDto, VolunteerStatusBrief, VolunteerStatus,
+        Long, VolunteerStatusRepository, VolunteerStatusConverter> {
 
-public interface VolunteerStatusService {
-
-    void addVolunteerStatus(VolunteerStatusBriefDto volunteerStatus);
-
-    List<VolunteerStatusDto> getAllVolunteerStatuses();
-
-    void updateVolunteerStatus(long id, VolunteerStatusDto dto);
-
-    VolunteerStatusDto getVolunteerStatusById(long id);
-
-    void deleteVolunteerStatusById(long id);
+    public VolunteerStatusService(VolunteerStatusConverter converter, VolunteerStatusRepository repository) {
+        super(converter, repository);
+    }
 
 }

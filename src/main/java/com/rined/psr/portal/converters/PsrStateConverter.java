@@ -1,6 +1,6 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.PsrStateBriefDto;
+import com.rined.psr.portal.dto.brief.PsrStateBrief;
 import com.rined.psr.portal.dto.fully.PsrStateDto;
 import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.PsrState;
@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class PsrStateConverter implements FullyConverter<PsrState, PsrStateDto, PsrStateBriefDto> {
+public class PsrStateConverter implements BaseConverter<PsrState, PsrStateDto, PsrStateBrief> {
 
     @Override
-    public PsrState briefToBase(PsrStateBriefDto psrStateBriefDto) {
-        return new PsrState(psrStateBriefDto.getName());
+    public PsrState briefToBase(PsrStateBrief psrStateBrief) {
+        return new PsrState(psrStateBrief.getName());
     }
 
     @Override

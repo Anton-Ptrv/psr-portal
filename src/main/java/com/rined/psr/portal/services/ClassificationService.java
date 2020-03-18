@@ -1,20 +1,19 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.dto.brief.ClassificationBriefDto;
+import com.rined.psr.portal.converters.ClassificationConverter;
+import com.rined.psr.portal.dto.brief.ClassificationBrief;
 import com.rined.psr.portal.dto.fully.ClassificationDto;
+import com.rined.psr.portal.model.Classification;
+import com.rined.psr.portal.repositories.ClassificationRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public class ClassificationService extends BaseService<ClassificationDto, ClassificationBrief, Classification, Long,
+        ClassificationRepository, ClassificationConverter> {
 
-public interface ClassificationService {
-
-    void addClassification(ClassificationBriefDto classificationBriefDto);
-
-    List<ClassificationDto> getAllClassifications();
-
-    void updateClassification(long id, ClassificationDto classificationDto);
-
-    ClassificationDto getClassificationById(long id);
-
-    void deleteClassificationById(long id);
+    public ClassificationService(ClassificationConverter converter, ClassificationRepository repository) {
+        super(converter, repository);
+    }
 
 }
+

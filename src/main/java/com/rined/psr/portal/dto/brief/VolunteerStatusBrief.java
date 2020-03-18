@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VolunteerStatusBriefDto {
+public class VolunteerStatusBrief {
 
     @NotNull(message = "Name is mandatory!")
     @NotBlank(message = "Name is mandatory!")

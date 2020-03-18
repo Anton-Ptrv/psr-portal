@@ -27,7 +27,7 @@ public class Volunteer {
     private String fio;
 
     @Column(name = "sex")
-    private boolean sex;
+    private Boolean sex;
 
     @Column(name = "phone")
     private String phone;

@@ -1,48 +1,21 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.ShuttleBriefDto;
+import com.rined.psr.portal.converters.ShuttleConverter;
+import com.rined.psr.portal.dto.brief.ShuttleBrief;
 import com.rined.psr.portal.dto.fully.ShuttleDto;
+import com.rined.psr.portal.model.Shuttle;
+import com.rined.psr.portal.repositories.ShuttleRepository;
 import com.rined.psr.portal.services.ShuttleService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
-public class ShuttleController {
-    private final ShuttleService shuttleService;
+@RequestMapping("/shuttle")
+public class ShuttleController extends BaseController<ShuttleDto, ShuttleBrief, Shuttle, Long, ShuttleRepository,
+        ShuttleConverter, ShuttleService> {
 
-    @PostMapping("/shuttle")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addShuttle(@Valid @RequestBody ShuttleBriefDto brief) {
-        shuttleService.addShuttle(brief);
-    }
-
-    @GetMapping("/shuttle")
-    @ResponseStatus(HttpStatus.OK)
-    public List<ShuttleDto> getAllShuttles() {
-        return shuttleService.getAllShuttles();
-    }
-
-    @PutMapping("/shuttle/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateShuttle(@PathVariable("id") long id, @Valid @RequestBody ShuttleDto dto){
-        shuttleService.updateShuttle(id, dto);
-    }
-
-    @GetMapping("/shuttle/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ShuttleDto getShuttleById(@PathVariable("id") long id){
-        return shuttleService.getShuttleById(id);
-    }
-
-    @DeleteMapping("/shuttle/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteShuttleById(@PathVariable("id") long id){
-        shuttleService.deleteShuttleById(id);
+    public ShuttleController(ShuttleService service) {
+        super(service);
     }
 
 }

@@ -1,25 +1,26 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
+import com.rined.psr.portal.converters.VolunteerConverter;
+import com.rined.psr.portal.dto.brief.VolunteerBrief;
 import com.rined.psr.portal.dto.fully.VolunteerDto;
+import com.rined.psr.portal.model.Volunteer;
+import com.rined.psr.portal.repositories.VolunteerRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, Volunteer, Long,
+        VolunteerRepository, VolunteerConverter> {
 
-public interface VolunteerService {
+    public VolunteerService(VolunteerConverter converter, VolunteerRepository repository) {
+        super(converter, repository);
+    }
 
-    boolean isVolunteerExistsByPhone(String phone);
+    public boolean isVolunteerExistsByPhone(String phone) {
+        return repository.existsByPhone(phone);
+    }
 
-    boolean isVolunteerExistsByTelegram(String login);
+    public boolean isVolunteerExistsByTelegram(String login) {
+        return repository.existsByTelegramLogin(login);
+    }
 
-    List<VolunteerDto> getAllVolunteers();
-
-    void addVolunteer(VolunteerBriefDto volunteerBrief);
-
-    void deleteVolunteer(long id);
-
-    VolunteerDto getVolunteerById(long id);
-
-    void updateVolunteer(long id, VolunteerDto volunteer);
-
-    void addVolunteer(VolunteerDto volunteer);
 }
