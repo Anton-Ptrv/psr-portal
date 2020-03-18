@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.FullyConverter;
-import com.rined.psr.portal.dto.brief.PsrDataBriefDto;
+import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.dto.brief.PsrDataBrief;
 import com.rined.psr.portal.dto.fully.PsrDataDto;
 import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.model.PsrData;
@@ -17,12 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PsrDataServiceImpl implements PsrDataService {
     private final PsrDataRepository psrDataRepository;
-    private final FullyConverter<PsrData, PsrDataDto, PsrDataBriefDto> converter;
+    private final BaseConverter<PsrData, PsrDataDto, PsrDataBrief> converter;
 
     @Override
-    public void addPsrData(PsrDataBriefDto psrDataBriefDto) {
-        log.trace("Add psr data {}", psrDataBriefDto);
-        psrDataRepository.save(converter.briefToBase(psrDataBriefDto));
+    public void addPsrData(PsrDataBrief psrDataBrief) {
+        log.trace("Add psr data {}", psrDataBrief);
+        psrDataRepository.save(converter.briefToBase(psrDataBrief));
     }
 
     @Override

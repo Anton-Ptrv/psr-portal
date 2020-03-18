@@ -9,13 +9,13 @@ import javax.validation.constraints.NotNull;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShuttleDataBriefDto {
+public class ShuttleDataBrief {
 
     @NotNull(message = "Shuttle is mandatory!")
-    private ShuttleBriefDto shuttle;
+    private ShuttleBrief shuttle;
 
     @NotNull(message = "Shuttle owner is mandatory!")
-    private VolunteerBriefDto shuttleOwner;
+    private VolunteerBrief shuttleOwner;
 
     private Boolean driver;
 

@@ -1,6 +1,6 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.PsrStateBriefDto;
+import com.rined.psr.portal.dto.brief.PsrStateBrief;
 import com.rined.psr.portal.dto.fully.PsrStateDto;
 import com.rined.psr.portal.services.PsrStateService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class PsrStateController {
 
     @PostMapping("/psr-state")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addPsrState(@Valid @RequestBody PsrStateBriefDto psrStateBrief) {
+    public void addPsrState(@Valid @RequestBody PsrStateBrief psrStateBrief) {
         psrStateService.addPsrState(psrStateBrief);
     }
 

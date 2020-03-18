@@ -1,13 +1,13 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.dto.brief.PsrDataBriefDto;
+import com.rined.psr.portal.dto.brief.PsrDataBrief;
 import com.rined.psr.portal.dto.fully.PsrDataDto;
 
 import java.util.List;
 
 public interface PsrDataService {
 
-    void addPsrData(PsrDataBriefDto psrDataBriefDto);
+    void addPsrData(PsrDataBrief psrDataBrief);
 
     List<PsrDataDto> getAllPsrsData();
 

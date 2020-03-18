@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.FullyConverter;
-import com.rined.psr.portal.dto.brief.PsrStateBriefDto;
+import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.dto.brief.PsrStateBrief;
 import com.rined.psr.portal.dto.fully.PsrStateDto;
 import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.model.PsrState;
@@ -17,10 +17,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PsrStateServiceImpl implements PsrStateService {
     private final PsrStateRepository psrStateRepository;
-    private final FullyConverter<PsrState, PsrStateDto, PsrStateBriefDto> converter;
+    private final BaseConverter<PsrState, PsrStateDto, PsrStateBrief> converter;
 
     @Override
-    public void addPsrState(PsrStateBriefDto psrStateBrief) {
+    public void addPsrState(PsrStateBrief psrStateBrief) {
         log.trace("Create new psr state {}", psrStateBrief);
         psrStateRepository.save(converter.briefToBase(psrStateBrief));
     }

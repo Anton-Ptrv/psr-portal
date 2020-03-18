@@ -1,6 +1,6 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.PsrBriefDto;
+import com.rined.psr.portal.dto.brief.PsrBrief;
 import com.rined.psr.portal.dto.fully.PsrDto;
 import com.rined.psr.portal.services.PsrService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +17,8 @@ public class PsrController {
 
     @PostMapping("/psr")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addPsr(@Valid @RequestBody PsrBriefDto psrBriefDto) {
-        psrService.addPsr(psrBriefDto);
+    public void addPsr(@Valid @RequestBody PsrBrief psrBrief) {
+        psrService.addPsr(psrBrief);
     }
 
     @GetMapping("/psr")

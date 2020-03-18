@@ -1,8 +1,7 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.VolunteerStatusBriefDto;
+import com.rined.psr.portal.dto.brief.VolunteerStatusBrief;
 import com.rined.psr.portal.dto.fully.VolunteerStatusDto;
-import com.rined.psr.portal.model.VolunteerStatus;
 import com.rined.psr.portal.services.VolunteerStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ public class VolunteerStatusController {
 
     @PostMapping("/volunteer-status")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addVolunteerStatus(@Valid @RequestBody VolunteerStatusBriefDto volunteerStatusBrief) {
+    public void addVolunteerStatus(@Valid @RequestBody VolunteerStatusBrief volunteerStatusBrief) {
         volunteerStatusService.addVolunteerStatus(volunteerStatusBrief);
     }
 

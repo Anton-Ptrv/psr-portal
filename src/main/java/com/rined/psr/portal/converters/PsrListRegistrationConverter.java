@@ -1,6 +1,6 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.PsrListRegistrationBriefDto;
+import com.rined.psr.portal.dto.brief.PsrListRegistrationBrief;
 import com.rined.psr.portal.dto.fully.PsrListRegistrationDto;
 import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.PsrListRegistration;
@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class PsrListRegistrationConverter implements FullyConverter<PsrListRegistration, PsrListRegistrationDto, PsrListRegistrationBriefDto> {
+public class PsrListRegistrationConverter implements BaseConverter<PsrListRegistration, PsrListRegistrationDto, PsrListRegistrationBrief> {
     private final PsrConverter psrConverter;
     private final VolunteerConverter volunteerConverter;
     private final VolunteerStatusConverter volunteerStatusConverter;
 
     @Override
-    public PsrListRegistration briefToBase(PsrListRegistrationBriefDto brief) {
+    public PsrListRegistration briefToBase(PsrListRegistrationBrief brief) {
         return new PsrListRegistration(
                 psrConverter.briefToBase(brief.getPsr()),
                 volunteerConverter.briefToBase(brief.getVolunteer()),

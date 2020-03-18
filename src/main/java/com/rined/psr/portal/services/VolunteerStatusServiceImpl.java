@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.FullyConverter;
-import com.rined.psr.portal.dto.brief.VolunteerStatusBriefDto;
+import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.dto.brief.VolunteerStatusBrief;
 import com.rined.psr.portal.dto.fully.VolunteerStatusDto;
 import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.model.VolunteerStatus;
@@ -17,10 +17,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VolunteerStatusServiceImpl implements VolunteerStatusService {
     private final VolunteerStatusRepository volunteerStatusRepository;
-    private final FullyConverter<VolunteerStatus, VolunteerStatusDto, VolunteerStatusBriefDto> converter;
+    private final BaseConverter<VolunteerStatus, VolunteerStatusDto, VolunteerStatusBrief> converter;
 
     @Override
-    public void addVolunteerStatus(VolunteerStatusBriefDto volunteerStatus) {
+    public void addVolunteerStatus(VolunteerStatusBrief volunteerStatus) {
         log.trace("Create new volunteer status {}", volunteerStatus);
         volunteerStatusRepository.save(converter.briefToBase(volunteerStatus));
     }

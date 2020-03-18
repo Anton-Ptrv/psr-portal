@@ -1,6 +1,6 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.ShuttleBriefDto;
+import com.rined.psr.portal.dto.brief.ShuttleBrief;
 import com.rined.psr.portal.dto.fully.ShuttleDto;
 import com.rined.psr.portal.model.Shuttle;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class ShuttleConverter implements FullyConverter<Shuttle, ShuttleDto, ShuttleBriefDto> {
+public class ShuttleConverter implements BaseConverter<Shuttle, ShuttleDto, ShuttleBrief> {
     private final PsrConverter psrConverter;
 
     @Override
-    public Shuttle briefToBase(ShuttleBriefDto brief) {
+    public Shuttle briefToBase(ShuttleBrief brief) {
         return new Shuttle(
                 psrConverter.briefToBase(brief.getRegisteredOnPsr()),
                 brief.getAuto()

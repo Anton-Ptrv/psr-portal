@@ -1,6 +1,6 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.PsrDataBriefDto;
+import com.rined.psr.portal.dto.brief.PsrDataBrief;
 import com.rined.psr.portal.dto.fully.PsrDataDto;
 import com.rined.psr.portal.model.PsrData;
 import lombok.RequiredArgsConstructor;
@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class PsrDataConverter implements FullyConverter<PsrData, PsrDataDto, PsrDataBriefDto> {
+public class PsrDataConverter implements BaseConverter<PsrData, PsrDataDto, PsrDataBrief> {
     private final PsrConverter psrConverter;
     private final UserConverter userConverter;
 
     @Override
-    public PsrData briefToBase(PsrDataBriefDto brief) {
+    public PsrData briefToBase(PsrDataBrief brief) {
         return new PsrData(
                 psrConverter.briefToBase(brief.getPsr()),
                 brief.getStation(),

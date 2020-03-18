@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class VolunteerBriefDto {
+public class VolunteerBrief {
 
     @NotNull
     @NotBlank(message = "Fio is mandatory!")

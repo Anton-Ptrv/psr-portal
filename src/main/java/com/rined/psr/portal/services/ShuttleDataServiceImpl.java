@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.FullyConverter;
-import com.rined.psr.portal.dto.brief.ShuttleDataBriefDto;
+import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.dto.brief.ShuttleDataBrief;
 import com.rined.psr.portal.dto.fully.ShuttleDataDto;
 import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.model.ShuttleData;
@@ -17,10 +17,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ShuttleDataServiceImpl implements ShuttleDataService {
     private final ShuttleDataRepository shuttleDataRepository;
-    private final FullyConverter<ShuttleData, ShuttleDataDto, ShuttleDataBriefDto> converter;
+    private final BaseConverter<ShuttleData, ShuttleDataDto, ShuttleDataBrief> converter;
 
     @Override
-    public void addShuttleData(ShuttleDataBriefDto brief) {
+    public void addShuttleData(ShuttleDataBrief brief) {
         log.trace("Add shuttle data {}", brief);
         shuttleDataRepository.save(converter.briefToBase(brief));
     }

@@ -2,7 +2,7 @@ package com.rined.psr.portal.controller;
 
 import com.rined.psr.portal.dto.SimpleRequest;
 import com.rined.psr.portal.dto.SimpleResponse;
-import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
+import com.rined.psr.portal.dto.brief.VolunteerBrief;
 import com.rined.psr.portal.dto.fully.VolunteerDto;
 import com.rined.psr.portal.services.VolunteerService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class VolunteerController {
 
     @PostMapping("/volunteers/brief")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addBriefVolunteer(@Valid @RequestBody VolunteerBriefDto volunteerBrief) {
+    public void addBriefVolunteer(@Valid @RequestBody VolunteerBrief volunteerBrief) {
         volunteerService.addVolunteer(volunteerBrief);
     }
 

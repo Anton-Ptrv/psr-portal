@@ -1,13 +1,13 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.dto.brief.VolunteerStatusBriefDto;
+import com.rined.psr.portal.dto.brief.VolunteerStatusBrief;
 import com.rined.psr.portal.dto.fully.VolunteerStatusDto;
 
 import java.util.List;
 
 public interface VolunteerStatusService {
 
-    void addVolunteerStatus(VolunteerStatusBriefDto volunteerStatus);
+    void addVolunteerStatus(VolunteerStatusBrief volunteerStatus);
 
     List<VolunteerStatusDto> getAllVolunteerStatuses();
 

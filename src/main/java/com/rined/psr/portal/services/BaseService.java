@@ -1,16 +1,42 @@
 package com.rined.psr.portal.services;
 
+import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.exception.NotFoundException;
+import com.rined.psr.portal.repositories.BaseRepository;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
-public interface BaseService <Dto, Brief, ID>{
+@RequiredArgsConstructor
+public abstract class BaseService<Dto, Brief, Bean, ID,
+        Repository extends BaseRepository<Bean, ID>,
+        Converter extends BaseConverter<Bean, Dto, Brief>> {
+    private final Converter converter;
+    private final Repository repository;
 
-    void add(Brief brief);
+    public void add(Brief brief) {
+        repository.save(converter.briefToBase(brief));
+    }
 
-    List<Dto> getAll();
+    public List<Dto> getAll() {
+        return converter.baseToDtoList(repository.findAll());
+    }
 
-    void update(ID id, Dto dto);
+    public void update(ID id, Dto dto) {
+        Bean bean = repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Classification with id '%d' not found!", id));
+        repository.save(converter.mergeDtoAndBase(bean, dto));
+    }
 
-    Dto getById(ID id);
+    public Dto getById(ID id) {
+        return repository.findById(id)
+                .map(converter::baseToDto)
+                .orElseThrow(() -> new NotFoundException("Classification with id '%d' not found!", id));
+    }
 
-    void deleteById(ID id);
+    public void deleteById(ID id) {
+        if (!repository.existsById(id))
+            throw new NotFoundException("Classification with id '%d' not found!", id);
+        repository.deleteById(id);
+    }
 }

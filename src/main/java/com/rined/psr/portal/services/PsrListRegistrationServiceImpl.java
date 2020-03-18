@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.FullyConverter;
-import com.rined.psr.portal.dto.brief.PsrListRegistrationBriefDto;
+import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.dto.brief.PsrListRegistrationBrief;
 import com.rined.psr.portal.dto.fully.PsrListRegistrationDto;
 import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.model.PsrListRegistration;
@@ -17,10 +17,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PsrListRegistrationServiceImpl implements PsrListRegistrationService {
     private final PsrListRegistrationRepository psrListRegistrationRepository;
-    private final FullyConverter<PsrListRegistration, PsrListRegistrationDto, PsrListRegistrationBriefDto> converter;
+    private final BaseConverter<PsrListRegistration, PsrListRegistrationDto, PsrListRegistrationBrief> converter;
 
     @Override
-    public void addPsrListRegistration(PsrListRegistrationBriefDto brief) {
+    public void addPsrListRegistration(PsrListRegistrationBrief brief) {
         log.trace("Add psr list registration {}", brief);
         psrListRegistrationRepository.save(converter.briefToBase(brief));
     }

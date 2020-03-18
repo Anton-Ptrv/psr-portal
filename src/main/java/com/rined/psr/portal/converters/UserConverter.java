@@ -1,6 +1,6 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.UserBriefDto;
+import com.rined.psr.portal.dto.brief.UserBrief;
 import com.rined.psr.portal.dto.fully.UserDto;
 import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.User;
@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class UserConverter implements FullyConverter<User, UserDto, UserBriefDto> {
+public class UserConverter implements BaseConverter<User, UserDto, UserBrief> {
 
     @Override
-    public User briefToBase(UserBriefDto briefDto) {
+    public User briefToBase(UserBrief briefDto) {
         return new User(briefDto.getLogin(), briefDto.getPassword(), briefDto.getFio());
     }
 

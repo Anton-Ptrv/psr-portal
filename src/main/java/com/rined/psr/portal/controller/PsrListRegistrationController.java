@@ -1,6 +1,6 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.PsrListRegistrationBriefDto;
+import com.rined.psr.portal.dto.brief.PsrListRegistrationBrief;
 import com.rined.psr.portal.dto.fully.PsrListRegistrationDto;
 import com.rined.psr.portal.services.PsrListRegistrationService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class PsrListRegistrationController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/psr-list-registration")
-    public void addPsrListRegistration(@Valid @RequestBody PsrListRegistrationBriefDto brief) {
+    public void addPsrListRegistration(@Valid @RequestBody PsrListRegistrationBrief brief) {
         psrListRegistrationService.addPsrListRegistration(brief);
     }
 

@@ -1,6 +1,6 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.VolunteerStatusBriefDto;
+import com.rined.psr.portal.dto.brief.VolunteerStatusBrief;
 import com.rined.psr.portal.dto.fully.VolunteerStatusDto;
 import com.rined.psr.portal.exception.IdMismatchException;
 import com.rined.psr.portal.model.VolunteerStatus;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class VolunteerStatusConverter implements FullyConverter<VolunteerStatus, VolunteerStatusDto, VolunteerStatusBriefDto> {
+public class VolunteerStatusConverter implements BaseConverter<VolunteerStatus, VolunteerStatusDto, VolunteerStatusBrief> {
 
     @Override
     public VolunteerStatusDto baseToDto(VolunteerStatus volunteerStatus) {
@@ -28,8 +28,8 @@ public class VolunteerStatusConverter implements FullyConverter<VolunteerStatus,
     }
 
     @Override
-    public VolunteerStatus briefToBase(VolunteerStatusBriefDto volunteerStatusBriefDto) {
-        return new VolunteerStatus(volunteerStatusBriefDto.getName());
+    public VolunteerStatus briefToBase(VolunteerStatusBrief volunteerStatusBrief) {
+        return new VolunteerStatus(volunteerStatusBrief.getName());
     }
 
     @Override

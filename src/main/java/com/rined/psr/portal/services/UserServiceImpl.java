@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.FullyConverter;
-import com.rined.psr.portal.dto.brief.UserBriefDto;
+import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.dto.brief.UserBrief;
 import com.rined.psr.portal.dto.fully.UserDto;
 import com.rined.psr.portal.exception.AlreadyExistsException;
 import com.rined.psr.portal.exception.NotFoundException;
@@ -18,10 +18,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final FullyConverter<User, UserDto, UserBriefDto> converter;
+    private final BaseConverter<User, UserDto, UserBrief> converter;
 
     @Override
-    public void addUser(UserBriefDto briefDto) {
+    public void addUser(UserBrief briefDto) {
         log.trace("Add user {}", userRepository);
         String login = briefDto.getLogin();
         if (userRepository.existsByLogin(login)) {

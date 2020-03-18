@@ -1,6 +1,6 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.UserBriefDto;
+import com.rined.psr.portal.dto.brief.UserBrief;
 import com.rined.psr.portal.dto.fully.UserDto;
 import com.rined.psr.portal.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class UserController {
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser(@Valid @RequestBody UserBriefDto briefDto) {
+    public void addUser(@Valid @RequestBody UserBrief briefDto) {
         userService.addUser(briefDto);
     }
 

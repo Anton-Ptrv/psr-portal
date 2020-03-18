@@ -1,6 +1,6 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.dto.brief.ShuttleDataBriefDto;
+import com.rined.psr.portal.dto.brief.ShuttleDataBrief;
 import com.rined.psr.portal.dto.fully.ShuttleDataDto;
 import com.rined.psr.portal.services.ShuttleDataService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class ShuttleDataController {
 
     @PostMapping("/shuttle-data")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addShuttleData(@Valid @RequestBody ShuttleDataBriefDto brief) {
+    public void addShuttleData(@Valid @RequestBody ShuttleDataBrief brief) {
         shuttleDataService.addShuttleData(brief);
     }
 

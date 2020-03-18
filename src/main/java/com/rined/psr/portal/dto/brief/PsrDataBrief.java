@@ -8,19 +8,19 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class PsrDataBriefDto {
+public class PsrDataBrief {
 
     @JsonProperty("psr")
-    private PsrBriefDto psr;
+    private PsrBrief psr;
 
     @JsonProperty("station")
     private String station;
 
     @JsonProperty("psrLeader")
-    private UserBriefDto psrLeader;
+    private UserBrief psrLeader;
 
     @JsonProperty("psrRegistration")
-    private UserBriefDto psrRegisteredUser;
+    private UserBrief psrRegisteredUser;
 
     @JsonProperty("objectInfo")
     private String objectInfo;

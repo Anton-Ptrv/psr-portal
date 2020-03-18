@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.FullyConverter;
-import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
+import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.dto.brief.VolunteerBrief;
 import com.rined.psr.portal.dto.fully.VolunteerDto;
 import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.model.Volunteer;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VolunteerServiceImpl implements VolunteerService {
     private final VolunteerRepository volunteerRepository;
-    private final FullyConverter<Volunteer, VolunteerDto, VolunteerBriefDto> converter;
+    private final BaseConverter<Volunteer, VolunteerDto, VolunteerBrief> converter;
 
     @Override
     public boolean isVolunteerExistsByPhone(String phone) {
@@ -43,7 +43,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public void addVolunteer(VolunteerBriefDto volunteerBrief) {
+    public void addVolunteer(VolunteerBrief volunteerBrief) {
         log.trace("New volunteer {}", volunteerBrief);
         Volunteer volunteer = converter.briefToBase(volunteerBrief);
         volunteerRepository.save(volunteer);

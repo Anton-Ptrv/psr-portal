@@ -1,6 +1,7 @@
 package com.rined.psr.portal.converters;
 
-import com.rined.psr.portal.dto.brief.VolunteerBriefDto;
+import com.rined.psr.portal.dto.brief.ClassificationBrief;
+import com.rined.psr.portal.dto.brief.VolunteerBrief;
 import com.rined.psr.portal.dto.fully.ClassificationDto;
 import com.rined.psr.portal.dto.fully.VolunteerDto;
 import com.rined.psr.portal.exception.IdMismatchException;
@@ -15,8 +16,8 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDto, VolunteerBriefDto> {
-    private final BaseDtoConverter<Classification, ClassificationDto> classificationConverter;
+public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto, VolunteerBrief> {
+    private final BaseConverter<Classification, ClassificationDto, ClassificationBrief> classificationConverter;
 
     @Override
     public VolunteerDto baseToDto(Volunteer volunteer) {
@@ -25,7 +26,7 @@ public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDt
         return VolunteerDto.builder()
                 .id(volunteer.getId())
                 .fio(volunteer.getFio())
-                .sex(volunteer.isSex())
+                .sex(volunteer.getSex())
                 .phone(volunteer.getPhone())
                 .login(volunteer.getTelegramLogin())
                 .classification(classificationConverter.baseToDto(volunteer.getClassification()))
@@ -45,7 +46,7 @@ public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDt
         return new Volunteer(
                 dto.getId(),
                 dto.getFio(),
-                dto.isSex(),
+                dto.getSex(),
                 dto.getPhone(),
                 dto.getLogin(),
                 classificationConverter.dtoToBase(dto.getClassification()),
@@ -56,10 +57,10 @@ public class VolunteerConverter implements FullyConverter<Volunteer, VolunteerDt
     }
 
     @Override
-    public Volunteer briefToBase(VolunteerBriefDto volunteerBrief) {
+    public Volunteer briefToBase(VolunteerBrief volunteerBrief) {
         return new Volunteer(
                 volunteerBrief.getFio(),
-                volunteerBrief.isSex(),
+                volunteerBrief.getSex(),
                 volunteerBrief.getPhone(),
                 volunteerBrief.getLogin(),
                 new Classification(1)
