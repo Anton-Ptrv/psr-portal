@@ -21,8 +21,16 @@ spring:
       ddl-auto: none
     show-sql: true
 
+management:
+  endpoint:
+    logfile:
+      enabled: true
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
 logging:
-  level:
-    root: info
-    com.rined.psr.portal: trace
-    org.springframework.web.filter.CommonsRequestLoggingFilter: debug
+  file:
+    name: 'log/psr.log'
