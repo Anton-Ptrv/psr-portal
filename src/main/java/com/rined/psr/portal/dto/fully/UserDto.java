@@ -23,11 +23,6 @@ public class UserDto {
     @NotEmpty(message = "Login is mandatory!")
     private String login;
 
-    @Column(name = "password")
-    @NotNull(message = "Password is mandatory!")
-    @NotEmpty(message = "Password is mandatory!")
-    private String password;
-
     @Column(name = "fio")
     @NotNull(message = "FIO is mandatory!")
     @NotEmpty(message = "FIO is mandatory!")

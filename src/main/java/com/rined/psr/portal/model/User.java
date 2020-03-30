@@ -32,6 +32,12 @@ public class User {
     @Column(name = "fio")
     private String fio;
 
+    public User(long id, String login, String fio) {
+        this.id = id;
+        this.login = login;
+        this.fio = fio;
+    }
+
     public User(String login, String password, String fio) {
         this.login = login;
         this.password = password;

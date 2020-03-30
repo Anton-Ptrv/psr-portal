@@ -27,7 +27,7 @@ public class UserConverter implements BaseConverter<User, UserDto, UserBrief> {
 
     @Override
     public UserDto baseToDto(User user) {
-        return new UserDto(user.getId(), user.getLogin(), user.getPassword(), user.getFio());
+        return new UserDto(user.getId(), user.getLogin(), user.getFio());
     }
 
     @Override
@@ -37,6 +37,6 @@ public class UserConverter implements BaseConverter<User, UserDto, UserBrief> {
 
     @Override
     public User dtoToBase(UserDto userDto) {
-        return new User(userDto.getId(), userDto.getLogin(), userDto.getPassword(), userDto.getFio());
+        return new User(userDto.getId(), userDto.getLogin(), userDto.getFio());
     }
 }
