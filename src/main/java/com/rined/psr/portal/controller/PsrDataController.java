@@ -9,6 +9,7 @@ import com.rined.psr.portal.services.PsrDataService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// Карточка ПСР
 @RestController
 @RequestMapping("/psr-data")
 public class PsrDataController extends BaseController<PsrDataDto, PsrDataBrief, PsrData, Long, PsrDataRepository,

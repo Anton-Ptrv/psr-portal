@@ -11,9 +11,6 @@ spring:
     url: jdbc:postgresql://localhost/psr
     username: postgres
     password: password
-    initialization-mode: always
-    schema: classpath:/sql/schema.sql
-    data: classpath:/sql/data.sql
 
   jpa:
     generate-ddl: false

@@ -9,6 +9,7 @@ import com.rined.psr.portal.services.PsrService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// Список спасательных работ. Главная страница
 @RestController
 @RequestMapping("/psr")
 public class PsrController extends BaseController<PsrDto, PsrBrief, Psr, Long, PsrRepository, PsrConverter, PsrService> {

@@ -9,6 +9,7 @@ import com.rined.psr.portal.services.PsrListRegistrationService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// Лист регистрации
 @RestController
 @RequestMapping("/psr-list-registration")
 public class PsrListRegistrationController extends BaseController<PsrListRegistrationDto, PsrListRegistrationBrief,
