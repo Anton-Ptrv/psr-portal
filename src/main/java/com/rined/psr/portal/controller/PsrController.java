@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // Список спасательных работ. Главная страница
 @RestController
-@RequestMapping("/psr")
+@RequestMapping("/psr/api/psr")
 public class PsrController extends BaseController<PsrDto, PsrBrief, Psr, Long, PsrRepository, PsrConverter, PsrService> {
 
     public PsrController(PsrService service) {

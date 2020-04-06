@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/shuttle")
+@RequestMapping("/psr/api/shuttle")
 public class ShuttleController extends BaseController<ShuttleDto, ShuttleBrief, Shuttle, Long, ShuttleRepository,
         ShuttleConverter, ShuttleService> {
 

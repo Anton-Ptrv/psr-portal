@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // Лист регистрации
 @RestController
-@RequestMapping("/psr-list-registration")
+@RequestMapping("/psr/api/psr-list-registration")
 public class PsrListRegistrationController extends BaseController<PsrListRegistrationDto, PsrListRegistrationBrief,
         PsrListRegistration, Long, PsrListRegistrationRepository, PsrListRegistrationConverter,
         PsrListRegistrationService> {

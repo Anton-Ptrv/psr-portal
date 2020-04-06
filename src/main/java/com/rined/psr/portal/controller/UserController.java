@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/psr/api/users")
 public class UserController extends BaseController<UserDto, UserBrief, User, Long, UserRepository, UserConverter,
         UserService> {
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/volunteer-status")
+@RequestMapping("/psr/api/volunteer-status")
 public class VolunteerStatusController extends BaseController<VolunteerStatusDto, VolunteerStatusBrief, VolunteerStatus,
         Long, VolunteerStatusRepository, VolunteerStatusConverter, VolunteerStatusService> {
 

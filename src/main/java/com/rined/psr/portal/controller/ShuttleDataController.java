@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/shuttle-data")
+@RequestMapping("/psr/api/shuttle-data")
 public class ShuttleDataController extends BaseController<ShuttleDataDto, ShuttleDataBrief, ShuttleData, Long,
         ShuttleDataRepository, ShuttleDataConverter, ShuttleDataService> {
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/classification")
+@RequestMapping("/psr/api/classification")
 public class ClassificationController extends BaseController<ClassificationDto, ClassificationBrief, Classification,
         Long, ClassificationRepository, ClassificationConverter, ClassificationService> {
 

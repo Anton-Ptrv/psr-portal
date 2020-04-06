@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/volunteers")
+@RequestMapping("/psr/api/volunteers")
 public class VolunteerController extends BaseController<VolunteerDto, VolunteerBrief, Volunteer, Long,
         VolunteerRepository, VolunteerConverter, VolunteerService> {
 

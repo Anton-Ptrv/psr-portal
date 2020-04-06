@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // Карточка ПСР
 @RestController
-@RequestMapping("/psr-data")
+@RequestMapping("/psr/api/psr-data")
 public class PsrDataController extends BaseController<PsrDataDto, PsrDataBrief, PsrData, Long, PsrDataRepository,
         PsrDataConverter, PsrDataService> {
 

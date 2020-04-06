@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/psr-state")
+@RequestMapping("/psr/api/psr-state")
 public class PsrStateController extends BaseController<PsrStateDto, PsrStateBrief, PsrState, Long, PsrStateRepository,
         PsrStateConverter, PsrStateService> {
 
