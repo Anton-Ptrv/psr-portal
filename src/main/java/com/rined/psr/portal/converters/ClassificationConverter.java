@@ -15,7 +15,7 @@ public class ClassificationConverter implements BaseConverter<Classification, Cl
 
     @Override
     public ClassificationDto baseToDto(Classification volunteer) {
-        if(Objects.isNull(volunteer))
+        if (Objects.isNull(volunteer))
             return null;
         return new ClassificationDto(volunteer.getId(), volunteer.getName());
     }
@@ -32,7 +32,7 @@ public class ClassificationConverter implements BaseConverter<Classification, Cl
 
     @Override
     public Classification briefToBase(ClassificationBrief classificationBrief) {
-        return new Classification(classificationBrief.getName());
+        return new Classification(classificationBrief.getId(), classificationBrief.getName());
     }
 
     @Override

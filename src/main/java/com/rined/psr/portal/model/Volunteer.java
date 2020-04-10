@@ -21,7 +21,7 @@ public class Volunteer {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "fio")
     private String fio;
@@ -70,6 +70,15 @@ public class Volunteer {
         this.equipment = equipment;
         this.psrListDesc = psrListDesc;
         this.comment = comment;
+    }
+
+    public Volunteer(Long id, String fio, boolean sex, String phone, String login, Classification classification) {
+        this.id = id;
+        this.fio = fio;
+        this.sex = sex;
+        this.phone = phone;
+        this.telegramLogin = login;
+        this.classification = classification;
     }
 
     public Volunteer(String fio, boolean sex, String phone, String login, Classification classification) {

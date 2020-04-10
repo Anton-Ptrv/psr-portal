@@ -21,6 +21,7 @@ public class ShuttleConverter implements BaseConverter<Shuttle, ShuttleDto, Shut
     @Override
     public Shuttle briefToBase(ShuttleBrief brief) {
         return new Shuttle(
+                brief.getId(),
                 psrConverter.briefToBase(brief.getRegisteredOnPsr()),
                 brief.getAuto()
         );

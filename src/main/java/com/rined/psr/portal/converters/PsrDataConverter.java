@@ -25,6 +25,7 @@ public class PsrDataConverter implements BaseConverter<PsrData, PsrDataDto, PsrD
     @Override
     public PsrData briefToBase(PsrDataBrief brief) {
         return new PsrData(
+                brief.getId(),
                 psrConverter.briefToBase(brief.getPsr()),
                 brief.getStation(),
                 userConverter.briefToBase(brief.getPsrLeader()),

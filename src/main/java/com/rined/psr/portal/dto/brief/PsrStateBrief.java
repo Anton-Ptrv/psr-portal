@@ -13,6 +13,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class PsrStateBrief {
 
+    @JsonProperty("id")
+    private Long id;
+
     @NotNull(message = "Name is mandatory!")
     @NotBlank(message = "Name is mandatory!")
     @JsonProperty("name")

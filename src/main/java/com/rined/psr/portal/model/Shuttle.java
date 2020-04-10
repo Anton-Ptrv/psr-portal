@@ -21,7 +21,7 @@ public class Shuttle {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * ПСР на котором зарегестрирован экипаж

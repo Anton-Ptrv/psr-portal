@@ -60,6 +60,7 @@ public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto
     @Override
     public Volunteer briefToBase(VolunteerBrief volunteerBrief) {
         return new Volunteer(
+                volunteerBrief.getId(),
                 volunteerBrief.getFio(),
                 volunteerBrief.getSex(),
                 volunteerBrief.getPhone(),
@@ -70,7 +71,7 @@ public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto
 
     @Override
     public Volunteer mergeDtoAndBase(Volunteer base, VolunteerDto dto) {
-        if (base.getId() != dto.getId()) {
+        if (!base.getId().equals(dto.getId())) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }
         return dtoToBase(dto);

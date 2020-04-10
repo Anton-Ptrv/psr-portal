@@ -1,5 +1,6 @@
 package com.rined.psr.portal.dto.brief;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.rined.psr.portal.validation.PhoneNumber;
 import lombok.*;
 
@@ -12,6 +13,8 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VolunteerBrief {
+    @JsonProperty("id")
+    private Long id;
 
     @NotNull
     @NotBlank(message = "Fio is mandatory!")

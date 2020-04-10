@@ -30,6 +30,7 @@ public class PsrListRegistrationConverter implements BaseConverter<PsrListRegist
     @Override
     public PsrListRegistration briefToBase(PsrListRegistrationBrief brief) {
         return new PsrListRegistration(
+                brief.getId(),
                 psrConverter.briefToBase(brief.getPsr()),
                 volunteerConverter.briefToBase(brief.getVolunteer()),
                 volunteerStatusConverter.briefToBase(brief.getVolunteerStatus()),

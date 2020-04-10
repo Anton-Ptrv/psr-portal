@@ -25,6 +25,7 @@ public class ShuttleDataConverter implements BaseConverter<ShuttleData, ShuttleD
     @Override
     public ShuttleData briefToBase(ShuttleDataBrief brief) {
         return new ShuttleData(
+                brief.getId(),
                 shuttleConverter.briefToBase(brief.getShuttle()),
                 volunteerConverter.briefToBase(brief.getShuttleOwner()),
                 brief.getDriver()

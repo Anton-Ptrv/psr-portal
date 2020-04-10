@@ -14,7 +14,7 @@ public class PsrStateConverter implements BaseConverter<PsrState, PsrStateDto, P
 
     @Override
     public PsrState briefToBase(PsrStateBrief psrStateBrief) {
-        return new PsrState(psrStateBrief.getName());
+        return new PsrState(psrStateBrief.getId(), psrStateBrief.getName());
     }
 
     @Override

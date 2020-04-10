@@ -1,5 +1,6 @@
 package com.rined.psr.portal.dto.brief;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -11,6 +12,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserBrief {
+
+    @JsonProperty("id")
+    private Long id;
 
     @NotNull(message = "Login is mandatory!")
     @NotBlank(message = "Login is mandatory!")

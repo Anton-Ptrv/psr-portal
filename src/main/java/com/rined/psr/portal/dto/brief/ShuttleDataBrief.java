@@ -1,5 +1,6 @@
 package com.rined.psr.portal.dto.brief;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShuttleDataBrief {
+
+    @JsonProperty("id")
+    private Long id;
 
     @NotNull(message = "Shuttle is mandatory!")
     private ShuttleBrief shuttle;

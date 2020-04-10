@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PsrListRegistrationBrief {
     // mandatory fields?
+    @JsonProperty("id")
+    private Long id;
 
     @JsonProperty("psr")
     private PsrBrief psr;

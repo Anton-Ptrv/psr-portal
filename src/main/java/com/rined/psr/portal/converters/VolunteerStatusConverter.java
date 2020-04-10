@@ -29,7 +29,7 @@ public class VolunteerStatusConverter implements BaseConverter<VolunteerStatus, 
 
     @Override
     public VolunteerStatus briefToBase(VolunteerStatusBrief volunteerStatusBrief) {
-        return new VolunteerStatus(volunteerStatusBrief.getName());
+        return new VolunteerStatus(volunteerStatusBrief.getId(), volunteerStatusBrief.getName());
     }
 
     @Override

@@ -14,7 +14,7 @@ public class UserConverter implements BaseConverter<User, UserDto, UserBrief> {
 
     @Override
     public User briefToBase(UserBrief briefDto) {
-        return new User(briefDto.getLogin(), briefDto.getPassword(), briefDto.getFio());
+        return new User(briefDto.getId(), briefDto.getLogin(), briefDto.getPassword(), briefDto.getFio());
     }
 
     @Override

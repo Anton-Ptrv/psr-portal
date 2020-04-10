@@ -23,7 +23,7 @@ public class Psr {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * Наименование. Состоит из Адреса + ФИО потерявшегося

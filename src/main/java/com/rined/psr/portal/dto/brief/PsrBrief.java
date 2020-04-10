@@ -1,7 +1,6 @@
 package com.rined.psr.portal.dto.brief;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.rined.psr.portal.dto.fully.PsrStateDto;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -15,6 +14,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class PsrBrief {
 
+    @JsonProperty("id")
+    private Long id;
+
     @JsonProperty("name")
     @NotNull(message = "Psr name is mandatory!")
     @NotBlank(message = "Psr name is mandatory!")
@@ -27,7 +29,7 @@ public class PsrBrief {
     private LocalDate endDate;
 
     @JsonProperty("psrState")
-    private PsrStateDto psrState;
+    private PsrStateBrief psrState;
 
     @JsonProperty("comment")
     private String comment;

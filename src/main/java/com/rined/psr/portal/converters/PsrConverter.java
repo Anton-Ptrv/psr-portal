@@ -22,17 +22,18 @@ public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
     @Override
     public Psr briefToBase(PsrBrief psrBrief) {
         return new Psr(
+                psrBrief.getId(),
                 psrBrief.getName(),
                 psrBrief.getStartDate(),
                 psrBrief.getEndDate(),
-                stateConverter.dtoToBase(psrBrief.getPsrState()),
+                stateConverter.briefToBase(psrBrief.getPsrState()),
                 psrBrief.getComment()
         );
     }
 
     @Override
     public Psr mergeDtoAndBase(Psr base, PsrDto psrDto) {
-        if (base.getId() != psrDto.getId()) {
+        if (!base.getId().equals(psrDto.getId())) {
             throw new IdMismatchException("Path variable id and query object id mismatch!");
         }
         return dtoToBase(psrDto);

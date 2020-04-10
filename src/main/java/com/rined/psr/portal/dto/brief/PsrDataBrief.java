@@ -10,6 +10,9 @@ import lombok.*;
 @AllArgsConstructor
 public class PsrDataBrief {
 
+    @JsonProperty("id")
+    private Long id;
+
     @JsonProperty("psr")
     private PsrBrief psr;
 

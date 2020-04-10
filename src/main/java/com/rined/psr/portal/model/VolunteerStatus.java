@@ -21,7 +21,7 @@ public class VolunteerStatus {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * Наименование статуса добровольца
