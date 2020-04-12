@@ -1,10 +1,7 @@
 package com.rined.psr.portal.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,6 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity(name = "psr")
 @Table(name = "psr")
+@EqualsAndHashCode
 public class Psr {
 
     @Id

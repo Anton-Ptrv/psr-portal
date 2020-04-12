@@ -1,7 +1,7 @@
 package com.rined.psr.portal.controller.exception;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.rined.psr.portal.dto.ErrorResponse;
+import com.rined.psr.portal.model.dto.ErrorResponse;
 import com.rined.psr.portal.exception.AlreadyExistsException;
 import com.rined.psr.portal.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;

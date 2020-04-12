@@ -1,6 +1,6 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.BaseConverter;
+import com.rined.psr.portal.model.converters.BaseConverter;
 import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.repositories.BaseRepository;
 import lombok.RequiredArgsConstructor;

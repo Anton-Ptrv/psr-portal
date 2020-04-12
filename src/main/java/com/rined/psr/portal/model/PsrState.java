@@ -1,9 +1,6 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity(name = "psrStates")
 @Table(name = "psr_states")
+@EqualsAndHashCode
 public class PsrState {
 
     @Id

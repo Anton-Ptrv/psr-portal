@@ -1,8 +1,8 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.converters.PsrStateConverter;
-import com.rined.psr.portal.dto.brief.PsrStateBrief;
-import com.rined.psr.portal.dto.fully.PsrStateDto;
+import com.rined.psr.portal.model.converters.PsrStateConverter;
+import com.rined.psr.portal.model.dto.brief.PsrStateBrief;
+import com.rined.psr.portal.model.dto.fully.PsrStateDto;
 import com.rined.psr.portal.model.PsrState;
 import com.rined.psr.portal.repositories.PsrStateRepository;
 import com.rined.psr.portal.services.PsrStateService;

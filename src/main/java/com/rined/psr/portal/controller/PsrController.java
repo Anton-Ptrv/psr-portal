@@ -1,8 +1,8 @@
 package com.rined.psr.portal.controller;
 
-import com.rined.psr.portal.converters.PsrConverter;
-import com.rined.psr.portal.dto.brief.PsrBrief;
-import com.rined.psr.portal.dto.fully.PsrDto;
+import com.rined.psr.portal.model.converters.PsrConverter;
+import com.rined.psr.portal.model.dto.brief.PsrBrief;
+import com.rined.psr.portal.model.dto.fully.PsrDto;
 import com.rined.psr.portal.model.Psr;
 import com.rined.psr.portal.repositories.PsrRepository;
 import com.rined.psr.portal.services.PsrService;
