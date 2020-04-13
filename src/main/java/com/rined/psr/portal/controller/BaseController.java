@@ -1,10 +1,12 @@
 package com.rined.psr.portal.controller;
 
 import com.rined.psr.portal.model.converters.BaseConverter;
+import com.rined.psr.portal.model.viewgroup.ViewGroup;
 import com.rined.psr.portal.repositories.BaseRepository;
 import com.rined.psr.portal.services.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,7 +23,7 @@ public abstract class BaseController<Dto, Brief, Bean, ID,
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void add(@Valid @RequestBody Brief brief) {
-        service.add(brief);
+        service.create(brief);
     }
 
     @GetMapping
@@ -33,7 +35,7 @@ public abstract class BaseController<Dto, Brief, Bean, ID,
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable("id") ID id,
-                       @Valid @RequestBody Dto dto) {
+                       @Validated(ViewGroup.UseExisting.class) @RequestBody Dto dto) {
         service.update(id, dto);
     }
 

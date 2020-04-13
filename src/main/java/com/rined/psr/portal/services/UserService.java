@@ -8,6 +8,8 @@ import com.rined.psr.portal.model.User;
 import com.rined.psr.portal.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class UserService extends BaseService<UserDto, UserBrief, User, Long, UserRepository, UserConverter> {
 
@@ -16,12 +18,18 @@ public class UserService extends BaseService<UserDto, UserBrief, User, Long, Use
     }
 
     @Override
-    public void add(UserBrief brief) {
+    public User cascadeSave(User user) {
+        if (Objects.nonNull(user) && Objects.isNull(user.getId()))
+            return repository.save(user);
+        return user;
+    }
+
+    @Override
+    public void create(UserBrief brief) {
         String login = brief.getLogin();
         if (repository.existsByLogin(login)) {
             throw new AlreadyExistsException("User with login '{}' already exists", login);
         }
         repository.save(converter.briefToBase(brief));
     }
-
 }

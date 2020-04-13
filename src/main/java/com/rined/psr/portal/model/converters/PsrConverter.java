@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
 
-    private final BaseConverter<PsrState, PsrStateDto, PsrStateBrief> stateConverter;
+    private final BaseConverter<PsrState, PsrStateDto, PsrStateBrief> psrStateConverter;
 
     @Override
     public Psr briefToBase(PsrBrief psrBrief) {
@@ -25,7 +25,7 @@ public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
                 psrBrief.getName(),
                 psrBrief.getStartDate(),
                 psrBrief.getEndDate(),
-                stateConverter.dtoToBase(psrBrief.getPsrState()),
+                psrStateConverter.dtoToBase(psrBrief.getPsrState()),
                 psrBrief.getComment()
         );
     }
@@ -45,7 +45,7 @@ public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
                 psr.getName(),
                 psr.getStartDate(),
                 psr.getEndDate(),
-                stateConverter.baseToDto(psr.getPsrState()),
+                psrStateConverter.baseToDto(psr.getPsrState()),
                 psr.getComment()
         );
     }
@@ -62,7 +62,7 @@ public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
                 psrDto.getName(),
                 psrDto.getStartDate(),
                 psrDto.getEndDate(),
-                stateConverter.dtoToBase(psrDto.getPsrState()),
+                psrStateConverter.dtoToBase(psrDto.getPsrState()),
                 psrDto.getComment()
         );
     }

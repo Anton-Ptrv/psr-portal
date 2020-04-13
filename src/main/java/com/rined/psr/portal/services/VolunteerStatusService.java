@@ -7,6 +7,8 @@ import com.rined.psr.portal.model.VolunteerStatus;
 import com.rined.psr.portal.repositories.VolunteerStatusRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class VolunteerStatusService extends BaseService<VolunteerStatusDto, VolunteerStatusBrief, VolunteerStatus,
         Long, VolunteerStatusRepository, VolunteerStatusConverter> {
@@ -15,4 +17,10 @@ public class VolunteerStatusService extends BaseService<VolunteerStatusDto, Volu
         super(converter, repository);
     }
 
+    @Override
+    public VolunteerStatus cascadeSave(VolunteerStatus volunteerStatus) {
+        if (Objects.nonNull(volunteerStatus) && Objects.isNull(volunteerStatus.getId()))
+            return repository.save(volunteerStatus);
+        return volunteerStatus;
+    }
 }

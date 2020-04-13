@@ -27,6 +27,10 @@ public class PsrState {
     @Column(name = "name")
     private String name;
 
+    public PsrState(Long id) {
+        this.id = id;
+    }
+
     public PsrState(String name) {
         this.name = name;
     }

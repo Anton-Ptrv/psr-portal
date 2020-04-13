@@ -1,6 +1,7 @@
 package com.rined.psr.portal.model.dto.fully;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.rined.psr.portal.model.viewgroup.ViewGroup;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class VolunteerStatusDto {
 
     @JsonProperty("id")
-    @NotNull(message = "Id is mandatory!")
+    @NotNull(message = "Id is mandatory!", groups = {ViewGroup.UseExisting.class})
     private Long id;
 
     @JsonProperty("name")
