@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "psrListRegistration")
+@Entity(name = "PsrListRegistration")
 @Table(name = "psr_list_registration")
 @EqualsAndHashCode
 public class PsrListRegistration {
