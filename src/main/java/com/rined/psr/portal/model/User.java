@@ -1,8 +1,12 @@
 package com.rined.psr.portal.model;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Список пользователей
@@ -14,7 +18,7 @@ import javax.persistence.*;
 @Entity(name = "user")
 @Table(name = "users")
 @EqualsAndHashCode
-public class User {
+public class User implements UserDetails {
 
     @Id
     @Column(name = "id")
@@ -40,5 +44,35 @@ public class User {
         this.login = login;
         this.password = password;
         this.fio = fio;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(() -> "ADMIN");
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
