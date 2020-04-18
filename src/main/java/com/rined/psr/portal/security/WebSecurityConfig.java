@@ -1,5 +1,6 @@
 package com.rined.psr.portal.security;
 
+import com.rined.psr.portal.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;

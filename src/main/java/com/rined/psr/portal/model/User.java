@@ -7,11 +7,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 /**
  * Список пользователей
  */
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +36,11 @@ public class User implements UserDetails {
     @Column(name = "fio")
     private String fio;
 
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    private Set<Role> roles = Collections.singleton(Role.USER);
+
     public User(long id, String login, String fio) {
         this.id = id;
         this.login = login;
@@ -46,9 +53,10 @@ public class User implements UserDetails {
         this.fio = fio;
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(() -> "ADMIN");
+        return roles;
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.rined.psr.portal.security;
 
+import com.rined.psr.portal.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @Order(2)
 @Configuration
 @EnableWebSecurity
+@Profile("!production")
 @RequiredArgsConstructor
 public class SwaggerBasicWebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
@@ -20,8 +23,7 @@ public class SwaggerBasicWebSecurityConfig extends WebSecurityConfigurerAdapter 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/swagger-ui.html")
-                .authorizeRequests().anyRequest().authenticated()
-                .and()
+                .authorizeRequests(authorize -> authorize.anyRequest().hasAnyAuthority(Role.DEV.name()))
                 .httpBasic();
     }
 
