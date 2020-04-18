@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -25,8 +26,12 @@ public class ShuttleDataConverter implements BaseConverter<ShuttleData, ShuttleD
     @Override
     public ShuttleData briefToBase(ShuttleDataBrief brief) {
         return new ShuttleData(
-                shuttleConverter.dtoToBase(brief.getShuttle()),
-                volunteerConverter.dtoToBase(brief.getShuttleOwner()),
+                Objects.isNull(brief.getShuttle())
+                        ? null
+                        : shuttleConverter.dtoToBase(brief.getShuttle()),
+                Objects.isNull(brief.getShuttleOwner())
+                        ? null
+                        : volunteerConverter.dtoToBase(brief.getShuttleOwner()),
                 brief.getDriver()
         );
     }
@@ -35,8 +40,12 @@ public class ShuttleDataConverter implements BaseConverter<ShuttleData, ShuttleD
     public ShuttleData mergeDtoAndBase(ShuttleData shuttleData, ShuttleDataDto dto) {
         return new ShuttleData(
                 dto.getId(),
-                shuttleConverter.dtoToBase(dto.getShuttle()),
-                volunteerConverter.dtoToBase(dto.getShuttleOwner()),
+                Objects.isNull(dto.getShuttle())
+                        ? null
+                        : shuttleConverter.dtoToBase(dto.getShuttle()),
+                Objects.isNull(dto.getShuttleOwner())
+                        ? null
+                        : volunteerConverter.dtoToBase(dto.getShuttleOwner()),
                 dto.getDriver()
         );
     }
@@ -45,8 +54,12 @@ public class ShuttleDataConverter implements BaseConverter<ShuttleData, ShuttleD
     public ShuttleDataDto baseToDto(ShuttleData base) {
         return new ShuttleDataDto(
                 base.getId(),
-                shuttleConverter.baseToDto(base.getShuttle()),
-                volunteerConverter.baseToDto(base.getShuttleOwner()),
+                Objects.isNull(base.getShuttle())
+                        ? null
+                        : shuttleConverter.baseToDto(base.getShuttle()),
+                Objects.isNull(base.getShuttleOwner())
+                        ? null
+                        : volunteerConverter.baseToDto(base.getShuttleOwner()),
                 base.isDriver()
         );
     }
@@ -60,8 +73,12 @@ public class ShuttleDataConverter implements BaseConverter<ShuttleData, ShuttleD
     public ShuttleData dtoToBase(ShuttleDataDto dto) {
         return new ShuttleData(
                 dto.getId(),
-                shuttleConverter.dtoToBase(dto.getShuttle()),
-                volunteerConverter.dtoToBase(dto.getShuttleOwner()),
+                Objects.isNull(dto.getShuttle())
+                        ? null
+                        : shuttleConverter.dtoToBase(dto.getShuttle()),
+                Objects.isNull(dto.getShuttleOwner())
+                        ? null
+                        : volunteerConverter.dtoToBase(dto.getShuttleOwner()),
                 dto.getDriver()
         );
     }

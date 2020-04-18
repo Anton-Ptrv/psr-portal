@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -30,9 +31,15 @@ public class PsrListRegistrationConverter implements BaseConverter<PsrListRegist
     @Override
     public PsrListRegistration briefToBase(PsrListRegistrationBrief brief) {
         return new PsrListRegistration(
-                psrConverter.dtoToBase(brief.getPsr()),
-                volunteerConverter.dtoToBase(brief.getVolunteer()),
-                volunteerStatusConverter.dtoToBase(brief.getVolunteerStatus()),
+                Objects.isNull(brief.getPsr())
+                        ? null
+                        : psrConverter.dtoToBase(brief.getPsr()),
+                Objects.isNull(brief.getVolunteer())
+                        ? null
+                        : volunteerConverter.dtoToBase(brief.getVolunteer()),
+                Objects.isNull(brief.getVolunteerStatus())
+                        ? null
+                        : volunteerStatusConverter.dtoToBase(brief.getVolunteerStatus()),
                 brief.getShuttleNum(),
                 brief.getDepartureAddress(),
                 brief.getStartVolunteerTime(),
@@ -52,9 +59,15 @@ public class PsrListRegistrationConverter implements BaseConverter<PsrListRegist
     public PsrListRegistrationDto baseToDto(PsrListRegistration base) {
         return new PsrListRegistrationDto(
                 base.getId(),
-                psrConverter.baseToDto(base.getPsr()),
-                volunteerConverter.baseToDto(base.getVolunteer()),
-                volunteerStatusConverter.baseToDto(base.getVolunteerStatus()),
+                Objects.isNull(base.getPsr())
+                        ? null
+                        : psrConverter.baseToDto(base.getPsr()),
+                Objects.isNull(base.getVolunteer())
+                        ? null
+                        : volunteerConverter.baseToDto(base.getVolunteer()),
+                Objects.isNull(base.getVolunteerStatus())
+                        ? null
+                        : volunteerStatusConverter.baseToDto(base.getVolunteerStatus()),
                 base.getShuttleNum(),
                 base.getDepartureAddress(),
                 base.getStartVolunteerTime(),
@@ -71,9 +84,15 @@ public class PsrListRegistrationConverter implements BaseConverter<PsrListRegist
     public PsrListRegistration dtoToBase(PsrListRegistrationDto dto) {
         return new PsrListRegistration(
                 dto.getId(),
-                psrConverter.dtoToBase(dto.getPsr()),
-                volunteerConverter.dtoToBase(dto.getVolunteer()),
-                volunteerStatusConverter.dtoToBase(dto.getVolunteerStatus()),
+                Objects.isNull(dto.getPsr())
+                        ? null
+                        : psrConverter.dtoToBase(dto.getPsr()),
+                Objects.isNull(dto.getVolunteer())
+                        ? null
+                        : volunteerConverter.dtoToBase(dto.getVolunteer()),
+                Objects.isNull(dto.getVolunteerStatus())
+                        ? null
+                        : volunteerStatusConverter.dtoToBase(dto.getVolunteerStatus()),
                 dto.getShuttleNum(),
                 dto.getDepartureAddress(),
                 dto.getStartVolunteerTime(),

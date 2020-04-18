@@ -1,11 +1,12 @@
 package com.rined.psr.portal.controller;
 
+import com.rined.psr.portal.model.Classification;
 import com.rined.psr.portal.model.dto.brief.ClassificationBrief;
 import com.rined.psr.portal.model.dto.fully.ClassificationDto;
-import com.rined.psr.portal.model.Classification;
 import com.rined.psr.portal.repositories.ClassificationRepository;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 
+@Disabled
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(value = {"/scripts/classification-test-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 class ClassificationControllerIntegrationTest {

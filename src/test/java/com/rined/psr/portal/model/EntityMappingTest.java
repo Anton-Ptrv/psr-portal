@@ -1,5 +1,6 @@
 package com.rined.psr.portal.model;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import static java.time.LocalDate.now;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled
 @DataJpaTest
 @DisplayName("Entity должны корректно мапиться на БД")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

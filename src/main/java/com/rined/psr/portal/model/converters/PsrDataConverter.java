@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -25,10 +26,16 @@ public class PsrDataConverter implements BaseConverter<PsrData, PsrDataDto, PsrD
     @Override
     public PsrData briefToBase(PsrDataBrief brief) {
         return new PsrData(
-                psrConverter.dtoToBase(brief.getPsr()),
+                Objects.isNull(brief.getPsr())
+                        ? null
+                        : psrConverter.dtoToBase(brief.getPsr()),
                 brief.getStation(),
-                userConverter.dtoToBase(brief.getPsrLeader()),
-                userConverter.dtoToBase(brief.getPsrRegisteredUser()),
+                Objects.isNull(brief.getPsrLeader())
+                        ? null
+                        : userConverter.dtoToBase(brief.getPsrLeader()),
+                Objects.isNull(brief.getPsrRegisteredUser())
+                        ? null
+                        : userConverter.dtoToBase(brief.getPsrRegisteredUser()),
                 brief.getObjectInfo(),
                 brief.getContent(),
                 brief.getPhoto()
@@ -37,26 +44,23 @@ public class PsrDataConverter implements BaseConverter<PsrData, PsrDataDto, PsrD
 
     @Override
     public PsrData mergeDtoAndBase(PsrData base, PsrDataDto dto) {
-        return new PsrData(
-                dto.getId(),
-                psrConverter.dtoToBase(dto.getPsr()),
-                dto.getStation(),
-                userConverter.dtoToBase(dto.getPsrLeader()),
-                userConverter.dtoToBase(dto.getPsrRegisteredUser()),
-                dto.getObjectInfo(),
-                dto.getContent(),
-                dto.getPhoto()
-        );
+       return dtoToBase(dto);
     }
 
     @Override
     public PsrDataDto baseToDto(PsrData psrData) {
         return new PsrDataDto(
                 psrData.getId(),
-                psrConverter.baseToDto(psrData.getPsr()),
+                Objects.isNull(psrData.getPsr())
+                        ? null
+                        : psrConverter.baseToDto(psrData.getPsr()),
                 psrData.getStation(),
-                userConverter.baseToDto(psrData.getPsrLeader()),
-                userConverter.baseToDto(psrData.getPsrRegisteredUser()),
+                Objects.isNull(psrData.getPsrLeader())
+                        ? null
+                        : userConverter.baseToDto(psrData.getPsrLeader()),
+                Objects.isNull(psrData.getPsrRegisteredUser())
+                        ? null
+                        : userConverter.baseToDto(psrData.getPsrRegisteredUser()),
                 psrData.getObjectInfo(),
                 psrData.getContent(),
                 psrData.getPhoto()
@@ -72,10 +76,16 @@ public class PsrDataConverter implements BaseConverter<PsrData, PsrDataDto, PsrD
     public PsrData dtoToBase(PsrDataDto dto) {
         return new PsrData(
                 dto.getId(),
-                psrConverter.dtoToBase(dto.getPsr()),
+                Objects.isNull(dto.getPsr())
+                        ? null
+                        : psrConverter.dtoToBase(dto.getPsr()),
                 dto.getStation(),
-                userConverter.dtoToBase(dto.getPsrLeader()),
-                userConverter.dtoToBase(dto.getPsrRegisteredUser()),
+                Objects.isNull(dto.getPsrLeader())
+                        ? null
+                        : userConverter.dtoToBase(dto.getPsrLeader()),
+                Objects.isNull(dto.getPsrRegisteredUser())
+                        ? null
+                        : userConverter.dtoToBase(dto.getPsrRegisteredUser()),
                 dto.getObjectInfo(),
                 dto.getContent(),
                 dto.getPhoto()

@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -21,7 +22,9 @@ public class ShuttleConverter implements BaseConverter<Shuttle, ShuttleDto, Shut
     @Override
     public Shuttle briefToBase(ShuttleBrief brief) {
         return new Shuttle(
-                psrConverter.dtoToBase(brief.getRegisteredOnPsr()),
+                Objects.isNull(brief.getRegisteredOnPsr())
+                        ? null
+                        : psrConverter.dtoToBase(brief.getRegisteredOnPsr()),
                 brief.getAuto()
         );
     }
@@ -30,7 +33,9 @@ public class ShuttleConverter implements BaseConverter<Shuttle, ShuttleDto, Shut
     public Shuttle mergeDtoAndBase(Shuttle shuttle, ShuttleDto dto) {
         return new Shuttle(
                 dto.getId(),
-                psrConverter.dtoToBase(dto.getRegisteredOnPsr()),
+                Objects.isNull(dto.getRegisteredOnPsr())
+                        ? null
+                        : psrConverter.dtoToBase(dto.getRegisteredOnPsr()),
                 dto.getAuto()
         );
     }
@@ -39,7 +44,9 @@ public class ShuttleConverter implements BaseConverter<Shuttle, ShuttleDto, Shut
     public ShuttleDto baseToDto(Shuttle base) {
         return new ShuttleDto(
                 base.getId(),
-                psrConverter.baseToDto(base.getRegisteredOnPsr()),
+                Objects.isNull(base.getRegisteredOnPsr())
+                        ? null
+                        : psrConverter.baseToDto(base.getRegisteredOnPsr()),
                 base.getAuto()
         );
     }
@@ -53,7 +60,9 @@ public class ShuttleConverter implements BaseConverter<Shuttle, ShuttleDto, Shut
     public Shuttle dtoToBase(ShuttleDto dto) {
         return new Shuttle(
                 dto.getId(),
-                psrConverter.dtoToBase(dto.getRegisteredOnPsr()),
+                Objects.isNull(dto.getRegisteredOnPsr())
+                        ? null
+                        : psrConverter.dtoToBase(dto.getRegisteredOnPsr()),
                 dto.getAuto()
         );
     }
