@@ -9,20 +9,42 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
-@Order(1)
+@Order(3)
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+public class DefaultWebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/psr/api/**")  //обязательно antMatcher! иначе не работает https://github.com/spring-projects/spring-security/issues/5593
+        http.csrf().disable()
+
                 .authorizeRequests()
-                .anyRequest().authenticated();
+                .antMatchers(
+                        "/", "/login", "/logout", "/account",
+                        "/js/**", "/fonts/**", "/css/**"
+                ).permitAll()
+                .anyRequest().authenticated()
+
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(new Http403ForbiddenEntryPoint())
+
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .usernameParameter("login")
+                .passwordParameter("password")
+                .successHandler(new SuccessAuthenticationHandler())
+                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+
+                .and()
+                .logout()
+                .logoutUrl("/logout");
     }
 
     @Override
@@ -30,4 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
+
+
+
 }

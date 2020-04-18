@@ -10,19 +10,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
-@Order(1)
+@Order(2)
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+public class SwaggerBasicWebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/psr/api/**")  //обязательно antMatcher! иначе не работает https://github.com/spring-projects/spring-security/issues/5593
-                .authorizeRequests()
-                .anyRequest().authenticated();
+        http.antMatcher("/swagger-ui.html")
+                .authorizeRequests().anyRequest().authenticated()
+                .and()
+                .httpBasic();
     }
 
     @Override
