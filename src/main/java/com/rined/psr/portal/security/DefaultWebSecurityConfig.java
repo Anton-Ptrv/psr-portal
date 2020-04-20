@@ -1,6 +1,7 @@
 package com.rined.psr.portal.security;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Order(3)
 @Configuration
@@ -38,14 +41,9 @@ public class DefaultWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(new Http403ForbiddenEntryPoint())
 
                 .and()
-                .formLogin()
-                .loginProcessingUrl("/login")
-                .usernameParameter("login")
-                .passwordParameter("password")
-                .successHandler(new SuccessAuthenticationHandler())
-                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+                .formLogin().disable()
+                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 
-                .and()
                 .logout()
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
                 .clearAuthentication(true)
@@ -58,5 +56,18 @@ public class DefaultWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(encoder);
+    }
+
+    @Bean
+    public UsernamePasswordAuthenticationFilter authenticationFilter() throws Exception {
+        UsernamePasswordAuthenticationFilter authenticationFilter = new RequestBodyAuthenticationFilter();
+        authenticationFilter.setAuthenticationSuccessHandler(
+                (req, resp, exc) -> resp.setStatus(HttpStatus.OK.value()));
+        authenticationFilter.setAuthenticationFailureHandler(
+                new SimpleUrlAuthenticationFailureHandler());
+        authenticationFilter.setRequiresAuthenticationRequestMatcher(
+                new AntPathRequestMatcher("/login", "POST"));
+        authenticationFilter.setAuthenticationManager(authenticationManagerBean());
+        return authenticationFilter;
     }
 }

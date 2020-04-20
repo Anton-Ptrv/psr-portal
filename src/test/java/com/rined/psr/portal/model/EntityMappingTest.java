@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import static java.time.LocalDate.now;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 @DataJpaTest
 @DisplayName("Entity должны корректно мапиться на БД")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

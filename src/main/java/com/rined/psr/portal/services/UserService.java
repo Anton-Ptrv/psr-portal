@@ -39,9 +39,7 @@ public class UserService extends BaseService<UserDto, UserBrief, User, Long, Use
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = repository.findByLogin(username)
+        return repository.findByLogin(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with login %s not found!", username)));
-        System.out.println(user);
-        return user;
     }
 }
