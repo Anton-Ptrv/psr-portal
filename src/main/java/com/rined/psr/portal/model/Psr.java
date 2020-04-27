@@ -45,7 +45,7 @@ public class Psr {
      * Статус(выбирается из спр-ка)
      */
     @JoinColumn(name = "state_id")
-    @ManyToOne(targetEntity = PsrState.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = PsrState.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private PsrState psrState;
 
     /**

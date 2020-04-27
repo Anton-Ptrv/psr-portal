@@ -9,6 +9,7 @@ import javax.persistence.*;
  * Данные поисково-спасательных работ
  */
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class PsrData {
      * определенная ПСР
      */
     @JoinColumn(name = "psr_id")
-    @OneToOne(targetEntity = Psr.class, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Psr.class, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Psr psr;
 
     /**
