@@ -41,7 +41,7 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> roles = Collections.singleton(Role.USER);
 
-    public User(long id, String login, String fio) {
+    public User(Long id, String login, String fio) {
         this.id = id;
         this.login = login;
         this.fio = fio;

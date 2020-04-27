@@ -25,6 +25,7 @@ public class SwaggerBasicWebSecurityConfig extends WebSecurityConfigurerAdapter 
     protected void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/swagger-ui.html")
                 .cors().and().csrf().disable()
+                .formLogin().disable()
                 .authorizeRequests(authorize -> authorize.anyRequest().hasAnyAuthority(Role.DEV.name()))
                 .httpBasic();
     }

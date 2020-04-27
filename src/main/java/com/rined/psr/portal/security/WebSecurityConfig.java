@@ -22,6 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/psr/api/**")  //обязательно antMatcher! иначе не работает https://github.com/spring-projects/spring-security/issues/5593
                 .cors().and().csrf().disable()
+                .formLogin().disable()
                 .authorizeRequests()
                 .anyRequest().authenticated();
     }
