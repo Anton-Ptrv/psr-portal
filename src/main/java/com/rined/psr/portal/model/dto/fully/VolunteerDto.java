@@ -41,4 +41,7 @@ public class VolunteerDto {
     @JsonProperty("comment")
     private String comment;
 
+    @JsonProperty("chatId")
+    private Long chatId;
+
 }

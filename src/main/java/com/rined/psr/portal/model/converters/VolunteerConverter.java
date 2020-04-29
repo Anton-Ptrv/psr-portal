@@ -59,7 +59,8 @@ public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto
                         : classificationConverter.dtoToBase(dto.getClassification()),
                 dto.getEquipment(),
                 dto.getPsrListDesc(),
-                dto.getComment()
+                dto.getComment(),
+                dto.getChatId()
         );
     }
 
@@ -70,7 +71,8 @@ public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto
                 volunteerBrief.getSex(),
                 volunteerBrief.getPhone(),
                 volunteerBrief.getLogin(),
-                new Classification(1)
+                new Classification(1),
+                volunteerBrief.getChatId()
         );
     }
 

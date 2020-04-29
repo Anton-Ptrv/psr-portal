@@ -33,4 +33,7 @@ public class VolunteerBrief {
     @JsonProperty("sex")
     private Boolean sex;
 
+    @JsonProperty("chatId")
+    private Long chatId;
+
 }

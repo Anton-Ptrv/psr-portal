@@ -1,0 +1,1 @@
+ALTER TABLE chat_id ADD column_name BIGINT;

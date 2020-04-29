@@ -52,6 +52,9 @@ public class Volunteer {
     @Column(name = "comment")
     private String comment;
 
+    @Column(name = "chat_id")
+    private Long chatId;
+
     public Volunteer(String fio,
                      boolean sex,
                      String phone,
@@ -79,11 +82,12 @@ public class Volunteer {
         this.classification = classification;
     }
 
-    public Volunteer(String fio, boolean sex, String phone, String login, Classification classification) {
+    public Volunteer(String fio, boolean sex, String phone, String login, Classification classification, Long chatId) {
         this.fio = fio;
         this.sex = sex;
         this.phone = phone;
         this.telegramLogin = login;
         this.classification = classification;
+        this.chatId = chatId;
     }
 }
