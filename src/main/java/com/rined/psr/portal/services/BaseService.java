@@ -28,7 +28,8 @@ public abstract class BaseService<Dto, Brief, Bean, ID,
     public void update(ID id, Dto dto) {
         Bean bean = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Object with id '%d' not found!", id));
-        repository.save(converter.mergeDtoAndBase(bean, dto));
+        Bean entity = converter.mergeDtoAndBase(bean, dto);
+        repository.save(entity);
     }
 
     public Dto getById(ID id) {

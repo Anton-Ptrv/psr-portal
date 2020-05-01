@@ -30,7 +30,11 @@ public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto
                 .sex(volunteer.getSex())
                 .phone(volunteer.getPhone())
                 .login(volunteer.getTelegramLogin())
-                .classification(classificationConverter.baseToDto(volunteer.getClassification()))
+                .classification(
+                        Objects.isNull(volunteer.getClassification())
+                                ? null
+                                : classificationConverter.baseToDto(volunteer.getClassification())
+                )
                 .equipment(volunteer.getEquipment())
                 .psrListDesc(volunteer.getPsrListDesc())
                 .comment(volunteer.getComment())
@@ -50,10 +54,13 @@ public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto
                 dto.getSex(),
                 dto.getPhone(),
                 dto.getLogin(),
-                classificationConverter.dtoToBase(dto.getClassification()),
+                Objects.isNull(dto.getClassification())
+                        ? null
+                        : classificationConverter.dtoToBase(dto.getClassification()),
                 dto.getEquipment(),
                 dto.getPsrListDesc(),
-                dto.getComment()
+                dto.getComment(),
+                dto.getChatId()
         );
     }
 
@@ -64,7 +71,8 @@ public class VolunteerConverter implements BaseConverter<Volunteer, VolunteerDto
                 volunteerBrief.getSex(),
                 volunteerBrief.getPhone(),
                 volunteerBrief.getLogin(),
-                new Classification(1)
+                new Classification(1),
+                volunteerBrief.getChatId()
         );
     }
 

@@ -1,0 +1,1 @@
+ALTER TABLE volunteers ADD chat_id BIGINT;

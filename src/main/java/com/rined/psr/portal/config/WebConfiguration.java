@@ -4,6 +4,8 @@ import com.rined.psr.portal.filter.DisableBeforeRequestLoggingFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -11,6 +13,7 @@ import org.springframework.web.filter.AbstractRequestLoggingFilter;
 
 @Configuration
 @Profile("!production")
+@PropertySource("classpath:psr.properties")
 public class WebConfiguration {
 
     @Bean
@@ -31,6 +34,11 @@ public class WebConfiguration {
         CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
 }

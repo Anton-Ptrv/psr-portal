@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -25,7 +26,9 @@ public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
                 psrBrief.getName(),
                 psrBrief.getStartDate(),
                 psrBrief.getEndDate(),
-                psrStateConverter.dtoToBase(psrBrief.getPsrState()),
+                Objects.isNull(psrBrief.getPsrState())
+                        ? null
+                        : psrStateConverter.dtoToBase(psrBrief.getPsrState()),
                 psrBrief.getComment()
         );
     }
@@ -45,7 +48,9 @@ public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
                 psr.getName(),
                 psr.getStartDate(),
                 psr.getEndDate(),
-                psrStateConverter.baseToDto(psr.getPsrState()),
+                Objects.isNull(psr.getPsrState())
+                        ? null
+                        : psrStateConverter.baseToDto(psr.getPsrState()),
                 psr.getComment()
         );
     }
@@ -62,7 +67,9 @@ public class PsrConverter implements BaseConverter<Psr, PsrDto, PsrBrief> {
                 psrDto.getName(),
                 psrDto.getStartDate(),
                 psrDto.getEndDate(),
-                psrStateConverter.dtoToBase(psrDto.getPsrState()),
+                Objects.isNull(psrDto.getPsrState())
+                        ? null
+                        : psrStateConverter.dtoToBase(psrDto.getPsrState()),
                 psrDto.getComment()
         );
     }

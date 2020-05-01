@@ -1,6 +1,7 @@
 package com.rined.psr.portal.services;
 
 import com.rined.psr.portal.model.PsrData;
+import com.rined.psr.portal.model.User;
 import com.rined.psr.portal.model.converters.PsrDataConverter;
 import com.rined.psr.portal.model.dto.brief.PsrDataBrief;
 import com.rined.psr.portal.model.dto.fully.PsrDataDto;
@@ -32,9 +33,17 @@ public class PsrDataService extends BaseService<PsrDataDto, PsrDataBrief, PsrDat
             psrService.cascadeSave(psrData.getPsr());
             userService.cascadeSave(psrData.getPsrLeader());
             userService.cascadeSave(psrData.getPsrRegisteredUser());
-
             repository.save(psrData);
         }
         return psrData;
+    }
+
+    public void create(User user, PsrDataBrief psrDataBrief) {
+        PsrData psrData = converter.briefToBase(psrDataBrief);
+        if (Objects.isNull(psrData.getPsrLeader()))
+            psrData.setPsrLeader(user);
+        if (Objects.isNull(psrData.getPsrRegisteredUser()))
+            psrData.setPsrRegisteredUser(user);
+        cascadeSave(psrData);
     }
 }

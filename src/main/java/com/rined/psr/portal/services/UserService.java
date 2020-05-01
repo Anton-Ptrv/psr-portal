@@ -6,12 +6,16 @@ import com.rined.psr.portal.model.dto.fully.UserDto;
 import com.rined.psr.portal.exception.AlreadyExistsException;
 import com.rined.psr.portal.model.User;
 import com.rined.psr.portal.repositories.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
 @Service
-public class UserService extends BaseService<UserDto, UserBrief, User, Long, UserRepository, UserConverter> {
+public class UserService extends BaseService<UserDto, UserBrief, User, Long, UserRepository, UserConverter>
+        implements UserDetailsService {
 
     public UserService(UserConverter converter, UserRepository repository) {
         super(converter, repository);
@@ -31,5 +35,11 @@ public class UserService extends BaseService<UserDto, UserBrief, User, Long, Use
             throw new AlreadyExistsException("User with login '{}' already exists", login);
         }
         repository.save(converter.briefToBase(brief));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return repository.findByLogin(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with login %s not found!", username)));
     }
 }
