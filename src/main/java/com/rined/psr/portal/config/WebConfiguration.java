@@ -13,7 +13,7 @@ import org.springframework.web.filter.AbstractRequestLoggingFilter;
 
 @Configuration
 @Profile("!production")
-@PropertySource("classpath:psr.yaml")
+@PropertySource("classpath:psr.properties")
 public class WebConfiguration {
 
     @Bean

@@ -1,1 +1,1 @@
-ALTER TABLE chat_id ADD column_name BIGINT;
+ALTER TABLE volunteers ADD chat_id BIGINT;
