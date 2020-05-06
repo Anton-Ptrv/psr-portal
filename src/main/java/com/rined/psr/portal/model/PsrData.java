@@ -1,9 +1,6 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -12,23 +9,25 @@ import javax.persistence.*;
  * Данные поисково-спасательных работ
  */
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "psrData")
 @Table(name = "psr_data")
+@EqualsAndHashCode
 public class PsrData {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * определенная ПСР
      */
     @JoinColumn(name = "psr_id")
-    @OneToOne(targetEntity = Psr.class, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Psr.class, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Psr psr;
 
     /**

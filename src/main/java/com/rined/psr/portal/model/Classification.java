@@ -1,9 +1,6 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Entity(name = "classification")
 @Table(name = "classifications")
 public class Classification {
@@ -21,7 +19,7 @@ public class Classification {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * Наименование кваливикации: местный, мчс, ЛА.
@@ -30,11 +28,11 @@ public class Classification {
     @Column(name = "name")
     private String name;
 
-    public Classification(String name) {
-        this.name = name;
-    }
-
     public Classification(long id) {
         this.id = id;
+    }
+
+    public Classification(String name) {
+        this.name = name;
     }
 }

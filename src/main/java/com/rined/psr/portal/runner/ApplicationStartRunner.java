@@ -14,6 +14,6 @@ public class ApplicationStartRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.setProperty("java.awt.headless", Boolean.toString(false));
-        Desktop.getDesktop().browse(URI.create("http://localhost:8080/psr/api/swagger-ui.html"));
+//        Desktop.getDesktop().browse(URI.create("http://localhost:8080/swagger-ui.html"));
     }
 }

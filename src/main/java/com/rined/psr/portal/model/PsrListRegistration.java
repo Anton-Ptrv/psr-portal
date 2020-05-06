@@ -1,9 +1,6 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,14 +12,15 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "psrListRegistration")
+@Entity(name = "PsrListRegistration")
 @Table(name = "psr_list_registration")
+@EqualsAndHashCode
 public class PsrListRegistration {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * ПСР (из спр-ка)

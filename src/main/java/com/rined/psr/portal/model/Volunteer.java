@@ -1,9 +1,6 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,12 +13,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity(name = "volunteer")
 @Table(name = "volunteers")
+@EqualsAndHashCode
 public class Volunteer {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "fio")
     private String fio;
@@ -54,6 +52,9 @@ public class Volunteer {
     @Column(name = "comment")
     private String comment;
 
+    @Column(name = "chat_id")
+    private Long chatId;
+
     public Volunteer(String fio,
                      boolean sex,
                      String phone,
@@ -72,11 +73,21 @@ public class Volunteer {
         this.comment = comment;
     }
 
-    public Volunteer(String fio, boolean sex, String phone, String login, Classification classification) {
+    public Volunteer(Long id, String fio, boolean sex, String phone, String login, Classification classification) {
+        this.id = id;
         this.fio = fio;
         this.sex = sex;
         this.phone = phone;
         this.telegramLogin = login;
         this.classification = classification;
+    }
+
+    public Volunteer(String fio, boolean sex, String phone, String login, Classification classification, Long chatId) {
+        this.fio = fio;
+        this.sex = sex;
+        this.phone = phone;
+        this.telegramLogin = login;
+        this.classification = classification;
+        this.chatId = chatId;
     }
 }

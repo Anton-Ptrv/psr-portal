@@ -1,10 +1,7 @@
 package com.rined.psr.portal.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,12 +15,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity(name = "psr")
 @Table(name = "psr")
+@EqualsAndHashCode
 public class Psr {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * Наименование. Состоит из Адреса + ФИО потерявшегося
@@ -47,7 +45,7 @@ public class Psr {
      * Статус(выбирается из спр-ка)
      */
     @JoinColumn(name = "state_id")
-    @ManyToOne(targetEntity = PsrState.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = PsrState.class, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private PsrState psrState;
 
     /**

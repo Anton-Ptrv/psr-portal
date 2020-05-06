@@ -1,7 +1,7 @@
 package com.rined.psr.portal.services;
 
-import com.rined.psr.portal.converters.BaseConverter;
 import com.rined.psr.portal.exception.NotFoundException;
+import com.rined.psr.portal.model.converters.BaseConverter;
 import com.rined.psr.portal.repositories.BaseRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -15,8 +15,10 @@ public abstract class BaseService<Dto, Brief, Bean, ID,
     final Converter converter;
     final Repository repository;
 
-    public void add(Brief brief) {
-        repository.save(converter.briefToBase(brief));
+    public abstract Bean cascadeSave(Bean bean);
+
+    public void create(Brief brief) {
+        cascadeSave(converter.briefToBase(brief));
     }
 
     public List<Dto> getAll() {
@@ -26,7 +28,8 @@ public abstract class BaseService<Dto, Brief, Bean, ID,
     public void update(ID id, Dto dto) {
         Bean bean = repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Object with id '%d' not found!", id));
-        repository.save(converter.mergeDtoAndBase(bean, dto));
+        Bean entity = converter.mergeDtoAndBase(bean, dto);
+        repository.save(entity);
     }
 
     public Dto getById(ID id) {

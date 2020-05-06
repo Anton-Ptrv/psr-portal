@@ -1,9 +1,6 @@
 package com.rined.psr.portal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,18 +13,23 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity(name = "psrStates")
 @Table(name = "psr_states")
+@EqualsAndHashCode
 public class PsrState {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /**
      * Наименование статуса
      */
     @Column(name = "name")
     private String name;
+
+    public PsrState(Long id) {
+        this.id = id;
+    }
 
     public PsrState(String name) {
         this.name = name;

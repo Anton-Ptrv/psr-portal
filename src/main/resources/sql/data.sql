@@ -1,1 +1,0 @@
-INSERT INTO classifications(id, name) VALUES (nextval('classifications_sequence'), 'base');
