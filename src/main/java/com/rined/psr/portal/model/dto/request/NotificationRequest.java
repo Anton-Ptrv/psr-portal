@@ -26,4 +26,11 @@ public class NotificationRequest {
     @NotEmpty(message = "Notification message id list is mandatory!")
     private String message;
 
+    @JsonProperty("reply_markup")
+    private List<ReplyMarkup> replyMarkup;
+
+    public NotificationRequest(List<Long> ids, String message) {
+        this.ids = ids;
+        this.message = message;
+    }
 }

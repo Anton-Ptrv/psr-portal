@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "notification")
 public class NotificationProperties {
 
+    private String urlTemplateMarkup;
+
     private String urlTemplate;
 
     private String token;

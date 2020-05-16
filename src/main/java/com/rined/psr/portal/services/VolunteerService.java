@@ -27,6 +27,10 @@ public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, 
         return repository.existsByPhone(phone);
     }
 
+    public Long getVolunteerIdByLogin(String login) {
+        return repository.getVolunteerIdByLogin(login);
+    }
+
     public boolean isVolunteerExistsByTelegram(String login) {
         return repository.existsByTelegramLogin(login);
     }

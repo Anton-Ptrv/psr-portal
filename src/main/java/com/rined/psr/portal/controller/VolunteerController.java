@@ -34,4 +34,9 @@ public class VolunteerController extends BaseController<VolunteerDto, VolunteerB
         return SimpleResponse.of(service.isVolunteerExistsByTelegram(login.getData()));
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/telegram")
+    public SimpleResponse<Long> getVolunteerIdByTelegram(@Valid @RequestBody SimpleRequest<String> login) {
+        return SimpleResponse.of(service.getVolunteerIdByLogin(login.getData()));
+    }
 }
