@@ -29,14 +29,14 @@ public class VolunteerController extends BaseController<VolunteerDto, VolunteerB
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/exists/telegram")
-    public SimpleResponse<Boolean> isVolunteerExistsByTelegram(@Valid @RequestBody SimpleRequest<String> login) {
-        return SimpleResponse.of(service.isVolunteerExistsByTelegram(login.getData()));
+    @GetMapping("/exists/telegram/{login}")
+    public SimpleResponse<Boolean> isVolunteerExistsByTelegram(@PathVariable("login") String login) {
+        return SimpleResponse.of(service.isVolunteerExistsByTelegram(login));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/telegram")
-    public SimpleResponse<Long> getVolunteerIdByTelegram(@Valid @RequestBody SimpleRequest<String> login) {
-        return SimpleResponse.of(service.getVolunteerIdByLogin(login.getData()));
+    @GetMapping("/telegram/{login}")
+    public SimpleResponse<Long> getVolunteerIdByTelegram(@PathVariable("login") String login) {
+        return SimpleResponse.of(service.getVolunteerIdByLogin(login));
     }
 }

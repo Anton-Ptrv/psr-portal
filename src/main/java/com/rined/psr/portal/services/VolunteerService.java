@@ -1,5 +1,6 @@
 package com.rined.psr.portal.services;
 
+import com.rined.psr.portal.exception.NotFoundException;
 import com.rined.psr.portal.model.Volunteer;
 import com.rined.psr.portal.model.converters.VolunteerConverter;
 import com.rined.psr.portal.model.dto.brief.VolunteerBrief;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, Volunteer, Long,
@@ -28,7 +30,8 @@ public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, 
     }
 
     public Long getVolunteerIdByLogin(String login) {
-        return repository.getVolunteerIdByLogin(login);
+        return Optional.ofNullable(repository.getVolunteerIdByLogin(login))
+                .orElseThrow(() -> new NotFoundException("Volunteer with login %s not found", login));
     }
 
     public boolean isVolunteerExistsByTelegram(String login) {
@@ -39,7 +42,6 @@ public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, 
     public Volunteer cascadeSave(Volunteer volunteer) {
         if (Objects.nonNull(volunteer) && Objects.isNull(volunteer.getId())) {
             classificationService.cascadeSave(volunteer.getClassification());
-
             return repository.save(volunteer);
         }
         return volunteer;

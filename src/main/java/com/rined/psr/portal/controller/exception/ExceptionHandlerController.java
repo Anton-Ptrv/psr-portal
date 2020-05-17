@@ -25,7 +25,7 @@ public class ExceptionHandlerController {
 
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ExceptionHandler({NotFoundException.class})
-    public ErrorResponse alreadyExists(NotFoundException e) {
+    public ErrorResponse notFound(NotFoundException e) {
         log.warn("Bean not found", e);
         return ErrorResponse.of("Bean not found!", e);
     }
