@@ -13,6 +13,8 @@ public class NotificationProperties {
 
     private String urlTemplate;
 
+    private String markupTemplate;
+
     private String token;
 
 }

@@ -12,7 +12,8 @@ public interface VolunteerRepository extends BaseRepository<Volunteer, Long> {
 
     boolean existsByTelegramLogin(String telegramLogin);
 
-    List<Volunteer> findVolunteersByIdIn(List<Long> ids);
+    @Query("SELECT v.chatId FROM volunteer v WHERE v.id IN :ids")
+    List<Long> findVolunteersChatIdsByIdIn(@Param("ids") List<Long> ids);
 
     @Query("SELECT v.id FROM volunteer v WHERE v.telegramLogin=:login")
     Long getVolunteerIdByLogin(@Param("login") String login);
