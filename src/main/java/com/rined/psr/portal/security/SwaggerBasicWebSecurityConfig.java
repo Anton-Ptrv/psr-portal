@@ -23,7 +23,7 @@ public class SwaggerBasicWebSecurityConfig extends WebSecurityConfigurerAdapter 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/swagger-ui.html")
+        http.antMatcher("/swagger/**")
                 .cors().and().csrf().disable()
                 .formLogin().disable()
                 .authorizeRequests(authorize -> authorize.anyRequest().hasAnyAuthority(Role.DEV.name()))
