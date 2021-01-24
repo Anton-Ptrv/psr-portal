@@ -36,4 +36,7 @@ public class VolunteerBrief {
     @JsonProperty("chatId")
     private Long chatId;
 
+    @JsonProperty("userId")
+    private Long userId;
+
 }

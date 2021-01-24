@@ -13,8 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, Volunteer, Long,
-        VolunteerRepository, VolunteerConverter> {
+public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, Volunteer, Long, VolunteerRepository, VolunteerConverter> {
     private final ClassificationService classificationService;
 
     @Autowired
@@ -29,13 +28,22 @@ public class VolunteerService extends BaseService<VolunteerDto, VolunteerBrief, 
         return repository.existsByPhone(phone);
     }
 
-    public Long getVolunteerIdByLogin(String login) {
+    public Long getVolunteerIdByTelegramLogin(String login) {
         return Optional.ofNullable(repository.getVolunteerIdByLogin(login))
                 .orElseThrow(() -> new NotFoundException("Volunteer with login %s not found", login));
     }
 
+    public Long getVolunteerIdByTelegramUserId(Long userId) {
+        return Optional.ofNullable(repository.getVolunteerIdByUserId(userId))
+                .orElseThrow(() -> new NotFoundException("Volunteer with user_id %s not found", userId));
+    }
+
     public boolean isVolunteerExistsByTelegram(String login) {
         return repository.existsByTelegramLogin(login);
+    }
+
+    public boolean isVolunteerExistsByUserId(Long userId) {
+        return repository.existsByUserId(userId);
     }
 
     @Override

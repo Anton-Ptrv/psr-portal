@@ -15,8 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/psr/api/volunteers")
-public class VolunteerController extends BaseController<VolunteerDto, VolunteerBrief, Volunteer, Long,
-        VolunteerRepository, VolunteerConverter, VolunteerService> {
+public class VolunteerController extends BaseController<VolunteerDto, VolunteerBrief, Volunteer, Long, VolunteerRepository, VolunteerConverter, VolunteerService> {
 
     public VolunteerController(VolunteerService service) {
         super(service);
@@ -29,14 +28,26 @@ public class VolunteerController extends BaseController<VolunteerDto, VolunteerB
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/exists/telegram/{login}")
+    @GetMapping("/exists/telegram/login/{login}")
     public SimpleResponse<Boolean> isVolunteerExistsByTelegram(@PathVariable("login") String login) {
         return SimpleResponse.of(service.isVolunteerExistsByTelegram(login));
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/telegram/{login}")
+    @GetMapping("/exists/telegram/id/{userId}")
+    public SimpleResponse<Boolean> isVolunteerExistsByUserUd(@PathVariable("userId") Long userId) {
+        return SimpleResponse.of(service.isVolunteerExistsByUserId(userId));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/telegram/login/{login}")
     public SimpleResponse<Long> getVolunteerIdByTelegram(@PathVariable("login") String login) {
-        return SimpleResponse.of(service.getVolunteerIdByLogin(login));
+        return SimpleResponse.of(service.getVolunteerIdByTelegramLogin(login));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/telegram/id/{userId}")
+    public SimpleResponse<Long> getVolunteerIdByTelegramUserId(@PathVariable("userId") Long userId) {
+        return SimpleResponse.of(service.getVolunteerIdByTelegramUserId(userId));
     }
 }
